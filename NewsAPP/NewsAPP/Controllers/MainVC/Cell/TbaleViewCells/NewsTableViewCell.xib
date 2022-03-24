@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTableViewCell" rowHeight="50" id="KGk-i7-Jjw" customClass="NewsTableViewCell" customModule="NewsAPP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="398" height="123"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="398" height="123"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="43U-hp-uoV" customClass="DownloadImageView" customModule="NewsAPP" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="6" width="104" height="111"/>
+                        <color key="tintColor" systemColor="systemGray4Color"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="43U-hp-uoV" secondAttribute="height" multiplier="15:16" id="kXw-4U-xjj"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQh-fP-Meh">
+                        <rect key="frame" x="110" y="6" width="288" height="52.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-9e-0MU">
+                        <rect key="frame" x="110" y="64.5" width="288" height="52.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" systemColor="systemGrayColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="l3W-9e-0MU" secondAttribute="trailing" id="8f2-UF-54D"/>
+                    <constraint firstItem="43U-hp-uoV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="EOU-43-r4C"/>
+                    <constraint firstItem="l3W-9e-0MU" firstAttribute="top" secondItem="lQh-fP-Meh" secondAttribute="bottom" constant="6" id="EbZ-Nr-r5b"/>
+                    <constraint firstItem="lQh-fP-Meh" firstAttribute="leading" secondItem="43U-hp-uoV" secondAttribute="trailing" constant="6" id="EyY-UA-8NY"/>
+                    <constraint firstItem="43U-hp-uoV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FCf-Zl-F8Z"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="l3W-9e-0MU" secondAttribute="bottom" constant="6" id="FTm-uT-hsQ"/>
+                    <constraint firstItem="lQh-fP-Meh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Ldc-er-aMp"/>
+                    <constraint firstItem="l3W-9e-0MU" firstAttribute="leading" secondItem="43U-hp-uoV" secondAttribute="trailing" constant="6" id="Oue-uH-ERp"/>
+                    <constraint firstItem="l3W-9e-0MU" firstAttribute="bottom" secondItem="43U-hp-uoV" secondAttribute="bottom" id="b03-zz-79H"/>
+                    <constraint firstItem="lQh-fP-Meh" firstAttribute="top" secondItem="43U-hp-uoV" secondAttribute="top" id="jpA-ai-nsX"/>
+                    <constraint firstAttribute="trailing" secondItem="lQh-fP-Meh" secondAttribute="trailing" id="ney-MK-hlQ"/>
+                    <constraint firstItem="l3W-9e-0MU" firstAttribute="height" secondItem="lQh-fP-Meh" secondAttribute="height" id="nqP-sM-ZJs"/>
+                    <constraint firstAttribute="bottom" secondItem="43U-hp-uoV" secondAttribute="bottom" constant="6" id="xNT-b5-cuR"/>
+                </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="descriptionLabel" destination="l3W-9e-0MU" id="aaZ-Hc-0xl"/>
+                <outlet property="newsImage" destination="43U-hp-uoV" id="K1C-Aw-RIE"/>
+                <outlet property="titleLabel" destination="lQh-fP-Meh" id="Vfv-D2-qys"/>
+            </connections>
+            <point key="canvasLocation" x="194.20289855072465" y="112.16517857142857"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="defaultImage" width="493" height="391"/>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

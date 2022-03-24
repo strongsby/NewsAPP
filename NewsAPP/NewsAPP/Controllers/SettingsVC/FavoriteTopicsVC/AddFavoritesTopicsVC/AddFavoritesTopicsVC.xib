@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddFavoritesTopicsVC" customModule="NewsAPP" customModuleProvider="target">
+            <connections>
+                <outlet property="topicTextField" destination="YoR-nN-klL" id="QVr-Ed-8AH"/>
+                <outlet property="view" destination="iN0-l3-epB" id="QIS-xa-wna"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEc-Ye-vjT">
+                    <rect key="frame" x="26" y="106" width="362" height="150"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pleace add your topic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O47-Uf-bek">
+                            <rect key="frame" x="8" y="16" width="346" height="20.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="some topic" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YoR-nN-klL">
+                            <rect key="frame" x="16" y="52.5" width="330" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51G-eu-Hd5">
+                            <rect key="frame" x="146.5" y="102.5" width="69" height="31"/>
+                            <color key="backgroundColor" systemColor="linkColor"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="cancelDidTapped" destination="-1" eventType="touchUpInside" id="SwI-wp-yK0"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="YoR-nN-klL" firstAttribute="leading" secondItem="SEc-Ye-vjT" secondAttribute="leading" constant="16" id="8oW-wc-Grg"/>
+                        <constraint firstAttribute="trailing" secondItem="O47-Uf-bek" secondAttribute="trailing" constant="8" id="Fvr-a9-BmS"/>
+                        <constraint firstItem="YoR-nN-klL" firstAttribute="top" secondItem="O47-Uf-bek" secondAttribute="bottom" constant="16" id="K7I-0z-2Ll"/>
+                        <constraint firstAttribute="height" constant="150" id="MoH-0h-0UC"/>
+                        <constraint firstItem="O47-Uf-bek" firstAttribute="leading" secondItem="SEc-Ye-vjT" secondAttribute="leading" constant="8" id="Ul0-Aq-wUJ"/>
+                        <constraint firstItem="O47-Uf-bek" firstAttribute="top" secondItem="SEc-Ye-vjT" secondAttribute="top" constant="16" id="bTp-6I-uHW"/>
+                        <constraint firstItem="51G-eu-Hd5" firstAttribute="centerX" secondItem="SEc-Ye-vjT" secondAttribute="centerX" id="g2a-0G-zIQ"/>
+                        <constraint firstItem="51G-eu-Hd5" firstAttribute="top" secondItem="YoR-nN-klL" secondAttribute="bottom" constant="16" id="oUg-KJ-BlI"/>
+                        <constraint firstAttribute="trailing" secondItem="YoR-nN-klL" secondAttribute="trailing" constant="16" id="tZb-Dx-UBA"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="SEc-Ye-vjT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="26" id="8FB-Ch-7v4"/>
+                <constraint firstItem="SEc-Ye-vjT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="62" id="pj2-IH-MIv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SEc-Ye-vjT" secondAttribute="trailing" constant="26" id="yHf-mX-4D5"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
