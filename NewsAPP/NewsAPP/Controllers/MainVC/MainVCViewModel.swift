@@ -8,18 +8,6 @@
 import Foundation
 
 
-protocol MainVCViewModelProtocol: NSObject {
-    var articles: [Article] { get set }
-    var topics: [String] { get set }
-    var delegate: MainVCViewModelDelegate? { get set }
-    func collectionViewDidSelectItemAt(indexPath: IndexPath)
-    func getLastNews()
-    func getNewsWithIndex(index: Int)
-    func articlesCount() -> Int
-    func topicsCount() -> Int
-}
-
-
 final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     var delegate: MainVCViewModelDelegate?
@@ -32,6 +20,12 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         didSet {
             delegate?.collectionViewReloadData()
         }
+    }
+    
+    override init() {
+        super.init()
+        updateTopics()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTopics), name: NSNotification.Name("AddNewTopic"), object: nil)
     }
     
     func getLastNews() {
@@ -64,7 +58,6 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         }
     }
     
-    
     func collectionViewDidSelectItemAt(indexPath: IndexPath) {
         switch indexPath.item {
         case 0:
@@ -82,12 +75,6 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     func topicsCount() -> Int {
         return topics.count
-    }
-    
-    override init() {
-        super.init()
-        updateTopics()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTopics), name: NSNotification.Name("AddNewTopic"), object: nil)
     }
     
     @objc private func updateTopics() {

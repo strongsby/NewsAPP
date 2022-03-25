@@ -9,17 +9,6 @@ import Foundation
 import UIKit
 
 
-protocol SettingsVCViewModelProtocol: NSObject {
-    var settingsArray: [SettingsSection] { get set }
-    func settingsArrayCounr() -> Int
-    func settingsArrayOptionsCount(section: Int) -> Int
-    func settingsArrayTitleForFooterInSection(section: Int) -> String?
-    func settingsArrayTitleForHeaderInSection(section: Int) -> String?
-    func tableViewDidSelectRowAT(indexPath: IndexPath)
-    var delegate: SettingsVCViewModelDelegate? { get set }
-}
-
-
 final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     
     var delegate: SettingsVCViewModelDelegate?

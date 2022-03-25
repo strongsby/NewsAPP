@@ -10,21 +10,7 @@ import CoreData
 import SafariServices
 
 
-protocol SavedVCViewModelProtocol: NSObject {
-    var arryOfCoreDataNews: [CoreDataNews] { get set }
-    var delegate: SavedVCViewModelDelegate? { get set }
-    func arryOfCoreDataNewsCount() -> Int
-    func deletCoreDataModel(indexPath: IndexPath)
-    func rowDidSelect(indexPath: IndexPath)
-}
-
-
 final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
-    func rowDidSelect(indexPath: IndexPath) {
-        guard let strUrl = arryOfCoreDataNews[indexPath.row].url, let url = URL(string: strUrl) else { return }
-        delegate?.showInSafari(url: url)
-    }
-    
     
     var arryOfCoreDataNews: [CoreDataNews] = [] {
         didSet { delegate?.tableViewReloadData() }
@@ -32,6 +18,17 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     var delegate: SavedVCViewModelDelegate?
     private var fetchedResultsController: NSFetchedResultsController<CoreDataNews>!
     private var fileManager = FileManagerService()
+    
+    override init() {
+        super.init()
+        setupFetchController()
+        loadCoreDataNews()
+    }
+    
+    func rowDidSelect(indexPath: IndexPath) {
+        guard let strUrl = arryOfCoreDataNews[indexPath.row].url, let url = URL(string: strUrl) else { return }
+        delegate?.showInSafari(url: url)
+    }
     
     private func setupFetchController() {
         let request = NSFetchRequest<CoreDataNews>(entityName: "CoreDataNews")
@@ -62,12 +59,6 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
         if let resoult = fetchedResultsController.fetchedObjects {
             arryOfCoreDataNews = resoult
         }
-    }
-    
-    override init() {
-        super.init()
-        setupFetchController()
-        loadCoreDataNews()
     }
 }
 

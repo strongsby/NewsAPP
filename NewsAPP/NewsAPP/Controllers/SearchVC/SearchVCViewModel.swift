@@ -8,14 +8,6 @@
 import Foundation
 
 
-protocol SearchVCViewModelProtocol: NSObject {
-    var newsArray: [Article] { get set }
-    var delegate: SearchVCViewModelDelegate? { get set }
-    func getNewsWithString(title: String?)
-    func newsArrayCount() -> Int
-}
-
-
 final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
     private var networkService = NetwokService()

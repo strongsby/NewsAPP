@@ -8,16 +8,9 @@
 import Foundation
 
 
-protocol AddFavoritesTopicsVCProtocol: NSObject {
-    var delegate: AddFavoritesTopicsVCDelegate? { get set }
-    func addDidTapped(topic: String?) -> Bool
-}
-
-
 final class AddFavoritesTopicsVCViewModel: NSObject, AddFavoritesTopicsVCProtocol {
     
     let userDefaultService = UserDefaultService()
-
     var delegate: AddFavoritesTopicsVCDelegate?
     
     func addDidTapped(topic: String?) -> Bool {

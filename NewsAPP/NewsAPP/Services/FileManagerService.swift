@@ -9,54 +9,6 @@ import Foundation
 import UIKit
 
 
-//class FileManagerService {
-//    static let shared = FileManagerService()
-//
-//    private let fileManagerQUEUE = DispatchQueue(label: "fileManagerQUEUE", qos: .utility)
-//
-//
-//    func saveUIImage(image: UIImage, localeName: String) {
-//        fileManagerQUEUE.async {
-//            let data = image.jpegData(compressionQuality: 1.0)
-//
-//            do {
-//                var directionPass = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-//                directionPass.appendPathComponent(localeName + ".jpg")
-//                let directoryPass = directionPass
-//                try data?.write(to: directoryPass)
-//            } catch  {
-//
-//                print("ERRRRRRROOOOOOORRRRRRRR")
-//            }
-//        }
-//    }
-//
-//    func loadImage(localName: String?, completion: @escaping (UIImage?) -> Void) {
-//            DispatchQueue.global(qos: .userInitiated).async {
-//                guard var localName = localName else { return }
-//                localName = localName + ".jpg"
-//                do {
-//                    var directoryPath = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-//                    directoryPath.appendPathComponent(localName)
-//                    let data = try Data(contentsOf: directoryPath)
-//
-//                    if let image = UIImage(data: data) {
-//                        DispatchQueue.main.async {
-//                            completion(image)
-//                        }
-//                    } else {
-//                        completion(nil)
-//                    }
-//                } catch {
-//                    completion(nil)
-//                }
-//            }
-//        }
-//
-//}
-//
-//
-
 final class FileManagerService {
 
     private let fileManagerQueue = DispatchQueue(label: "fileManagerQueue", qos: .utility)
