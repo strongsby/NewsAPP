@@ -9,53 +9,118 @@ import Foundation
 
 
 final class NetwokService {
+
+    private var api = API()
+
+    // MARK: - Call For Last News
     
-    private var urlString = "https://newsapi.org/v2/top-headlines?country=us&apiKey=d4d139486e884248b0051c1ad26f8681"
-    private var urlForSearch = "https://newsapi.org/v2/everything?sortBy=popularity&apiKey=d4d139486e884248b0051c1ad26f8681&q="
-    
-    func getLatsNews(complition: @escaping (Result<[Article],Error>) -> Void) {
-        guard let url = URL(string: urlString) else { return }
+    func getLatsNews(complition: @escaping (Result<[Article],NetworkError>) -> Void) {
+        guard let url = URL(string: api.getURLStringForLastNews()) else {
+            DispatchQueue.main.async {
+                complition(.failure(.URLError))
+            }
+            return
+        }
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
+            guard error == nil else {
                 DispatchQueue.main.async {
-                    complition(.failure(error))
+                    complition(.failure(.error(error: error!.localizedDescription)))
                 }
-            } else if let data = data {
-                do {
-                    let news = try JSONDecoder().decode(News.self, from: data)
-                    guard let arrayOfArticles = news.articles else { return }
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    complition(.failure(.invalidResponse))
+                }
+                return
+            }
+
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    complition(.failure(.invalidData))
+                }
+                return
+            }
+
+            do {
+                let news = try JSONDecoder().decode(News.self, from: data)
+                guard let arrayOfArticles = news.articles else {
                     DispatchQueue.main.async {
-                        complition(.success(arrayOfArticles))
+                        complition(.failure(.invalidNews))
                     }
-                } catch {
-                    DispatchQueue.main.async {
-                        complition(.failure(error))
-                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    complition(.success(arrayOfArticles))
+                }
+            } catch let err {
+                DispatchQueue.main.async {
+                    complition(.failure(.decodingError(error: err.localizedDescription)))
                 }
             }
         }.resume()
     }
+
     
-    func serchNews(for news: String, complition: @escaping (Result<[Article],Error>) -> Void) {
-        guard let url = URL(string: urlForSearch + news) else { return }
+    // MARK: - Call Fore Serching News
+    
+    func serchNews(for news: String, complition: @escaping (Result<[Article],NetworkError>) -> Void) {
+        guard let url = URL(string: api.getURLStringForSearchNews(news: news)) else {
+            DispatchQueue.main.async {
+                complition(.failure(.URLError))
+            }
+            return
+        }
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
+            guard error == nil else {
                 DispatchQueue.main.async {
-                    complition(.failure(error))
+                    complition(.failure(.error(error: error!.localizedDescription)))
                 }
-            } else if let data = data {
-                do {
-                    let news = try JSONDecoder().decode(News.self, from: data)
-                    guard let arrayOfArticles = news.articles else { return }
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    complition(.failure(.invalidResponse))
+                }
+                return
+            }
+
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    complition(.failure(.invalidData))
+                }
+                return
+            }
+
+            do {
+                let news = try JSONDecoder().decode(News.self, from: data)
+                guard let arrayOfArticles = news.articles else {
                     DispatchQueue.main.async {
-                        complition(.success(arrayOfArticles))
+                        complition(.failure(.invalidNews))
                     }
-                } catch {
-                    DispatchQueue.main.async {
-                        complition(.failure(error))
-                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    complition(.success(arrayOfArticles))
+                }
+            } catch let err {
+                DispatchQueue.main.async {
+                    complition(.failure(.decodingError(error: err.localizedDescription)))
                 }
             }
         }.resume()
+    }
+
+    // MARK: - Handling Errors
+    
+    enum NetworkError: Error {
+        case URLError
+        case invalidResponse
+        case invalidData
+        case invalidNews
+        case error(error: String)
+        case decodingError(error: String)
     }
 }
