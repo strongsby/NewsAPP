@@ -9,13 +9,17 @@ import UIKit
 
 final class AddFavoritesTopicsVC: UIViewController {
     
-    private var viewMode: AddFavoritesTopicsVCProtocol = AddFavoritesTopicsVCViewModel()
+    //MARK: - OUTLETS & CLASS PROPERTYES
+    
     @IBOutlet private weak var topicTextField: UITextField! {
         didSet {
             topicTextField.becomeFirstResponder()
             topicTextField.delegate = self
         }
     }
+    private var viewMode: AddFavoritesTopicsVCProtocol = AddFavoritesTopicsVCViewModel()
+
+    //MARK: - CLASS FUNCTIONS
     
     private func bind() {
         viewMode.delegate = self
@@ -26,11 +30,15 @@ final class AddFavoritesTopicsVC: UIViewController {
         bind()
     }
     
+    //MARK: - ACTIONS
+    
     @IBAction func cancelDidTapped() {
         dismiss(animated: true, completion: nil)
     }
 }
 
+
+//MARK: - EXTENSION UITextFieldDelegate
 
 extension AddFavoritesTopicsVC: UITextFieldDelegate {
     
@@ -40,10 +48,15 @@ extension AddFavoritesTopicsVC: UITextFieldDelegate {
 }
 
 
+//MARK: - EXTENSION AlertHandler
+
 extension AddFavoritesTopicsVC: AlertHandler {}
 
 
+//MARK: - EXTENSION AddFavoritesTopicsVCDelegate
+
 extension AddFavoritesTopicsVC: AddFavoritesTopicsVCDelegate {
+    
     func dismis() {
         dismiss(animated: true, completion: nil)
     }
@@ -52,59 +65,3 @@ extension AddFavoritesTopicsVC: AddFavoritesTopicsVCDelegate {
         showAlert(title: title, message: message, completion: complition)
     }
 }
-
-
-
-
-
-//
-//
-//
-//
-//import UIKit
-//
-//final class AddFavoritesTopicsVC: UIViewController {
-//
-//    let userDefaultService = UserDefaultService()
-//    @IBOutlet private weak var topicTextField: UITextField! {
-//        didSet {
-//            topicTextField.becomeFirstResponder()
-//            topicTextField.delegate = self
-//        }
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
-//
-//    @IBAction func cancelDidTapped() {
-//        dismiss(animated: true, completion: nil)
-//    }
-//}
-//
-//
-//extension AddFavoritesTopicsVC: UITextFieldDelegate {
-//
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//        guard let newElement = textField.text?.capitalized else { return false }
-//        var topics = userDefaultService.loadTopics()
-//        guard !topics.contains(newElement) else {
-//            showAlert(title: "Warning", message: "You have \(newElement) in your list! Do you really want to add it again?") {
-//                topics.append(newElement)
-//                self.userDefaultService.saveTopics(topics: topics)
-//                NotificationCenter.default.post(name: NSNotification.Name("AddNewTopic"), object: nil)
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//            return false
-//        }
-//        topics.append(newElement)
-//        userDefaultService.saveTopics(topics: topics)
-//        dismiss(animated: true, completion: nil)
-//        NotificationCenter.default.post(name: NSNotification.Name("AddNewTopic"), object: nil)
-//        return true
-//    }
-//}
-//
-//
-//extension AddFavoritesTopicsVC: AlertHandler {}

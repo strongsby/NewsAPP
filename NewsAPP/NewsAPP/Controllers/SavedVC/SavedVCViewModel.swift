@@ -12,6 +12,8 @@ import SafariServices
 
 final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
+    //MARK: - CALSS PROPERTYES
+    
     var arryOfCoreDataNews: [CoreDataNews] = [] {
         didSet { delegate?.tableViewReloadData() }
     }
@@ -19,11 +21,15 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     private var fetchedResultsController: NSFetchedResultsController<CoreDataNews>!
     private var fileManager = FileManagerService()
     
+    //MARK: - INIT
+    
     override init() {
         super.init()
         setupFetchController()
         loadCoreDataNews()
     }
+    
+    //MARK: - CLASS FUNCTIONS
     
     func rowDidSelect(indexPath: IndexPath) {
         guard let strUrl = arryOfCoreDataNews[indexPath.row].url, let url = URL(string: strUrl) else { return }
@@ -62,6 +68,8 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     }
 }
 
+
+//MARK: - EXTENSION NSFetchedResultsControllerDelegate
 
 extension SavedVCViewModel: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

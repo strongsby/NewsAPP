@@ -10,17 +10,23 @@ import Foundation
 
 final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtocol {
     
+    //MARK: - CLASS PROPERTYES
+    
     private var userDefaultService = UserDefaultService()
     var delegate: FavoriteTopicsVCViewModelDelegate?
     var newTopics: [String] = [] {
         didSet { delegate?.tableViewReloadData() }
     }
     
+    //MAERK: - INIT
+    
     override init() {
         super.init()
         loadAllTopics()
         NotificationCenter.default.addObserver(self, selector: #selector(loadAllTopics), name: NSNotification.Name("AddNewTopic"), object: nil)
     }
+    
+    //MARK: - CLASS FUNCTIONS
     
     func newTopicsCount() -> Int {
         return newTopics.count
@@ -31,6 +37,8 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
         userDefaultService.saveTopics(topics: newTopics)
         NotificationCenter.default.post(name: NSNotification.Name("AddNewTopic"), object: nil)
     }
+    
+    //MARK: - ACTIONS
     
     @objc func loadAllTopics() {
         newTopics = userDefaultService.loadTopics()

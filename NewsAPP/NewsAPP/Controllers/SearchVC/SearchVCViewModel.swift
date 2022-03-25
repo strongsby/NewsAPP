@@ -10,10 +10,13 @@ import Foundation
 
 final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
+    //MARK: - CLASS PROPERTYES
+    
     private var networkService = NetwokService()
     var newsArray: [Article] = []
-    
     var delegate: SearchVCViewModelDelegate?
+    
+    //MARK: - CLASSFUNCTIONS
     
     func newsArrayCount() -> Int {
         return newsArray.count
@@ -31,7 +34,6 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
             case .success(let news):
                 self?.newsArray = news
                 self?.delegate?.stopAnomatedSkeleton()
-                //self?.delegate?.clearSearchBar()
             }
         }
     }    

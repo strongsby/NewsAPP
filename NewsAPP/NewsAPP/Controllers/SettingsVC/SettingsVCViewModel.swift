@@ -11,6 +11,8 @@ import UIKit
 
 final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     
+    //MARK: - CLASS PROPERTYES
+    
     var delegate: SettingsVCViewModelDelegate?
     var settingsArray: [SettingsSection] = {
         let array: [SettingsSection] = [
@@ -25,6 +27,8 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
         ]
         return array
     }()
+    
+    //MARK: - CLASS FUNCTIONS
     
     func settingsArrayCounr() -> Int {
         return settingsArray.count

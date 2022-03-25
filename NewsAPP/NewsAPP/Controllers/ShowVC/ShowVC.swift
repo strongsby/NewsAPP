@@ -9,10 +9,9 @@ import UIKit
 import  SafariServices
 
 
-
-
-
 final class ShowVC: UIViewController {
+    
+    //MARK: - OUTLETS & CLASS PROPETYES
     
     @IBOutlet private weak var addButton: UIButton!
     @IBOutlet private weak var titleLabel:  UILabel!
@@ -20,6 +19,15 @@ final class ShowVC: UIViewController {
     @IBOutlet private weak var sourseLabel: UILabel!
     @IBOutlet private weak var newsImage: DownloadImageView!
     var viewModel: ShowVCViewModelProtocol = ShowVCViewModel()
+    
+    //MARK: - LIFE CYCLE
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupAll()
+    }
+    
+    //MARK: - CLASS FUNCTIONS
     
     private func setupLables() {
         let lablesText = viewModel.getLablesText()
@@ -48,10 +56,7 @@ final class ShowVC: UIViewController {
         setupLables()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupAll()
-    }
+    //MARK: - ACTIONS
     
     @IBAction func addDidTapped(_ sender: Any) {
         viewModel.saveArticle(image: newsImage.image)
@@ -63,10 +68,15 @@ final class ShowVC: UIViewController {
 }
 
 
+//MARK: - EXTENSION AlertHandler
+
 extension ShowVC: AlertHandler {}
 
 
+//MARK: - EXTENSION ShowVCViewModelDelegate
+
 extension ShowVC: ShowVCViewModelDelegate {
+    
     func ShowVCShowAllert(title: String?, message: String?, complition: (() -> Void)?) {
         showAlert(title: title, message: message, completion: complition)
     }
@@ -75,68 +85,4 @@ extension ShowVC: ShowVCViewModelDelegate {
         let safariVC = SFSafariViewController(url: url)
         navigationController?.pushViewController(safariVC, animated: true)
     }
-    
-    
 }
-
-
-
-
-//final class ShowVC: UIViewController {
-//
-//    @IBOutlet private weak var addButton: UIButton!
-//    @IBOutlet private weak var titleLabel:  UILabel!
-//    @IBOutlet private weak var descriptionLabel: UILabel!
-//    @IBOutlet private weak var sourseLabel: UILabel!
-//    @IBOutlet private weak var newsImage: DownloadImageView!
-//    private let fileManagerService = FileManagerService()
-//    var article: Article?
-//
-//    func configShowVC() {
-//        if let title = article?.title, let description = article?.content, let sourse = article?.source?.name {
-//            descriptionLabel.text = description
-//            titleLabel.text = title
-//            sourseLabel.text = "Sourse: \(sourse)"
-//        }
-//        guard let urlToImage = article?.urlToImage else { return }
-//        if let image = ImageCacheService.shared.load(urlToImage: urlToImage) {
-//            newsImage.image = image
-//        } else {
-//            guard let url = URL(string: urlToImage) else { return }
-//            newsImage.load(url) { [ weak self ] image in
-//                self?.newsImage.image = image
-//            }
-//        }
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        configShowVC()
-//    }
-//
-//    @IBAction func addDidTapped(_ sender: Any) {
-//        self.showAlert(title: "Sorry", message: "are you sure you want to save this news") { [ weak self ] in
-//            guard let article = self?.article else { return }
-//            guard let tryAdd = article.addCoreDataNews(), tryAdd else {
-//                self?.showAlert(title: "Sorry", message: "Failed to save Data") {}
-//                return
-//            }
-//            if let localName = article.urlToImage, let url = URL(string: localName) {
-//                let dounloadImage = DownloadImageView()
-//                dounloadImage.load(url) { [ weak self ] image in
-//                    self?.fileManagerService.save(image: image, localName: localName)
-//                }
-//            }
-//            CoreDataService.shared.saveContext()
-//        }
-//    }
-//
-//    @IBAction func LernMoreWithSafariDidTapped(_ sender: Any) {
-//        guard let urlstr = article?.url, let url = URL(string: urlstr) else { return }
-//        let safariVC = SFSafariViewController(url: url)
-//        navigationController?.pushViewController(safariVC, animated: true)
-//    }
-//}
-//
-//
-//extension ShowVC: AlertHandler {}

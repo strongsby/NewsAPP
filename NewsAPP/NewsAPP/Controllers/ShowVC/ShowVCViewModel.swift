@@ -9,18 +9,23 @@ import Foundation
 import UIKit
 
 
-protocol ShowVCViewModelProtocol: NSObject {
-    var article: Article? { get set }
-    var delegate: ShowVCViewModelDelegate? { get set }
-    func saveArticle(image: UIImage?) -> Void
-    func showInSafariDidTapped()
-    func getCashedImage() -> UIImage?
-    func getImageURL() -> URL?
-    func getLablesText() -> (title: String, description: String, sourse: String)
-}
-
-
 final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
+    
+    //MARK: - CLASS PROPERTYES
+    
+    private var fileManagerService = FileManagerService()
+    var article: Article?
+    var delegate: ShowVCViewModelDelegate?
+    
+    //MARK: INIT
+    
+    convenience init(art: Article) {
+        self.init()
+        self.article = art
+    }
+    
+    //MARK: - CLASS FUNCTIONS
+    
     func getCashedImage() -> UIImage? {
         guard let urlToImage = article?.urlToImage, let image = ImageCacheService.shared.load(urlToImage: urlToImage) else { return nil }
             return image
@@ -37,12 +42,6 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
         let sourse = article?.source?.name ?? ""
         return (title, description, sourse)
     }
-    
-    
-    
-    private var fileManagerService = FileManagerService()
-    var article: Article?
-    var delegate: ShowVCViewModelDelegate?
     
     func showInSafariDidTapped() {
         guard let urlstr = article?.url, let url = URL(string: urlstr) else { return }
@@ -65,10 +64,5 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
                 self?.fileManagerService.save(image: image, localName: localName)
             }
         }
-    }
-    
-    convenience init(art: Article) {
-        self.init()
-        self.article = art
     }
 }

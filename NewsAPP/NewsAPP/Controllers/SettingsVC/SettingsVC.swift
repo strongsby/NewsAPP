@@ -9,6 +9,8 @@ import UIKit
 
 final class SettingsVC: UIViewController {
     
+    //MARK: - OUTLETS & CLASS PROPERTYES
+    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -17,6 +19,15 @@ final class SettingsVC: UIViewController {
         }
     }
     private var viewModel: SettingsVCViewModelProtocol = SettingsVCViewModel()
+    
+    //MARK: - LIFE CYCLE
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupAll()
+    }
+    
+    //MARK: - CLASS FUNCTIONS
     
     private func tableViewRegisterCells() {
         tableView.register(DefaultSettingsVCCell.defaultNib, forCellReuseIdentifier: DefaultSettingsVCCell.reuseIdentifier)
@@ -35,13 +46,10 @@ final class SettingsVC: UIViewController {
         setTitle()
         bind()
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupAll()
-    }
 }
 
+
+//MARK: - EXTENSION UITableViewDelegate & UITableViewDataSource
 
 extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -82,6 +90,8 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+//MARK: - EXTENSION SettingsVCViewModelDelegate
+
 extension SettingsVC: SettingsVCViewModelDelegate {
     func showFavoriteTopicsVC() {
         navigationController?.pushViewController(FavoriteTopicsVC(), animated: true)
@@ -90,113 +100,4 @@ extension SettingsVC: SettingsVCViewModelDelegate {
     func showInfoVC() {
         navigationController?.pushViewController(InfoVC(), animated: true)
     }
-    
-    
 }
-
-
-
-
-
-
-//
-//
-//
-//
-//import UIKit
-//
-//final class SettingsVC: UIViewController {
-//
-//    @IBOutlet private weak var tableView: UITableView! {
-//        didSet {
-//            tableView.delegate = self
-//            tableView.dataSource = self
-//            tableViewRegisterCells()
-//        }
-//    }
-//    private var settingsArray: [SettingsSection] {
-//        let array: [SettingsSection] = [
-//            SettingsSection(headerTitle: "Visual settings", footerTitle: "In these settings, you can change the color scheme of the program",
-//                            options: [SettingsOptionsType.SwitchSettingsOptions(switchModel: SwitchSettingsOptions(imageBackgroundColor: UIColor.green, title: "Dark mode", settingsImage: UIImage(systemName: "switch.2"))) ]),
-//
-//            SettingsSection(headerTitle: "General settings", footerTitle: "In these settings, you can change the main elements of the program",
-//                            options: [SettingsOptionsType.DefaultSettingsVCCell(defaultModel: DefaultSettingsOptions(imageBackgroundColor: .purple, title: "Favorite topics", settingsImage: UIImage(systemName: "star.leadinghalf.fill")))]),
-//
-//            SettingsSection(headerTitle: "Information", footerTitle: "These settings contain all information about the application, including the API",
-//                            options: [SettingsOptionsType.DefaultSettingsVCCell(defaultModel: DefaultSettingsOptions(imageBackgroundColor: .link, title: "info", settingsImage: UIImage(systemName: "info.circle")))])
-//        ]
-//        return array
-//    }
-//
-//    private func tableViewRegisterCells() {
-//        tableView.register(DefaultSettingsVCCell.defaultNib, forCellReuseIdentifier: DefaultSettingsVCCell.reuseIdentifier)
-//        tableView.register(SwitchSettingsCell.defaultNib, forCellReuseIdentifier: SwitchSettingsCell.reuseIdentifier)
-//    }
-//
-//    private func setTitle() {
-//        title = "Settings"
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        setTitle()
-//    }
-//}
-//
-//
-//extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        switch section {
-//        case 0: return settingsArray[0].headerTitle
-//        case 1: return settingsArray[1].headerTitle
-//        case 2: return settingsArray[2].headerTitle
-//        default: return "Ups"
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        switch section {
-//        case 0: return settingsArray[0].footerTitle
-//        case 1: return settingsArray[1].footerTitle
-//        case 2: return settingsArray[2].footerTitle
-//        default: return "Ups"
-//        }
-//    }
-//
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return settingsArray.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        switch section {
-//        case 0: return settingsArray[0].options.count
-//        case 1: return settingsArray[1].options.count
-//        case 2: return settingsArray[2].options.count
-//        default: return 0
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let model = settingsArray[indexPath.section].options[indexPath.row]
-//
-//        switch model {
-//        case .DefaultSettingsVCCell(defaultModel: let defaultSettings):
-//            let cell = tableView.dequeueReusableCells(type: DefaultSettingsVCCell.self, indexPath: indexPath)
-//            cell.cofigCell(model: defaultSettings)
-//            return cell
-//        case .SwitchSettingsOptions(switchModel: let switchSettinggs):
-//            let cell = tableView.dequeueReusableCells(type: SwitchSettingsCell.self, indexPath: indexPath)
-//            cell.configCell(model: switchSettinggs)
-//            return cell
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        switch indexPath.section {
-//        case 1: navigationController?.pushViewController(FavoriteTopicsVC(), animated: true)
-//        case 2: navigationController?.pushViewController(InfoVC(), animated: true)
-//        default: break
-//        }
-//    }
-//}

@@ -10,23 +10,27 @@ import Foundation
 
 final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
+    //MARK: - CLASS PROPERTYES
+    
     var delegate: MainVCViewModelDelegate?
     private var netwokService = NetwokService()
     private var userDefaultService = UserDefaultService()
-    
     var articles: [Article] = []
-    
     var topics: [String] = [] {
         didSet {
             delegate?.collectionViewReloadData()
         }
     }
     
+    //MARK: - INIT
+    
     override init() {
         super.init()
         updateTopics()
         NotificationCenter.default.addObserver(self, selector: #selector(updateTopics), name: NSNotification.Name("AddNewTopic"), object: nil)
     }
+    
+    //MARK: - CLASS FUNCTIONS
     
     func getLastNews() {
         delegate?.startAnimatedSkeletonView()

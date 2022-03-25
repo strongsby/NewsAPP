@@ -10,7 +10,8 @@ import SkeletonView
 
 final class SearchVC: UIViewController {
 
-    private var searcController: UISearchController!
+    //MARK: - OUTLETS & CALASS PROPERTYES
+    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -18,11 +19,21 @@ final class SearchVC: UIViewController {
             tableViewRegisterCells()
         }
     }
+    private var searcController: UISearchController!
     private var viewModel: SearchVCViewModelProtocol = SearchVCViewModel()
+    
+    //MARK: - LIFE CYCLE
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupAll()
+    }
+    
+    //MARK: - CLASS FUNCTIONS
     
     private func setupSearchController() {
         let resoultVC = UIViewController()
-        //resoultVC.view.backgroundColor = .systemGray
+        //resoultVC.view.backgroundColor = .systemGray       // for test
         searcController = UISearchController(searchResultsController: resoultVC)
         searcController.searchBar.placeholder = "Search for some news"
         navigationItem.searchController = searcController
@@ -49,13 +60,10 @@ final class SearchVC: UIViewController {
         setupSearchController()
         setTitle()
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupAll()
-    }
 }
 
+
+//MARK: - EXTENSION UITableViewDelegate & SkeletonTableViewDataSource
 
 extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
@@ -73,7 +81,6 @@ extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
         let showVC = ShowVC()
         let article = viewModel.newsArray[indexPath.row]
         showVC.viewModel = ShowVCViewModel.init(art: article)
-        //showVC.article = viewModel.newsArray[indexPath.row]
         navigationController?.pushViewController(showVC, animated: true)
     }
     
@@ -82,6 +89,8 @@ extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
     }
 }
 
+
+//MARK: - EXTENSION UISearchBarDelegate
 
 extension SearchVC: UISearchBarDelegate {
     
@@ -94,8 +103,12 @@ extension SearchVC: UISearchBarDelegate {
 }
 
 
+//MARK: - EXTENSION AlertHandler
+
 extension SearchVC: AlertHandler {}
 
+
+//MARK: - EXTENSION SearchVCViewModelDelegate
 
 extension SearchVC: SearchVCViewModelDelegate {
     

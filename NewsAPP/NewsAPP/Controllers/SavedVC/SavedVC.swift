@@ -7,9 +7,11 @@
 
 import UIKit
 import SafariServices
-import CoreData
+
 
 final class SavedVC: UIViewController {
+    
+    //MARK: - OUTLETS & CLASS PROPERTYES
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -20,6 +22,20 @@ final class SavedVC: UIViewController {
     }
     private var viewModel: SavedVCViewModelProtocol = SavedVCViewModel()
 
+    //MARK: - LIFE CYCLE
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupAll()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableView.isEditing = false
+    }
+    
+    //MARK: - CLASS FUNCTION
+    
     private func tableViewRegisterCells() {
         tableView.register(SavedVCCell.defaultNib, forCellReuseIdentifier: SavedVCCell.reuseIdentifier)
     }
@@ -43,21 +59,13 @@ final class SavedVC: UIViewController {
         bind()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupAll()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        tableView.isEditing = false 
-    }
-    
     @objc func deletDidTapped() {
         tableView.isEditing = !tableView.isEditing
     }
 }
 
+
+//MARK: - EXTENSION UITableViewDelegate & UITableViewDataSource
 
 extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -89,9 +97,12 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+//MARK: - EXTENSION AlertHandler
+
 extension SavedVC: AlertHandler {}
 
 
+//MARK: - EXTENSION SavedVCViewModelDelegate
 
 extension SavedVC: SavedVCViewModelDelegate {
     
