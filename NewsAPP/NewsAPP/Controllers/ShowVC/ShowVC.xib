@@ -58,7 +58,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biY-rG-dZk">
                     <rect key="frame" x="16" y="825" width="301" height="31"/>
                     <color key="backgroundColor" systemColor="linkColor"/>
-                    <color key="tintColor" systemColor="systemBackgroundColor"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Open source with Safari"/>
                     <userDefinedRuntimeAttributes>
@@ -82,6 +82,24 @@
                     <color key="textColor" systemColor="systemGrayColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="732-aS-Xgj">
+                    <rect key="frame" x="16" y="358" width="382" height="31"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="DCp-gj-zOj"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Share"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="shareDidTapped" destination="-1" eventType="touchUpInside" id="QfN-kd-tuU"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -94,13 +112,17 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VjA-GI-coG" secondAttribute="trailing" constant="16" id="NvX-D4-IHe"/>
                 <constraint firstItem="IDd-a7-0Dv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="OVY-w5-TFI"/>
                 <constraint firstItem="VjA-GI-coG" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="PaH-hc-zop"/>
+                <constraint firstItem="732-aS-Xgj" firstAttribute="top" secondItem="IDd-a7-0Dv" secondAttribute="bottom" constant="6" id="Szh-sh-w2v"/>
                 <constraint firstItem="IDd-a7-0Dv" firstAttribute="top" secondItem="VGb-rx-bMP" secondAttribute="bottom" constant="6" id="TOz-aD-uUT"/>
                 <constraint firstItem="biY-rG-dZk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="TgT-rZ-RNx"/>
                 <constraint firstItem="VjA-GI-coG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="WOP-Tu-hPd"/>
+                <constraint firstItem="732-aS-Xgj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="cPI-ty-38L"/>
+                <constraint firstItem="OTy-NX-dx5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="732-aS-Xgj" secondAttribute="bottom" constant="6" id="dAe-KU-h5z"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="OTy-NX-dx5" secondAttribute="bottom" constant="6" id="fPa-FF-KeG"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VGb-rx-bMP" secondAttribute="trailing" constant="16" id="jGt-OK-0pD"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OTy-NX-dx5" secondAttribute="trailing" constant="6" id="p55-Gu-nbd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="g5b-8c-MRO" secondAttribute="trailing" constant="16" id="sC9-IU-6Be"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="732-aS-Xgj" secondAttribute="trailing" constant="16" id="uWQ-LB-oit"/>
                 <constraint firstItem="VGb-rx-bMP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="xjv-eE-Ppf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IDd-a7-0Dv" secondAttribute="trailing" constant="16" id="xxH-PI-t3n"/>
             </constraints>

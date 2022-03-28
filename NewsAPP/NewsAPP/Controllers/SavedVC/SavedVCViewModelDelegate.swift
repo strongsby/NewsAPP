@@ -12,4 +12,5 @@ protocol SavedVCViewModelDelegate {
     func tableViewReloadData()
     func savedVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
     func showInSafari(url: URL)
+    func showShowVC(coreDataModel: CoreDataNews)
 }

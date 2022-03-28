@@ -77,7 +77,6 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCells(type: SavedVCCell.self, indexPath: indexPath)
         let coreDataModel = viewModel.arryOfCoreDataNews[indexPath.row]
         cell.viewModel = SavedVCCellViewModel(coreDataMode: coreDataModel)
-        //cell.configCell(article: viewModel.arryOfCoreDataNews[indexPath.row])
         return cell
     }
     
@@ -107,6 +106,12 @@ extension SavedVC: AlertHandler {}
 //MARK: - EXTENSION SavedVCViewModelDelegate
 
 extension SavedVC: SavedVCViewModelDelegate {
+    
+    func showShowVC(coreDataModel: CoreDataNews) {
+        let showVC = ShowVC()
+        showVC.viewModel = ShowVCViewModel(coreDataModel: coreDataModel)
+        navigationController?.pushViewController(showVC, animated: true)
+    }
     
     func tableViewReloadData() {
         tableView.reloadData()

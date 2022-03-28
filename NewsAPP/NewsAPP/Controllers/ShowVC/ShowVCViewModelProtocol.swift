@@ -12,8 +12,10 @@ import UIKit
 protocol ShowVCViewModelProtocol: NSObject {
     var article: Article? { get set }
     var delegate: ShowVCViewModelDelegate? { get set }
+    func addButtonIsHidden() -> Bool
     func saveArticle(image: UIImage?) -> Void
-    func showInSafariDidTapped()
+    func showInSafariDidTapped() -> Void
+    func shareDidTapped() -> Void
     func getCashedImage() -> UIImage?
     func getImageURL() -> URL?
     func getLablesText() -> (title: String, description: String, sourse: String)

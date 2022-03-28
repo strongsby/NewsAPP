@@ -32,8 +32,7 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     //MARK: - CLASS FUNCTIONS
     
     func rowDidSelect(indexPath: IndexPath) {
-        guard let strUrl = arryOfCoreDataNews[indexPath.row].url, let url = URL(string: strUrl) else { return }
-        delegate?.showInSafari(url: url)
+        delegate?.showShowVC(coreDataModel: arryOfCoreDataNews[indexPath.row])
     }
     
     private func setupFetchController() {

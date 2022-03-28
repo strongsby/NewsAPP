@@ -122,6 +122,7 @@ extension MainVC: AlertHandler {}
 //MARK: - EXTENSION MainVCViewModelDelegate
 
 extension MainVC: MainVCViewModelDelegate {
+    
     func presentAddFavoritesTopicsVC() {
         navigationController?.present(AddFavoritesTopicsVC(), animated: true, completion: nil)
     }

@@ -50,13 +50,22 @@ final class ShowVC: UIViewController {
         viewModel.delegate = self
     }
     
+    private func setupAddButton() {
+        addButton.isHidden = viewModel.addButtonIsHidden()
+    }
+    
     private func setupAll() {
         bind()
         setupImage()
         setupLables()
+        setupAddButton()
     }
     
     //MARK: - ACTIONS
+    
+    @IBAction func shareDidTapped() {
+        viewModel.shareDidTapped()
+    }
     
     @IBAction func addDidTapped(_ sender: Any) {
         viewModel.saveArticle(image: newsImage.image)
@@ -76,8 +85,12 @@ extension ShowVC: AlertHandler {}
 //MARK: - EXTENSION ShowVCViewModelDelegate
 
 extension ShowVC: ShowVCViewModelDelegate {
+    func showVCShowActivityVC(url: URL) {
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        navigationController?.present(activityVC, animated: true, completion: nil)
+    }
     
-    func ShowVCShowAllert(title: String?, message: String?, complition: (() -> Void)?) {
+    func showVCShowAllert(title: String?, message: String?, complition: (() -> Void)?) {
         showAlert(title: title, message: message, completion: complition)
     }
     

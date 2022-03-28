@@ -14,6 +14,7 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     //MARK: - CLASS PROPERTYES
     
     private var fileManagerService = FileManagerService()
+    private var addButtonIsHiddenFlag = false
     var article: Article?
     var delegate: ShowVCViewModelDelegate?
     
@@ -24,7 +25,30 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
         self.article = art
     }
     
+    convenience init(coreDataModel: CoreDataNews) {
+        self.init()
+        let newArticle = Article(source: nil,
+                              author: coreDataModel.author,
+                              title: coreDataModel.title,
+                              articleDescription: coreDataModel.articleDescription,
+                              url: coreDataModel.url,
+                              urlToImage: coreDataModel.urlToImage,
+                              publishedAt: coreDataModel.publishedAt,
+                              content: coreDataModel.content)
+        article = newArticle
+        addButtonIsHiddenFlag = true
+    }
+    
     //MARK: - CLASS FUNCTIONS
+    
+    func addButtonIsHidden() -> Bool {
+        return addButtonIsHiddenFlag 
+    }
+    
+    func shareDidTapped() {
+        guard let urlStr = article?.url, let url = URL(string: urlStr) else { return }
+        delegate?.showVCShowActivityVC(url: url)
+    }
     
     func getCashedImage() -> UIImage? {
         guard let urlToImage = article?.urlToImage, let image = ImageCacheService.shared.load(urlToImage: urlToImage) else { return nil }
@@ -49,7 +73,7 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     }
     
     func saveArticle(image: UIImage?) {
-        self.delegate?.ShowVCShowAllert(title: "Sorry", message: "are you sure you want to save this news") { [ weak self ] in
+        self.delegate?.showVCShowAllert(title: "Sorry", message: "are you sure you want to save this news") { [ weak self ] in
             guard let article = self?.article else { return }
             let newContext = CoreDataService.shared.persistentContainer.newBackgroundContext()
             newContext.perform {
