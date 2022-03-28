@@ -73,13 +73,13 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         let model = viewModel.settingsArray[indexPath.section].options[indexPath.row]
         
         switch model {
-        case .DefaultSettingsVCCell(defaultModel: let defaultSettings):
+        case .DefaultSettingsVCCell(defaultModel: let defaultSettingsModel):
             let cell = tableView.dequeueReusableCells(type: DefaultSettingsVCCell.self, indexPath: indexPath)
-            cell.cofigCell(model: defaultSettings)
+            cell.viewModel = DefaultSettingsVCCellViewModel(model: defaultSettingsModel)
             return cell
-        case .SwitchSettingsOptions(switchModel: let switchSettinggs):
+        case .SwitchSettingsOptions(switchModel: let switchSettingsModel):
             let cell = tableView.dequeueReusableCells(type: SwitchSettingsCell.self, indexPath: indexPath)
-            cell.configCell(model: switchSettinggs)
+            cell.viewModel = SwitchSettingsCellViewModel(model: switchSettingsModel)
             return cell
         }
     }

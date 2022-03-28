@@ -9,20 +9,23 @@ import UIKit
 
 final class FavoriteTopicsVCCell: UITableViewCell {
     
-    @IBOutlet private weak var titleLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    //MARK: - OUTLETS & CLASS PROPERTYES
     
-    func configCell(title: String) {
-        titleLabel.text = title
+    @IBOutlet private weak var titleLabel: UILabel!
+    var viewModel: FavoriteTopicsVCCellViewModelProtocol = FavoriteTopicsVCCellViewModel() {
+        didSet {
+            setupTitleLabel()
+        }
+    }
+
+    //MARK: - CLASS FUNCTIOS
+    
+    private func setupTitleLabel() {
+        titleLabel.text = viewModel.getLableTexte()
     }
 }
 
+
+//MARK: - EXTENSIO NewsAPPNibLoadable
 
 extension FavoriteTopicsVCCell: NewsAPPNibLoadable {}

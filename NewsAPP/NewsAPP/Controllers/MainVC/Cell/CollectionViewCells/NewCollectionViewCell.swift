@@ -9,15 +9,23 @@ import UIKit
 
 final class NewCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet private weak var titleLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    //MARK: - OUTLETS & CLASS PROPERTYES
+    
+    @IBOutlet private weak var titleLabel: UILabel! 
+    var viewModel: NewCollectionViewCellViewModelProtocol = NewCollectionViewCellViewModel() {
+        didSet { configCell() }
     }
 
-    func configCell(title: String) {
-        titleLabel.text = title
+    //MARK: - LIFU CYCLE
+    
+        override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    //MARK: - CLASS FUNCS
+    
+    func configCell() {
+        titleLabel.text = viewModel.getTitle()
     }
 }
 

@@ -9,16 +9,36 @@ import UIKit
 
 final class DefaultSettingsVCCell: UITableViewCell {
     
+    //MARK: - OUTLETS & CLASS PROPERTYES
+    
     @IBOutlet private var imageBackgroundColor: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var settingsImage: UIImageView!
+    var viewModel: DefaultSettingsVCCellViewModelProtocol = DefaultSettingsVCCellViewModel() {
+        didSet {
+            setupAll()
+        }
+    }
     
-    func cofigCell(model: DefaultSettingsOptions) {
-        imageBackgroundColor.backgroundColor = model.imageBackgroundColor
-        titleLabel.text = model.title
-        settingsImage.image = model.settingsImage
+    //MARK: - CLASS FUNCTIONS
+    
+    private func setupLabel() {
+        titleLabel.text = viewModel.getLabelText()
+    }
+    
+    private func setupSettingsImage() {
+        guard let imageSettings = viewModel.getImage() else { return }
+        settingsImage.image = imageSettings.image
+        imageBackgroundColor.backgroundColor = imageSettings.color
+    }
+    
+    private func setupAll() {
+        setupSettingsImage()
+        setupLabel()
     }
 }
 
+
+//MARK: - EXTENSION NewsAPPNibLoadable
 
 extension DefaultSettingsVCCell: NewsAPPNibLoadable {}

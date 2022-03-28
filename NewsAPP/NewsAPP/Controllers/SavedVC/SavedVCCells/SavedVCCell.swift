@@ -7,49 +7,52 @@
 
 import UIKit
 
+
 final class SavedVCCell: UITableViewCell {
+    
+    //MARK: - OUTLETS & CLASS PROPERTYES
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var newsImage: UIImageView!
     private var fileManagerService = FileManagerService()
-    //var url = ""
-    
-    func configCell(article: CoreDataNews) {
-        titleLabel.text = article.title ?? ""
-        descriptionLabel.text = article.articleDescription ?? ""
-        if let localName = article.urlToImage {
-            fileManagerService.loadImage(localName: localName) { [ weak self ] myimage in
-                guard let image = myimage else { return }
-                self?.newsImage.image = image
-            }
+    var viewModel: SavedVCCellViewModelProtocol = SavedVCCellViewModel() {
+        didSet {
+            setupLablesText()
+            setupImage()
         }
     }
     
-    private func configImage() {
-        newsImage.layer.borderColor = UIColor.systemGray3.cgColor
-        newsImage.layer.borderWidth = 1
-        newsImage.layer.cornerRadius = 10.0
-    }
+    //MARK: - INIT
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        cancel()
+    }
+    
+    //MARK: - CLASS FUNCTIONS
+    
+    private func setupLablesText() {
+        let text = viewModel.getTextForLables()
+        titleLabel.text = text.title
+        descriptionLabel.text = text.description
+    }
+    
+    private func setupImage() {
+        guard let localName = viewModel.getImageLocalName() else { return }
+        fileManagerService.loadImage(localName: localName) { [ weak self ] image in
+            self?.newsImage.image = image
+        }
+    }
+    
+    private func cancel() {
         titleLabel.text = nil
         descriptionLabel.text = nil
         newsImage.image = nil
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        configImage()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
 }
 
+
+//MARK: - EXTENSION NewsAPPNibLoadable
 
 extension SavedVCCell: NewsAPPNibLoadable {}

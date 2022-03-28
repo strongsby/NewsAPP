@@ -75,7 +75,8 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newCell = tableView.dequeueReusableCells(type: NewsTableViewCell.self, indexPath: indexPath)
-        newCell.configCell(article: viewModel.articles[indexPath.row])
+        let article = viewModel.articles[indexPath.row]
+        newCell.viewModel = NewsTableViewCellViewModel(article: article)
         return newCell
     }
     
@@ -102,7 +103,8 @@ extension MainVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(type: NewCollectionViewCell.self, indexPath: indexPath)
-        cell.configCell(title: viewModel.topics[indexPath.item])
+        let topic = viewModel.topics[indexPath.item]
+        cell.viewModel = NewCollectionViewCellViewModel.init(title: topic)
         return cell
     }
     

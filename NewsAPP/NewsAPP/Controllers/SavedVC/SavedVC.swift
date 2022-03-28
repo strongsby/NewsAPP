@@ -75,7 +75,9 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCells(type: SavedVCCell.self, indexPath: indexPath)
-        cell.configCell(article: viewModel.arryOfCoreDataNews[indexPath.row])
+        let coreDataModel = viewModel.arryOfCoreDataNews[indexPath.row]
+        cell.viewModel = SavedVCCellViewModel(coreDataMode: coreDataModel)
+        //cell.configCell(article: viewModel.arryOfCoreDataNews[indexPath.row])
         return cell
     }
     

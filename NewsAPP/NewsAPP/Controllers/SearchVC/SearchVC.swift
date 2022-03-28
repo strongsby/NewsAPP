@@ -73,7 +73,8 @@ extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCells(type: SearchVCCell.self, indexPath: indexPath)
-        cell.configCell(article: viewModel.newsArray[indexPath.row])
+        let article = viewModel.newsArray[indexPath.row]
+        cell.viewModel = SearchVCCellViewModel(article: article)
         return cell
     }
     

@@ -9,39 +9,52 @@ import UIKit
 
 final class NewsTableViewCell: UITableViewCell {
     
+    //MARK: - OUTLETS & CLASS PROPERTYES
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var newsImage: DownloadImageView!
-    
-    func configCell(article: Article) {
-            titleLabel.text = article.title ?? ""
-            descriptionLabel.text = article.articleDescription ?? ""
-        
-        guard let urlStr = article.urlToImage else { return }
-        if let image = ImageCacheService.shared.load(urlToImage: urlStr) {
-            newsImage.image = image
-        } else {
-            guard let url = URL(string: urlStr) else { return }
-            newsImage.load(url) { image in
-                ImageCacheService.shared.save(urlToImage: urlStr, image: image)
-            }
+    @IBOutlet private weak var newsImage: DownloadImageView! 
+    var viewModel: NewsTableViewCellViewModelProtocol = NewsTableViewCellViewModel() {
+        didSet {
+            configLables()
+            configImage()
         }
-        configImage()
     }
     
-    private func configImage() {
-        newsImage.layer.borderColor = UIColor.systemGray3.cgColor
-        newsImage.layer.borderWidth = 1
-        newsImage.layer.cornerRadius = 10.0
-    }
+    //MARK: - LIFE CYCLE
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        cancel()
+    }
+    
+    //MARK: - CLASS FUNCS
+    
+    private func cancel() {
         titleLabel.text = nil
         descriptionLabel.text = nil
         newsImage.cancel()
     }
+    
+    private func configLables() {
+        let lablesText = viewModel.getTextForLable()
+        titleLabel.text = lablesText.title
+        descriptionLabel.text = lablesText.description
+    }
+    
+    private func configImage() {
+        if let image = viewModel.getImage().image {
+            newsImage.image = image
+        } else if let url = viewModel.getImage().imageURL {
+            newsImage.load(url) { [ weak self ] image in
+                self?.newsImage.image = image
+                self?.viewModel.saveImage(image: image)
+            }
+        }
+    }
 }
 
+
+//MARK: - EXTENSION NewsAPPNibLoadable
 
 extension NewsTableViewCell: NewsAPPNibLoadable {}

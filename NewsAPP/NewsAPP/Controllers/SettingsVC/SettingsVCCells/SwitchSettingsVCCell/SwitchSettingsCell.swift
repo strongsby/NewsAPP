@@ -7,38 +7,49 @@
 
 import UIKit
 
+
 final class SwitchSettingsCell: UITableViewCell {
     
-    private let userDefaultService = UserDefaultService()
+    //MARK: - OUTLETS & CLASS PROPERTYES
+    
     @IBOutlet private weak var imageBackgroundColor: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var settingsImage: UIImageView!
-    @IBOutlet private weak var darkModeSwitch: UISwitch! {
+    @IBOutlet private weak var darkModeSwitch: UISwitch!
+    var viewModel: SwitchSettingsCellViewModelProtocol = SwitchSettingsCellViewModel() {
         didSet {
-            darkModeSwitch.isOn = userDefaultService.loadDarkMode()
+            setupAll()
         }
     }
- 
-    func configCell(model: SwitchSettingsOptions) {
-        imageBackgroundColor.backgroundColor = model.imageBackgroundColor
-        titleLabel.text = model.title
-        settingsImage.image = model.settingsImage        
+    
+    //MARK: - CLASS FUNCTIONS
+    
+    private func setupdarkModeSwitch() {
+        darkModeSwitch.isOn = viewModel.getSwitchPOsition()
+    }
+    
+    private func setupImage() {
+        guard let imageSettings = viewModel.getImage() else { return }
+        settingsImage.image = imageSettings.image
+        imageBackgroundColor.backgroundColor = imageSettings.color
+    }
+    
+    private func setupLable() {
+        titleLabel.text = viewModel.getLableTitle()
+    }
+    
+    private func setupAll() {
+        setupImage()
+        setupLable()
+        setupdarkModeSwitch()
     }
     
     @IBAction func switchDidTapped() {
-        
-        if let appDelegate = UIApplication.shared.windows.first {
-                switch darkModeSwitch.isOn {
-                case true:
-                    appDelegate.overrideUserInterfaceStyle = .dark
-                    userDefaultService.saveDarkMode(bool: true)
-                case false:
-                    appDelegate.overrideUserInterfaceStyle = .light
-                    userDefaultService.saveDarkMode(bool: false)
-            }
-        }
+        viewModel.switchChangeValue(isOn: darkModeSwitch.isOn)
     }
 }
 
+
+//MARK: - EXTENSION NewsAPPNibLoadable
 
 extension SwitchSettingsCell: NewsAPPNibLoadable {}

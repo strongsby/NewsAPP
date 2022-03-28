@@ -38,7 +38,7 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
             switch result {
             case .failure(let error):
                 self?.delegate?.stopAnimatedSkeletonView()
-                self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error.localizedDescription)", completion: nil)
+                self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
                 print(error)
             case .success(let news):
                 self?.delegate?.stopAnimatedSkeletonView()
@@ -54,7 +54,7 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
             switch result {
             case .failure(let error):
                 self?.delegate?.stopAnimatedSkeletonView()
-                self?.delegate?.mainVCShowAllert(title: "Sorry", message: error.localizedDescription, completion: nil)
+                self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let articles):
                 self?.delegate?.stopAnimatedSkeletonView()
                 self?.articles = articles
