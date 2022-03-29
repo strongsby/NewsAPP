@@ -85,6 +85,7 @@ extension ShowVC: AlertHandler {}
 //MARK: - EXTENSION ShowVCViewModelDelegate
 
 extension ShowVC: ShowVCViewModelDelegate {
+    
     func showVCShowActivityVC(url: URL) {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         navigationController?.present(activityVC, animated: true, completion: nil)

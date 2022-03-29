@@ -14,9 +14,7 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     
     private var userDefaultService = UserDefaultService()
     var delegate: FavoriteTopicsVCViewModelDelegate?
-    var newTopics: [String] = [] {
-        didSet { delegate?.tableViewReloadData() }
-    }
+    var newTopics: [String] = []
     
     //MAERK: - INIT
     
@@ -35,6 +33,7 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     func tbaleViewDeleteRow(indexPath: IndexPath) {
         newTopics.remove(at: indexPath.row)
         userDefaultService.saveTopics(topics: newTopics)
+        delegate?.tableViewDeletRowWithAnivation(indexPath: [indexPath])
         NotificationCenter.default.post(name: NSNotification.Name("AddNewTopic"), object: nil)
     }
     
@@ -42,5 +41,6 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     
     @objc func loadAllTopics() {
         newTopics = userDefaultService.loadTopics()
+        delegate?.tableViewReloadData()
     }
 }
