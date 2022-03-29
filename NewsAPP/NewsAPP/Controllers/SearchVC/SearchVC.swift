@@ -24,6 +24,11 @@ final class SearchVC: UIViewController {
     
     //MARK: - LIFE CYCLE
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.startCustomAnimation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAll()
@@ -121,6 +126,7 @@ extension SearchVC: SearchVCViewModelDelegate {
     func stopAnomatedSkeleton() {
         tableView.stopSkeletonAnimation()
         view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+        tableView.startCustomAnimation()
     }
     
     func searchVCShowAllert(title: String?, message: String?, completion: (() -> Void)?) {

@@ -24,6 +24,11 @@ final class SavedVC: UIViewController {
 
     //MARK: - LIFE CYCLE
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.startCustomAnimation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAll()

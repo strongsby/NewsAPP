@@ -34,6 +34,11 @@ final class MainVC: UIViewController {
 
     //MARK: - LIFE CYCLE
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.startCustomAnimation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAll()
@@ -135,6 +140,7 @@ extension MainVC: MainVCViewModelDelegate {
     func stopAnimatedSkeletonView() {
         tableView.stopSkeletonAnimation()
         view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+        tableView.startCustomAnimation()
     }
     
     func collectionViewReloadData() {
