@@ -18,7 +18,7 @@ extension UITableView {
         cells.forEach { cell in
             cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
             
-            UIView.animate(withDuration: 1.5,
+            UIView.animate(withDuration: 1.0,
                            delay: delay * 0.05,
                            usingSpringWithDamping: 0.8,
                            initialSpringVelocity: 0,

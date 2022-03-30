@@ -20,12 +20,11 @@ final class CoreDataService {
        context.automaticallyMergesChangesFromParent = true
        return context
     }
-
-//    var backGroundContext: NSManagedObjectContext {
-//        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-//        context.automaticallyMergesChangesFromParent = true
-//        return context
-//    }
+    
+    var backGroudContext: NSManagedObjectContext {
+        let context = persistentContainer.newBackgroundContext()
+        return context
+    }
 
     var persistentContainer: NSPersistentContainer = {
         
@@ -41,17 +40,6 @@ final class CoreDataService {
     }()
 
     func saveContext () {
-//        persistentContainer.performBackgroundTask { context in
-//            if context.hasChanges {
-//                do {
-//                    try context.save()
-//                } catch {
-//                    let nserror = error as NSError
-//                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-//                }
-//            }
-//        }
-        
         
         let context = persistentContainer.viewContext
     

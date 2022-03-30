@@ -75,11 +75,11 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     func saveArticle(image: UIImage?) {
         self.delegate?.showVCShowAllert(title: "Sorry", message: "are you sure you want to save this news") { [ weak self ] in
             guard let article = self?.article else { return }
-            let newContext = CoreDataService.shared.persistentContainer.newBackgroundContext()
-            newContext.perform {
+            let context = CoreDataService.shared.backGroudContext
+            context.perform {
                 do {
-                    article.addCoreDataNews(context: newContext)
-                    try newContext.save()
+                    article.addCoreDataNews(context: context)
+                    try context.save()
                 } catch let error {
                     print(error.localizedDescription)
                 }
