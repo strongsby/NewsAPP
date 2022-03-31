@@ -9,6 +9,7 @@ import Foundation
 
 
 protocol SavedVCViewModelDelegate {
+    func tableViewDeletRowWithAnivation(indexPath: [IndexPath])
     func tableViewReloadData()
     func savedVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
     func showInSafari(url: URL)

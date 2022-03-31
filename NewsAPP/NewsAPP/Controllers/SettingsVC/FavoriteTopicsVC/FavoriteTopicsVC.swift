@@ -81,7 +81,7 @@ extension FavoriteTopicsVC: UITableViewDelegate, UITableViewDataSource {
 extension FavoriteTopicsVC: FavoriteTopicsVCViewModelDelegate {
     
     func tableViewDeletRowWithAnivation(indexPath: [IndexPath]) {
-        tableView.deleteRows(at: indexPath, with: .automatic)
+        tableView.deleteRows(at: indexPath, with: .left)
     }
     
     

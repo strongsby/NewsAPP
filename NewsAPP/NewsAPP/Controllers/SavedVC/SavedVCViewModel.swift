@@ -17,9 +17,7 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     private var largeCellStyle: Bool = true {
         didSet { delegate?.tableViewReloadData() }
     }
-    var arryOfCoreDataNews: [CoreDataNews] = [] {
-        didSet { delegate?.tableViewReloadData() }
-    }
+    var arryOfCoreDataNews: [CoreDataNews] = []
     var delegate: SavedVCViewModelDelegate?
     private var fetchedResultsController: NSFetchedResultsController<CoreDataNews>!
     private var fileManager = FileManagerService()
@@ -67,6 +65,7 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
             if let coreDataModel = self?.arryOfCoreDataNews[indexPath.row] {
             CoreDataService.shared.managedObjectContext.delete(coreDataModel)
             self?.arryOfCoreDataNews.remove(at: indexPath.row)
+            self?.delegate?.tableViewDeletRowWithAnivation(indexPath: [indexPath])
             CoreDataService.shared.saveContext()
             }
         }
@@ -77,6 +76,7 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
         if let resoult = fetchedResultsController.fetchedObjects {
             arryOfCoreDataNews = resoult
         }
+        delegate?.tableViewReloadData()
     }
 }
 

@@ -16,7 +16,7 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     var delegate: SettingsVCViewModelDelegate?
     var settingsArray: [SettingsSection] = {
         let array: [SettingsSection] = [
-            SettingsSection(headerTitle: "Visual settings", footerTitle: "In these settings, you can change the color scheme of the program",
+            SettingsSection(headerTitle: "Visual settings", footerTitle: "In these settings, you can make changes to the visual part of the application",
                             options: [ SettingsOptionsType.SwitchSettingsOptions(switchModel:
                                                                                     SwitchSettingsOptions(imageBackgroundColor: UIColor.green,
                                                                                                           title: "Dark mode",
