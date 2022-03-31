@@ -48,6 +48,7 @@ final class SearchVC: UIViewController {
     }
     
     private func tableViewRegisterCells() {
+        tableView.register(CustomeSearchVCCell.defaultNib, forCellReuseIdentifier: CustomeSearchVCCell.reuseIdentifier)
         tableView.register(SearchVCCell.defaultNib, forCellReuseIdentifier: SearchVCCell.reuseIdentifier)
     }
     
@@ -77,10 +78,18 @@ extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCells(type: SearchVCCell.self, indexPath: indexPath)
         let article = viewModel.newsArray[indexPath.row]
-        cell.viewModel = SearchVCCellViewModel(article: article)
-        return cell
+        
+        switch viewModel.cellStyle() {
+        case true:
+            let cell = tableView.dequeueReusableCells(type: CustomeSearchVCCell.self, indexPath: indexPath)
+            cell.viewModel = CustomeSearchVCCellViewModel(article: article)
+            return cell
+        case false:
+            let cell = tableView.dequeueReusableCells(type: SearchVCCell.self, indexPath: indexPath)
+            cell.viewModel = SearchVCCellViewModel(article: article)
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -91,7 +100,10 @@ extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return SearchVCCell.reuseIdentifier
+        switch viewModel.cellStyle() {
+        case true : return CustomeSearchVCCell.reuseIdentifier
+        case false: return SearchVCCell.reuseIdentifier
+        }
     }
 }
 
@@ -117,6 +129,10 @@ extension SearchVC: AlertHandler {}
 //MARK: - EXTENSION SearchVCViewModelDelegate
 
 extension SearchVC: SearchVCViewModelDelegate {
+    
+    func tableViewReloadData() {
+        tableView.reloadData()
+    }
     
     func startAnimatedSkeletonView() {
         tableView.isSkeletonable = true

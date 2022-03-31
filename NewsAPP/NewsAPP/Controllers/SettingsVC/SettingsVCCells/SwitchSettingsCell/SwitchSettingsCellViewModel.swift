@@ -9,11 +9,10 @@ import Foundation
 import UIKit
 
 
-final class SwitchSettingsCellViewModel: NSObject, SwitchSettingsCellViewModelProtocol {
+final class  SwitchSettingsCellViewModel: NSObject,  SwitchSettingsCellViewModelProtocol {
     
     //MARK: - CLASS PROPERTYES
     
-    private var userDefaultService = UserDefaultService()
     private var settingsModel: SwitchSettingsOptions?
     
     //MAK: - INIT
@@ -36,19 +35,11 @@ final class SwitchSettingsCellViewModel: NSObject, SwitchSettingsCellViewModelPr
     }
     
     func getSwitchPOsition() -> Bool {
-        return userDefaultService.loadDarkMode()
+        guard let model = settingsModel else { return false }
+        return model.switchPosition()
     }
     
     func switchChangeValue(isOn: Bool) {
-        if let appDelegate = UIApplication.shared.windows.first {
-                switch isOn {
-                case true:
-                    appDelegate.overrideUserInterfaceStyle = .dark
-                    userDefaultService.saveDarkMode(bool: true)
-                case false:
-                    appDelegate.overrideUserInterfaceStyle = .light
-                    userDefaultService.saveDarkMode(bool: false)
-            }
-        }
+        settingsModel?.switchChangeValue(isOn)
     }
 }

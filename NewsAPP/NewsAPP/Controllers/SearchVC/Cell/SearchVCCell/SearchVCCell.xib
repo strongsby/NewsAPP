@@ -20,6 +20,7 @@
                         <rect key="frame" x="6" y="6" width="158.5" height="149"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="aB2-vj-zl9" secondAttribute="height" multiplier="17:16" id="Uch-Tu-2BS"/>
+                            <constraint firstAttribute="height" constant="149" id="mOb-wR-FdL"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -30,6 +31,9 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfp-bS-dVp">
                         <rect key="frame" x="170.5" y="6" width="265.5" height="71.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="71.5" id="fVP-Ov-Cva"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -39,6 +43,9 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aa7-iq-uNl">
                         <rect key="frame" x="170.5" y="83.5" width="265.5" height="71.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="71.5" id="ZGv-IQ-hC3"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>

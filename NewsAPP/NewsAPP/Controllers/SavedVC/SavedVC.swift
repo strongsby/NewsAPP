@@ -42,6 +42,7 @@ final class SavedVC: UIViewController {
     //MARK: - CLASS FUNCTION
     
     private func tableViewRegisterCells() {
+        tableView.register(CustomSavedVCCell.defaultNib, forCellReuseIdentifier: CustomSavedVCCell.reuseIdentifier)
         tableView.register(SavedVCCell.defaultNib, forCellReuseIdentifier: SavedVCCell.reuseIdentifier)
     }
     
@@ -79,10 +80,18 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCells(type: SavedVCCell.self, indexPath: indexPath)
         let coreDataModel = viewModel.arryOfCoreDataNews[indexPath.row]
-        cell.viewModel = SavedVCCellViewModel(coreDataMode: coreDataModel)
-        return cell
+        
+        switch viewModel.cellStyle() {
+        case true:
+            let cell = tableView.dequeueReusableCells(type: CustomSavedVCCell.self, indexPath: indexPath)
+            cell.viewModel = CustomSavedVCCellViewModel(coreDataMode: coreDataModel)
+            return cell
+        case false:
+            let cell = tableView.dequeueReusableCells(type: SavedVCCell.self, indexPath: indexPath)
+            cell.viewModel = SavedVCCellViewModel(coreDataMode: coreDataModel)
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -11,16 +11,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedVCCell" rowHeight="107" id="KGk-i7-Jjw" customClass="SavedVCCell" customModule="NewsAPP" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="378" height="107"/>
+            <rect key="frame" x="0.0" y="0.0" width="442" height="161"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="378" height="107"/>
+                <rect key="frame" x="0.0" y="0.0" width="442" height="161"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gro-lU-bC2">
-                        <rect key="frame" x="6" y="6" width="96" height="95"/>
+                        <rect key="frame" x="6" y="6" width="158" height="149"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="gro-lU-bC2" secondAttribute="height" multiplier="100:99" id="6OB-sh-SgJ"/>
+                            <constraint firstAttribute="height" constant="149" id="Jc2-Cg-08k"/>
+                            <constraint firstAttribute="width" secondItem="gro-lU-bC2" secondAttribute="height" multiplier="158:149" id="TXB-hU-Iu5"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -29,29 +30,33 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwx-ND-rQA">
-                        <rect key="frame" x="108" y="6" width="264" height="20.5"/>
+                        <rect key="frame" x="170" y="6" width="266" height="71.5"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pe8-vr-EgJ">
-                        <rect key="frame" x="108" y="32.5" width="264" height="17"/>
+                        <rect key="frame" x="170" y="83.5" width="266" height="71.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Pe8-vr-EgJ" firstAttribute="top" secondItem="Lwx-ND-rQA" secondAttribute="bottom" constant="6" id="1Bg-VC-VXb"/>
-                    <constraint firstAttribute="bottom" secondItem="gro-lU-bC2" secondAttribute="bottom" constant="6" id="6q7-Rt-89z"/>
-                    <constraint firstItem="gro-lU-bC2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Ew4-2m-TYc"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Pe8-vr-EgJ" secondAttribute="bottom" constant="6" id="FHQ-iD-LHf"/>
-                    <constraint firstAttribute="trailing" secondItem="Lwx-ND-rQA" secondAttribute="trailing" constant="6" id="GqT-x6-jXe"/>
-                    <constraint firstItem="Lwx-ND-rQA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="LnI-XW-3Fu"/>
-                    <constraint firstItem="Pe8-vr-EgJ" firstAttribute="leading" secondItem="gro-lU-bC2" secondAttribute="trailing" constant="6" id="Tf0-oa-9ng"/>
-                    <constraint firstItem="Lwx-ND-rQA" firstAttribute="leading" secondItem="gro-lU-bC2" secondAttribute="trailing" constant="6" id="oVu-RC-ctG"/>
-                    <constraint firstAttribute="trailing" secondItem="Pe8-vr-EgJ" secondAttribute="trailing" constant="6" id="puv-UV-WNu"/>
-                    <constraint firstItem="gro-lU-bC2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="stY-go-lLl"/>
+                    <constraint firstAttribute="trailing" secondItem="Pe8-vr-EgJ" secondAttribute="trailing" constant="6" id="0aw-AL-qPj"/>
+                    <constraint firstItem="Pe8-vr-EgJ" firstAttribute="width" secondItem="Lwx-ND-rQA" secondAttribute="width" id="2XG-il-S2b"/>
+                    <constraint firstItem="Pe8-vr-EgJ" firstAttribute="top" secondItem="Lwx-ND-rQA" secondAttribute="bottom" constant="6" id="4or-kD-mC1"/>
+                    <constraint firstItem="Pe8-vr-EgJ" firstAttribute="bottom" secondItem="gro-lU-bC2" secondAttribute="bottom" id="6cJ-ia-ifB"/>
+                    <constraint firstItem="gro-lU-bC2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="CYT-jG-sLB"/>
+                    <constraint firstItem="Lwx-ND-rQA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="L3c-fd-gVY"/>
+                    <constraint firstItem="gro-lU-bC2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Nmi-k9-cje"/>
+                    <constraint firstItem="Pe8-vr-EgJ" firstAttribute="leading" secondItem="gro-lU-bC2" secondAttribute="trailing" constant="6" id="RV9-4g-1kk"/>
+                    <constraint firstAttribute="bottom" secondItem="gro-lU-bC2" secondAttribute="bottom" constant="6" id="RpU-E1-K8z"/>
+                    <constraint firstAttribute="trailing" secondItem="Lwx-ND-rQA" secondAttribute="trailing" constant="6" id="c9Y-BN-dbe"/>
+                    <constraint firstItem="Pe8-vr-EgJ" firstAttribute="height" secondItem="Lwx-ND-rQA" secondAttribute="height" id="cwK-eP-on6"/>
+                    <constraint firstItem="Lwx-ND-rQA" firstAttribute="top" secondItem="gro-lU-bC2" secondAttribute="top" id="oEK-kD-YG5"/>
+                    <constraint firstAttribute="bottom" secondItem="Pe8-vr-EgJ" secondAttribute="bottom" constant="6" id="s7D-TJ-MiN"/>
+                    <constraint firstItem="Lwx-ND-rQA" firstAttribute="leading" secondItem="gro-lU-bC2" secondAttribute="trailing" constant="6" id="u0K-iD-g5t"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

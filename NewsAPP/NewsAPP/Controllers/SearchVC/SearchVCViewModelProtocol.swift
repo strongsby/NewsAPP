@@ -13,4 +13,5 @@ protocol SearchVCViewModelProtocol: NSObject {
     var delegate: SearchVCViewModelDelegate? { get set }
     func getNewsWithString(title: String?)
     func newsArrayCount() -> Int
+    func cellStyle() -> Bool
 }

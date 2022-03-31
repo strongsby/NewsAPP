@@ -15,8 +15,27 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     private var networkService = NetwokService()
     var newsArray: [Article] = []
     var delegate: SearchVCViewModelDelegate?
+    private var largeCellStyle: Bool = true {
+        didSet { delegate?.tableViewReloadData() }
+    }
+    
+    //MARK: - INIT
+    
+    override init() {
+        super.init()
+        loadCellStyleFromUserDefault()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: NSNotification.Name("ChangeCellStyle"), object: nil)
+    }
     
     //MARK: - CLASSFUNCTIONS
+    
+    @objc func loadCellStyleFromUserDefault() {
+        largeCellStyle = UserDefaultService.shared.loadLargeCellStyle()
+    }
+    
+    func cellStyle() -> Bool {
+        return largeCellStyle
+    }
     
     func newsArrayCount() -> Int {
         return newsArray.count
@@ -38,3 +57,8 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
         }
     }    
 }
+
+
+
+
+

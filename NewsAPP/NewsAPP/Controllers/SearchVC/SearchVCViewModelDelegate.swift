@@ -12,4 +12,5 @@ protocol SearchVCViewModelDelegate {
     func startAnimatedSkeletonView()
     func stopAnomatedSkeleton()
     func searchVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
+    func tableViewReloadData()
 }

@@ -30,4 +30,6 @@ struct SwitchSettingsOptions {
     var imageBackgroundColor: UIColor
     var title: String
     var settingsImage: UIImage?
+    var switchPosition: (() -> Bool)
+    var switchChangeValue: ((_: Bool) -> Void)
 }

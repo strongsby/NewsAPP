@@ -13,11 +13,37 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     
     //MARK: - CLASS PROPERTYES
     
+    var userDefaultService = UserDefaultService()
     var delegate: SettingsVCViewModelDelegate?
     var settingsArray: [SettingsSection] = {
         let array: [SettingsSection] = [
             SettingsSection(headerTitle: "Visual settings", footerTitle: "In these settings, you can change the color scheme of the program",
-                            options: [SettingsOptionsType.SwitchSettingsOptions(switchModel: SwitchSettingsOptions(imageBackgroundColor: UIColor.green, title: "Dark mode", settingsImage: UIImage(systemName: "switch.2"))) ]),
+                            options: [ SettingsOptionsType.SwitchSettingsOptions(switchModel:
+                                                                                    SwitchSettingsOptions(imageBackgroundColor: UIColor.green,
+                                                                                                          title: "Dark mode",
+                                                                                                          settingsImage: UIImage(systemName: "switch.2"),
+                                                                                                          switchPosition: UserDefaultService.shared.loadDarkMode,
+                                                                                                          switchChangeValue: { on in
+                                if let appDelegate = UIApplication.shared.windows.first {
+                                        switch on {
+                                        case true:
+                                            appDelegate.overrideUserInterfaceStyle = .dark
+                                            UserDefaultService.shared.saveDarkMode(bool: true)
+                                        case false:
+                                            appDelegate.overrideUserInterfaceStyle = .light
+                                            UserDefaultService.shared.saveDarkMode(bool: false)
+                                    }
+                                }
+                            })),
+                                       SettingsOptionsType.SwitchSettingsOptions(switchModel:
+                                                                                    SwitchSettingsOptions(imageBackgroundColor: UIColor.blue,
+                                                                                                          title: "Large cell mode",
+                                                                                                          settingsImage: UIImage(systemName: "book"),
+                                                                                                          switchPosition: UserDefaultService.shared.loadLargeCellStyle,
+                                                                                                          switchChangeValue: { isOn in
+                                               UserDefaultService.shared.saveLargeCellStyle(bool: isOn)
+                                               NotificationCenter.default.post(name: NSNotification.Name("ChangeCellStyle"), object: nil)
+                                           }))]),
             
             SettingsSection(headerTitle: "General settings", footerTitle: "In these settings, you can change the main elements of the program",
                             options: [SettingsOptionsType.DefaultSettingsVCCell(defaultModel: DefaultSettingsOptions(imageBackgroundColor: .purple, title: "Favorite topics", settingsImage: UIImage(systemName: "star.leadinghalf.fill")))]),

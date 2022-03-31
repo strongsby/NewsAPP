@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-protocol SwitchSettingsCellViewModelProtocol: NSObject {
+protocol  SwitchSettingsCellViewModelProtocol: NSObject {
     func getLableTitle() -> String?
     func getImage() -> (image: UIImage, color: UIColor)?
     func getSwitchPOsition() -> Bool

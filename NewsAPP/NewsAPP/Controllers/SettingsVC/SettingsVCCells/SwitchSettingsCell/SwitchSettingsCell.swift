@@ -16,7 +16,7 @@ final class SwitchSettingsCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var settingsImage: UIImageView!
     @IBOutlet private weak var darkModeSwitch: UISwitch!
-    var viewModel: SwitchSettingsCellViewModelProtocol = SwitchSettingsCellViewModel() {
+    var viewModel:  SwitchSettingsCellViewModelProtocol =  SwitchSettingsCellViewModel() {
         didSet {
             setupAll()
         }

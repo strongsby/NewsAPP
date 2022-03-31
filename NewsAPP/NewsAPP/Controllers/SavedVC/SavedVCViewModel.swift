@@ -14,6 +14,9 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
     //MARK: - CALSS PROPERTYES
     
+    private var largeCellStyle: Bool = true {
+        didSet { delegate?.tableViewReloadData() }
+    }
     var arryOfCoreDataNews: [CoreDataNews] = [] {
         didSet { delegate?.tableViewReloadData() }
     }
@@ -27,9 +30,19 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
         super.init()
         setupFetchController()
         loadCoreDataNews()
+        loadCellStyleFromUserDefault()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: NSNotification.Name("ChangeCellStyle"), object: nil)
     }
     
     //MARK: - CLASS FUNCTIONS
+    
+    @objc func loadCellStyleFromUserDefault() {
+        largeCellStyle = UserDefaultService.shared.loadLargeCellStyle()
+    }
+    
+    func cellStyle() -> Bool {
+        return largeCellStyle
+    }
     
     func rowDidSelect(indexPath: IndexPath) {
         delegate?.showShowVC(coreDataModel: arryOfCoreDataNews[indexPath.row])

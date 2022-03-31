@@ -32,6 +32,14 @@
 		350C58BA27E0D60A00BB5C61 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350C58B927E0D60A00BB5C61 /* SavedVC.swift */; };
 		350C58BC27E0D62F00BB5C61 /* SavedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350C58BB27E0D62F00BB5C61 /* SavedVC.xib */; };
 		3538B76727F31ABB00FC8BBF /* TableView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B76627F31ABB00FC8BBF /* TableView+Animation.swift */; };
+		3538B76B27F4912B00FC8BBF /* CustomeSearchVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B76927F4912B00FC8BBF /* CustomeSearchVCCell.swift */; };
+		3538B76C27F4912B00FC8BBF /* CustomeSearchVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3538B76A27F4912B00FC8BBF /* CustomeSearchVCCell.xib */; };
+		3538B76E27F4A06D00FC8BBF /* CustomeSearchVCCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B76D27F4A06D00FC8BBF /* CustomeSearchVCCellViewModel.swift */; };
+		3538B77027F4A07F00FC8BBF /* CustomeSearchVCCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B76F27F4A07F00FC8BBF /* CustomeSearchVCCellViewModelProtocol.swift */; };
+		3538B77827F4A7FA00FC8BBF /* CustomSavedVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B77627F4A7FA00FC8BBF /* CustomSavedVCCell.swift */; };
+		3538B77927F4A7FA00FC8BBF /* CustomSavedVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3538B77727F4A7FA00FC8BBF /* CustomSavedVCCell.xib */; };
+		3538B77C27F4AB7E00FC8BBF /* CustomSavedVCCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B77B27F4AB7E00FC8BBF /* CustomSavedVCCellViewModel.swift */; };
+		3538B77E27F4AB9800FC8BBF /* CustomSavedVCCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B77D27F4AB9800FC8BBF /* CustomSavedVCCellViewModelProtocol.swift */; };
 		35853B5627E4942A00906167 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5527E4942A00906167 /* InfoVC.swift */; };
 		35853B5827E4943E00906167 /* InfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35853B5727E4943E00906167 /* InfoVC.xib */; };
 		35853B5B27E853DD00906167 /* FavoriteTopicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */; };
@@ -77,7 +85,7 @@
 		35853BBB27F18BB000906167 /* SavedVCCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853BBA27F18BB000906167 /* SavedVCCellViewModel.swift */; };
 		35853BBD27F18BD000906167 /* SavedVCCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853BBC27F18BD000906167 /* SavedVCCellViewModelProtocol.swift */; };
 		35853BBF27F1A3C700906167 /* SwitchSettingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853BBE27F1A3C700906167 /* SwitchSettingsCellViewModel.swift */; };
-		35853BC127F1A3EC00906167 /* SwitchSettingsCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853BC027F1A3EC00906167 /* SwitchSettingsCellViewModelProtocol.swift */; };
+		35853BC127F1A3EC00906167 /* SettingsCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853BC027F1A3EC00906167 /* SettingsCellViewModelProtocol.swift */; };
 		35853BC327F1B78200906167 /* DefaultSettingsVCCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853BC227F1B78200906167 /* DefaultSettingsVCCellViewModel.swift */; };
 		35853BC527F1B79200906167 /* DefaultSettingsVCCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853BC427F1B79200906167 /* DefaultSettingsVCCellViewModelProtocol.swift */; };
 		35853BC727F1BB3000906167 /* FavoriteTopicsVCCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853BC627F1BB3000906167 /* FavoriteTopicsVCCellViewModel.swift */; };
@@ -126,6 +134,14 @@
 		350C58B927E0D60A00BB5C61 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 		350C58BB27E0D62F00BB5C61 /* SavedVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedVC.xib; sourceTree = "<group>"; };
 		3538B76627F31ABB00FC8BBF /* TableView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Animation.swift"; sourceTree = "<group>"; };
+		3538B76927F4912B00FC8BBF /* CustomeSearchVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeSearchVCCell.swift; sourceTree = "<group>"; };
+		3538B76A27F4912B00FC8BBF /* CustomeSearchVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomeSearchVCCell.xib; sourceTree = "<group>"; };
+		3538B76D27F4A06D00FC8BBF /* CustomeSearchVCCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeSearchVCCellViewModel.swift; sourceTree = "<group>"; };
+		3538B76F27F4A07F00FC8BBF /* CustomeSearchVCCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomeSearchVCCellViewModelProtocol.swift; sourceTree = "<group>"; };
+		3538B77627F4A7FA00FC8BBF /* CustomSavedVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSavedVCCell.swift; sourceTree = "<group>"; };
+		3538B77727F4A7FA00FC8BBF /* CustomSavedVCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSavedVCCell.xib; sourceTree = "<group>"; };
+		3538B77B27F4AB7E00FC8BBF /* CustomSavedVCCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSavedVCCellViewModel.swift; sourceTree = "<group>"; };
+		3538B77D27F4AB9800FC8BBF /* CustomSavedVCCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSavedVCCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		35853B5527E4942A00906167 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		35853B5727E4943E00906167 /* InfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoVC.xib; sourceTree = "<group>"; };
 		35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicsVC.swift; sourceTree = "<group>"; };
@@ -171,7 +187,7 @@
 		35853BBA27F18BB000906167 /* SavedVCCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVCCellViewModel.swift; sourceTree = "<group>"; };
 		35853BBC27F18BD000906167 /* SavedVCCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVCCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		35853BBE27F1A3C700906167 /* SwitchSettingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSettingsCellViewModel.swift; sourceTree = "<group>"; };
-		35853BC027F1A3EC00906167 /* SwitchSettingsCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchSettingsCellViewModelProtocol.swift; sourceTree = "<group>"; };
+		35853BC027F1A3EC00906167 /* SettingsCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		35853BC227F1B78200906167 /* DefaultSettingsVCCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsVCCellViewModel.swift; sourceTree = "<group>"; };
 		35853BC427F1B79200906167 /* DefaultSettingsVCCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettingsVCCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		35853BC627F1BB3000906167 /* FavoriteTopicsVCCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicsVCCellViewModel.swift; sourceTree = "<group>"; };
@@ -349,10 +365,8 @@
 		350C58AC27E09E9700BB5C61 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				350C58AD27E09EF000BB5C61 /* SearchVCCell.swift */,
-				35853BB627EE146600906167 /* SearchVCCellViewModel.swift */,
-				35853BB827EE148B00906167 /* SearchVCCellViewModelProtocol.swift */,
-				350C58AE27E09EF000BB5C61 /* SearchVCCell.xib */,
+				3538B77127F4A74B00FC8BBF /* SearchVCCell */,
+				3538B76827F490DB00FC8BBF /* CustomeSearchVCCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -380,6 +394,50 @@
 				350C58BB27E0D62F00BB5C61 /* SavedVC.xib */,
 			);
 			path = SavedVC;
+			sourceTree = "<group>";
+		};
+		3538B76827F490DB00FC8BBF /* CustomeSearchVCCell */ = {
+			isa = PBXGroup;
+			children = (
+				3538B76927F4912B00FC8BBF /* CustomeSearchVCCell.swift */,
+				3538B76D27F4A06D00FC8BBF /* CustomeSearchVCCellViewModel.swift */,
+				3538B76F27F4A07F00FC8BBF /* CustomeSearchVCCellViewModelProtocol.swift */,
+				3538B76A27F4912B00FC8BBF /* CustomeSearchVCCell.xib */,
+			);
+			path = CustomeSearchVCCell;
+			sourceTree = "<group>";
+		};
+		3538B77127F4A74B00FC8BBF /* SearchVCCell */ = {
+			isa = PBXGroup;
+			children = (
+				350C58AD27E09EF000BB5C61 /* SearchVCCell.swift */,
+				35853BB627EE146600906167 /* SearchVCCellViewModel.swift */,
+				35853BB827EE148B00906167 /* SearchVCCellViewModelProtocol.swift */,
+				350C58AE27E09EF000BB5C61 /* SearchVCCell.xib */,
+			);
+			path = SearchVCCell;
+			sourceTree = "<group>";
+		};
+		3538B77227F4A78600FC8BBF /* SavedVCCell */ = {
+			isa = PBXGroup;
+			children = (
+				35C0289C27E1F4C20010C6CE /* SavedVCCell.swift */,
+				35853BBA27F18BB000906167 /* SavedVCCellViewModel.swift */,
+				35853BBC27F18BD000906167 /* SavedVCCellViewModelProtocol.swift */,
+				35C0289D27E1F4C20010C6CE /* SavedVCCell.xib */,
+			);
+			path = SavedVCCell;
+			sourceTree = "<group>";
+		};
+		3538B77327F4A7B300FC8BBF /* CustomSavedVCCell */ = {
+			isa = PBXGroup;
+			children = (
+				3538B77627F4A7FA00FC8BBF /* CustomSavedVCCell.swift */,
+				3538B77B27F4AB7E00FC8BBF /* CustomSavedVCCellViewModel.swift */,
+				3538B77D27F4AB9800FC8BBF /* CustomSavedVCCellViewModelProtocol.swift */,
+				3538B77727F4A7FA00FC8BBF /* CustomSavedVCCell.xib */,
+			);
+			path = CustomSavedVCCell;
 			sourceTree = "<group>";
 		};
 		35853B5427E493E400906167 /* InfoVC */ = {
@@ -483,10 +541,8 @@
 		35C0289B27E1F4850010C6CE /* SavedVCCells */ = {
 			isa = PBXGroup;
 			children = (
-				35C0289C27E1F4C20010C6CE /* SavedVCCell.swift */,
-				35853BBA27F18BB000906167 /* SavedVCCellViewModel.swift */,
-				35853BBC27F18BD000906167 /* SavedVCCellViewModelProtocol.swift */,
-				35C0289D27E1F4C20010C6CE /* SavedVCCell.xib */,
+				3538B77327F4A7B300FC8BBF /* CustomSavedVCCell */,
+				3538B77227F4A78600FC8BBF /* SavedVCCell */,
 			);
 			path = SavedVCCells;
 			sourceTree = "<group>";
@@ -509,7 +565,7 @@
 		35C028AA27E36C460010C6CE /* SettingsVCCells */ = {
 			isa = PBXGroup;
 			children = (
-				35C028B427E37D7F0010C6CE /* SwitchSettingsVCCell */,
+				35C028B427E37D7F0010C6CE /* SwitchSettingsCell */,
 				35C028AF27E37B9A0010C6CE /* DefaultSettingsVCCell */,
 			);
 			path = SettingsVCCells;
@@ -526,15 +582,15 @@
 			path = DefaultSettingsVCCell;
 			sourceTree = "<group>";
 		};
-		35C028B427E37D7F0010C6CE /* SwitchSettingsVCCell */ = {
+		35C028B427E37D7F0010C6CE /* SwitchSettingsCell */ = {
 			isa = PBXGroup;
 			children = (
 				35C028B027E37D240010C6CE /* SwitchSettingsCell.swift */,
 				35853BBE27F1A3C700906167 /* SwitchSettingsCellViewModel.swift */,
-				35853BC027F1A3EC00906167 /* SwitchSettingsCellViewModelProtocol.swift */,
+				35853BC027F1A3EC00906167 /* SettingsCellViewModelProtocol.swift */,
 				35C028B127E37D240010C6CE /* SwitchSettingsCell.xib */,
 			);
-			path = SwitchSettingsVCCell;
+			path = SwitchSettingsCell;
 			sourceTree = "<group>";
 		};
 		35C028B527E46A720010C6CE /* SettingsModel */ = {
@@ -613,10 +669,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3538B76C27F4912B00FC8BBF /* CustomeSearchVCCell.xib in Resources */,
 				35853B6227E8C15D00906167 /* AddFavoritesTopicsVC.xib in Resources */,
 				350C588427DCA20500BB5C61 /* LaunchScreen.storyboard in Resources */,
 				350C589627DCBE5F00BB5C61 /* MainVC.xib in Resources */,
 				350C58B027E09EF000BB5C61 /* SearchVCCell.xib in Resources */,
+				3538B77927F4A7FA00FC8BBF /* CustomSavedVCCell.xib in Resources */,
 				35853B5D27E853EB00906167 /* FavoriteTopicsVC.xib in Resources */,
 				35853B6927E8D7E100906167 /* FavoriteTopicsVCCell.xib in Resources */,
 				350C58BC27E0D62F00BB5C61 /* SavedVC.xib in Resources */,
@@ -703,10 +761,12 @@
 				35853BC927F1BB3E00906167 /* FavoriteTopicsVCCellViewModelProtocol.swift in Sources */,
 				35853BBD27F18BD000906167 /* SavedVCCellViewModelProtocol.swift in Sources */,
 				35853B8627EB6D1E00906167 /* SavedVCViewModelDelegate.swift in Sources */,
+				3538B77C27F4AB7E00FC8BBF /* CustomSavedVCCellViewModel.swift in Sources */,
 				350C589A27DF205100BB5C61 /* NewsTableViewCell.swift in Sources */,
 				35853B7227EB1DAE00906167 /* NewsAPPNibLoadable.swift in Sources */,
-				35853BC127F1A3EC00906167 /* SwitchSettingsCellViewModelProtocol.swift in Sources */,
+				35853BC127F1A3EC00906167 /* SettingsCellViewModelProtocol.swift in Sources */,
 				35C0289627E1E9F70010C6CE /* CoreDataService.swift in Sources */,
+				3538B77027F4A07F00FC8BBF /* CustomeSearchVCCellViewModelProtocol.swift in Sources */,
 				35853B9227EBD87600906167 /* AddFavoritesTopicsVCDelegate.swift in Sources */,
 				35853B8427EB6B5900906167 /* SavedVCViewModel.swift in Sources */,
 				35853BC727F1BB3000906167 /* FavoriteTopicsVCCellViewModel.swift in Sources */,
@@ -721,8 +781,10 @@
 				350C589327DCBDF000BB5C61 /* MainVC.swift in Sources */,
 				35853B6427E8D48800906167 /* UserDefaultService.swift in Sources */,
 				35853BBF27F1A3C700906167 /* SwitchSettingsCellViewModel.swift in Sources */,
+				3538B77E27F4AB9800FC8BBF /* CustomSavedVCCellViewModelProtocol.swift in Sources */,
 				35853BA527EDBFC800906167 /* AddFavoritesTopicsVCProtocol.swift in Sources */,
 				350C58B727E0D2EF00BB5C61 /* Allert+Handler.swift in Sources */,
+				3538B76E27F4A06D00FC8BBF /* CustomeSearchVCCellViewModel.swift in Sources */,
 				350C589027DCA2D200BB5C61 /* NetwokService.swift in Sources */,
 				35853BA327EDBF7900906167 /* FavoriteTopicsVCViewModelProtocol.swift in Sources */,
 				35853B9027EBD70000906167 /* AddFavoritesTopicsVCViewModel.swift in Sources */,
@@ -742,7 +804,9 @@
 				35853B6027E8C12700906167 /* AddFavoritesTopicsVC.swift in Sources */,
 				35853B8A27EBC5E900906167 /* SettingsVCViewModelDelegate.swift in Sources */,
 				35853B7627EB1E4800906167 /* TableView+Reusable.swift in Sources */,
+				3538B77827F4A7FA00FC8BBF /* CustomSavedVCCell.swift in Sources */,
 				35853BB727EE146600906167 /* SearchVCCellViewModel.swift in Sources */,
+				3538B76B27F4912B00FC8BBF /* CustomeSearchVCCell.swift in Sources */,
 				35C028A127E21C080010C6CE /* FileManagerService.swift in Sources */,
 				350C587727DCA20300BB5C61 /* SceneDelegate.swift in Sources */,
 				35853BAB27EDD7E100906167 /* NewCollectionViewCellViewModelProtocol.swift in Sources */,

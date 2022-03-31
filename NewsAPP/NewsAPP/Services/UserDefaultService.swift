@@ -10,6 +10,8 @@ import Foundation
 
 final class UserDefaultService {
     
+    static let shared = UserDefaultService()
+    
     // save AddNewTopic
     func saveTopics(topics: [String]){
         if let jsonData = try? JSONEncoder().encode(topics){
@@ -34,5 +36,15 @@ final class UserDefaultService {
     // save darkMode
     func saveDarkMode(bool: Bool) {
         UserDefaults.standard.set(bool, forKey: "DarkMode")
+    }
+    
+    // save cellStyle
+    func saveLargeCellStyle(bool: Bool) {
+        UserDefaults.standard.set(bool, forKey: "ChangeCellStyle")
+    }
+    
+    // load cellStyle
+    func loadLargeCellStyle() -> Bool {
+        return UserDefaults.standard.bool(forKey: "ChangeCellStyle")
     }
 }

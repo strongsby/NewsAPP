@@ -14,4 +14,5 @@ protocol SavedVCViewModelProtocol: NSObject {
     func arryOfCoreDataNewsCount() -> Int
     func deletCoreDataModel(indexPath: IndexPath)
     func rowDidSelect(indexPath: IndexPath)
+    func cellStyle() -> Bool
 }

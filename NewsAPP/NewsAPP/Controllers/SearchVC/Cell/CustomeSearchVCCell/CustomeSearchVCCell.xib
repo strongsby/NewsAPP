@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomeSearchVCCell" rowHeight="350" id="KGk-i7-Jjw" customClass="CustomeSearchVCCell" customModule="NewsAPP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="398"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="383" height="398"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fsr-gu-ebA" customClass="DownloadImageView" customModule="NewsAPP" customModuleProvider="target">
+                        <rect key="frame" x="6" y="6" width="371" height="300"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="300" id="FLz-qi-gho"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZo-w5-nuV">
+                        <rect key="frame" x="6" y="312" width="371" height="27.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXL-Bt-wwR">
+                        <rect key="frame" x="6" y="345.5" width="371" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" systemColor="systemGrayColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="fsr-gu-ebA" secondAttribute="trailing" constant="6" id="J13-4M-ncq"/>
+                    <constraint firstItem="fsr-gu-ebA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="M0X-xO-Umw"/>
+                    <constraint firstItem="IXL-Bt-wwR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="SXe-M5-xek"/>
+                    <constraint firstItem="hZo-w5-nuV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="TsF-cF-ErZ"/>
+                    <constraint firstAttribute="trailing" secondItem="IXL-Bt-wwR" secondAttribute="trailing" constant="6" id="Z3G-co-Obg"/>
+                    <constraint firstItem="IXL-Bt-wwR" firstAttribute="top" secondItem="hZo-w5-nuV" secondAttribute="bottom" constant="6" id="b64-kX-E3N"/>
+                    <constraint firstItem="fsr-gu-ebA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="gEX-nb-hf0"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="IXL-Bt-wwR" secondAttribute="bottom" constant="32" id="qaE-HC-Epx"/>
+                    <constraint firstAttribute="trailing" secondItem="hZo-w5-nuV" secondAttribute="trailing" constant="6" id="uWM-Z4-TS5"/>
+                    <constraint firstItem="hZo-w5-nuV" firstAttribute="top" secondItem="fsr-gu-ebA" secondAttribute="bottom" constant="6" id="zrk-cm-ahA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="descriptionLabel" destination="IXL-Bt-wwR" id="IaC-zt-6YJ"/>
+                <outlet property="newsImage" destination="fsr-gu-ebA" id="FVH-3a-S9a"/>
+                <outlet property="titleLabel" destination="hZo-w5-nuV" id="qoI-b0-8o4"/>
+            </connections>
+            <point key="canvasLocation" x="209.42028985507247" y="205.58035714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
