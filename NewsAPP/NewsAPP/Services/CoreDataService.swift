@@ -14,8 +14,8 @@ final class CoreDataService {
     
     static var shared = CoreDataService()
     private init() {}
-    // context
-   var managedObjectContext: NSManagedObjectContext {
+
+    var managedObjectContext: NSManagedObjectContext {
        let context = persistentContainer.viewContext
        context.automaticallyMergesChangesFromParent = true
        return context

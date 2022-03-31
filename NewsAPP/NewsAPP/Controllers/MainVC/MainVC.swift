@@ -51,6 +51,7 @@ final class MainVC: UIViewController {
     }
     
     private func registerTableViewCells() {
+        tableView.register(CustomNewsTableViewCell.defaultNib, forCellReuseIdentifier: CustomNewsTableViewCell.reuseIdentifier)
         tableView.register(NewsTableViewCell.defaultNib, forCellReuseIdentifier: NewsTableViewCell.reuseIdentifier)
     }
     
@@ -79,10 +80,18 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let newCell = tableView.dequeueReusableCells(type: NewsTableViewCell.self, indexPath: indexPath)
         let article = viewModel.articles[indexPath.row]
-        newCell.viewModel = NewsTableViewCellViewModel(article: article)
-        return newCell
+        
+        switch viewModel.cellStyle() {
+        case true:
+            let cell = tableView.dequeueReusableCells(type: CustomNewsTableViewCell.self, indexPath: indexPath)
+            cell.viewModel = CustomNewsTableViewCellViewModel(article: article)
+            return cell
+        case false:
+            let newCell = tableView.dequeueReusableCells(type: NewsTableViewCell.self, indexPath: indexPath)
+            newCell.viewModel = NewsTableViewCellViewModel(article: article)
+            return newCell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -93,7 +102,10 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return NewsTableViewCell.reuseIdentifier
+        switch viewModel.cellStyle() {
+        case true: return CustomNewsTableViewCell.reuseIdentifier
+        case false: return NewsTableViewCell.reuseIdentifier
+        }
     }
 }
 
@@ -127,6 +139,10 @@ extension MainVC: AlertHandler {}
 //MARK: - EXTENSION MainVCViewModelDelegate
 
 extension MainVC: MainVCViewModelDelegate {
+    
+    func tableViewReloadData() {
+        tableView.reloadData()
+    }
     
     func presentAddFavoritesTopicsVC() {
         navigationController?.present(AddFavoritesTopicsVC(), animated: true, completion: nil)

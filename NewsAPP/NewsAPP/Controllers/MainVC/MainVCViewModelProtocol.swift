@@ -17,4 +17,5 @@ protocol MainVCViewModelProtocol: NSObject {
     func getNewsWithIndex(index: Int)
     func articlesCount() -> Int
     func topicsCount() -> Int
+    func cellStyle() -> Bool
 }

@@ -13,7 +13,6 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     
     //MARK: - CLASS PROPERTYES
     
-    var userDefaultService = UserDefaultService()
     var delegate: SettingsVCViewModelDelegate?
     var settingsArray: [SettingsSection] = {
         let array: [SettingsSection] = [

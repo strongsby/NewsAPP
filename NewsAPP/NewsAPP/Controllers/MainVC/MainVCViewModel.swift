@@ -12,9 +12,11 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     //MARK: - CLASS PROPERTYES
     
+    private var largeCellStyle: Bool = true {
+        didSet { delegate?.tableViewReloadData() }
+    }
     var delegate: MainVCViewModelDelegate?
     private var netwokService = NetwokService()
-    private var userDefaultService = UserDefaultService()
     var articles: [Article] = []
     var topics: [String] = [] {
         didSet {
@@ -27,10 +29,20 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     override init() {
         super.init()
         updateTopics()
+        loadCellStyleFromUserDefault()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: NSNotification.Name("ChangeCellStyle"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateTopics), name: NSNotification.Name("AddNewTopic"), object: nil)
     }
     
     //MARK: - CLASS FUNCTIONS
+    
+    @objc func loadCellStyleFromUserDefault() {
+        largeCellStyle = UserDefaultService.shared.loadLargeCellStyle()
+    }
+    
+    func cellStyle() -> Bool {
+        return largeCellStyle
+    }
     
     func getLastNews() {
         delegate?.startAnimatedSkeletonView()
@@ -82,6 +94,6 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     }
     
     @objc private func updateTopics() {
-        topics = ["+", "Last"] + userDefaultService.loadTopics()
+        topics = ["+", "Last"] + UserDefaultService.shared.loadTopics()
     }
 }

@@ -14,4 +14,5 @@ protocol MainVCViewModelDelegate {
     func collectionViewReloadData()
     func mainVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
     func presentAddFavoritesTopicsVC()
+    func tableViewReloadData()
 }
