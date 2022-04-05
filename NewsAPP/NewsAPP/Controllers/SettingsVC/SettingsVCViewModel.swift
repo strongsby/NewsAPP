@@ -43,10 +43,10 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
                                                UserDefaultService.shared.saveLargeCellStyle(bool: isOn)
                                                NotificationCenter.default.post(name: NSNotification.Name("ChangeCellStyle"), object: nil)
                                            }))]),
-            
+
             SettingsSection(headerTitle: "General settings", footerTitle: "In these settings, you can change the main elements of the program",
                             options: [SettingsOptionsType.DefaultSettingsVCCell(defaultModel: DefaultSettingsOptions(imageBackgroundColor: .purple, title: "Favorite topics", settingsImage: UIImage(systemName: "star.leadinghalf.fill")))]),
-            
+
             SettingsSection(headerTitle: "Information", footerTitle: "These settings contain all information about the application, including the API",
                             options: [SettingsOptionsType.DefaultSettingsVCCell(defaultModel: DefaultSettingsOptions(imageBackgroundColor: .link, title: "info", settingsImage: UIImage(systemName: "info.circle")))])
         ]
@@ -55,8 +55,12 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     
     //MARK: - CLASS FUNCTIONS
     
+    func getSettingsType(indexPath: IndexPath) -> SettingsOptionsType {
+        return settingsArray[indexPath.section].options[indexPath.row]
+    }
+    
     func settingsArrayCounr() -> Int {
-        return settingsArray.count
+        return DefaultSettings.settings.count
     }
     
     func settingsArrayOptionsCount(section: Int) -> Int {

@@ -49,7 +49,7 @@ final class SearchVC: UIViewController {
     
     private func setTitle() {
         title = "Search"
-
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     private func bind() {

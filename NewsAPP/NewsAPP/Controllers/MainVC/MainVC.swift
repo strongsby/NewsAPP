@@ -52,6 +52,7 @@ final class MainVC: UIViewController {
     
     private func configTitle() {
         title = "Favoriites"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func bind() {

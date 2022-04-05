@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoriteTopicsVC" customModule="NewsAPP" customModuleProvider="target">
             <connections>
+                <outlet property="addMessageView" destination="4BR-1K-zGc" id="eHG-xN-WIc"/>
                 <outlet property="tableView" destination="Yz7-aP-0Pd" id="vS9-ZO-zga"/>
                 <outlet property="view" destination="iN0-l3-epB" id="FdZ-qk-wo0"/>
             </connections>
@@ -19,52 +20,59 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HQ-06-eVR">
-                    <rect key="frame" x="16" y="52" width="382" height="52"/>
-                    <color key="backgroundColor" systemColor="systemBlueColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="52" id="thx-BF-vML"/>
-                    </constraints>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="doc.fill.badge.plus" catalog="system" title="Add new Topic">
-                        <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
-                    </buttonConfiguration>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="addButtonDidTapped" destination="-1" eventType="touchUpInside" id="2Zg-cO-Sk8"/>
-                    </connections>
-                </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Yz7-aP-0Pd">
-                    <rect key="frame" x="16" y="120" width="382" height="726"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="32" estimatedSectionHeaderHeight="32" sectionFooterHeight="46" estimatedSectionFooterHeight="46" translatesAutoresizingMaskIntoConstraints="NO" id="Yz7-aP-0Pd">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                 </tableView>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BR-1K-zGc">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note.text.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mNL-FV-wfj">
+                            <rect key="frame" x="132" y="335.5" width="151.5" height="149"/>
+                            <color key="tintColor" systemColor="systemGray3Color"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="fUF-ZV-tFq"/>
+                                <constraint firstAttribute="width" constant="150" id="icG-1R-xKf"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no saved topics! If you need to add - click the plus sign in the upper right corner" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBj-94-FqX">
+                            <rect key="frame" x="32" y="261" width="350" height="41"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <color key="textColor" systemColor="systemGray3Color"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="mNL-FV-wfj" firstAttribute="centerX" secondItem="4BR-1K-zGc" secondAttribute="centerX" id="8mz-My-uFH"/>
+                        <constraint firstItem="mNL-FV-wfj" firstAttribute="centerY" secondItem="4BR-1K-zGc" secondAttribute="centerY" id="SGy-6W-zyB"/>
+                        <constraint firstItem="OBj-94-FqX" firstAttribute="leading" secondItem="4BR-1K-zGc" secondAttribute="leading" constant="32" id="Vrp-ca-LYX"/>
+                        <constraint firstAttribute="trailing" secondItem="OBj-94-FqX" secondAttribute="trailing" constant="32" id="a1a-hv-tOc"/>
+                        <constraint firstItem="mNL-FV-wfj" firstAttribute="top" secondItem="OBj-94-FqX" secondAttribute="bottom" constant="32" id="eFW-34-Cr9"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="8HQ-06-eVR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="LLl-Ms-aYO"/>
-                <constraint firstItem="Yz7-aP-0Pd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="LX0-KA-DGI"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Yz7-aP-0Pd" secondAttribute="trailing" constant="16" id="R7f-hs-eSC"/>
-                <constraint firstItem="Yz7-aP-0Pd" firstAttribute="top" secondItem="8HQ-06-eVR" secondAttribute="bottom" constant="16" id="XKO-mR-bTM"/>
-                <constraint firstItem="8HQ-06-eVR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Yuh-fb-IEH"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Yz7-aP-0Pd" secondAttribute="bottom" constant="16" id="mqZ-mU-Ta6"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8HQ-06-eVR" secondAttribute="trailing" constant="16" id="xzp-16-6Ie"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4BR-1K-zGc" secondAttribute="trailing" id="82x-wx-3fh"/>
+                <constraint firstItem="4BR-1K-zGc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="F7D-Ca-cPB"/>
+                <constraint firstItem="Yz7-aP-0Pd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Snd-pj-F6g"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4BR-1K-zGc" secondAttribute="bottom" id="bDc-FO-xd8"/>
+                <constraint firstItem="Yz7-aP-0Pd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="nCR-ff-qmI"/>
+                <constraint firstItem="4BR-1K-zGc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="uH0-VX-cVS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Yz7-aP-0Pd" secondAttribute="bottom" id="uLd-fN-2K4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Yz7-aP-0Pd" secondAttribute="trailing" id="vFI-Ew-EQn"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="94"/>
+            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
         </view>
     </objects>
     <resources>
-        <image name="doc.fill.badge.plus" catalog="system" width="122" height="128"/>
+        <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

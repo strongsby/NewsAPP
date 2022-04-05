@@ -12,7 +12,9 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     
     //MARK: - CLASS PROPERTYES
     
-    var delegate: FavoriteTopicsVCViewModelDelegate?
+    var delegate: FavoriteTopicsVCViewModelDelegate? {
+        didSet { checkNewTopic() }
+    }
     var newTopics: [String] = []
     
     //MAERK: - INIT
@@ -29,6 +31,13 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
         return newTopics.count
     }
     
+    private func checkNewTopic() {
+        switch newTopics.isEmpty {
+        case true: delegate?.addMessageShowWithAnimation()
+        case false: delegate?.addMessageViewPutAwayWithAnimation()
+        }
+    }
+    
     func tbaleViewDeleteRow(indexPath: IndexPath) {
         newTopics.remove(at: indexPath.row)
         UserDefaultService.shared.saveTopics(topics: newTopics)
@@ -41,5 +50,6 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     @objc func loadAllTopics() {
         newTopics = UserDefaultService.shared.loadTopics()
         delegate?.tableViewReloadData()
+        checkNewTopic()
     }
 }

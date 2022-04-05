@@ -18,22 +18,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecA-Mw-h3c">
-                        <rect key="frame" x="16" y="6" width="288" height="32"/>
-                        <color key="backgroundColor" systemColor="linkColor"/>
+                        <rect key="frame" x="6" y="6" width="308" height="32"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ecA-Mw-h3c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="79U-5n-RJa"/>
-                    <constraint firstAttribute="trailing" secondItem="ecA-Mw-h3c" secondAttribute="trailing" constant="16" id="RP3-Ct-4fs"/>
-                    <constraint firstAttribute="bottom" secondItem="ecA-Mw-h3c" secondAttribute="bottom" constant="6" id="fXd-GH-b6D"/>
-                    <constraint firstItem="ecA-Mw-h3c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qcu-wo-pf2"/>
+                    <constraint firstAttribute="trailing" secondItem="ecA-Mw-h3c" secondAttribute="trailing" constant="6" id="8VD-hR-3II"/>
+                    <constraint firstItem="ecA-Mw-h3c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="9fc-Rg-CqV"/>
+                    <constraint firstItem="ecA-Mw-h3c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="CEQ-zi-ZuW"/>
+                    <constraint firstAttribute="bottom" secondItem="ecA-Mw-h3c" secondAttribute="bottom" constant="6" id="s5j-Wg-38v"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" systemColor="systemGray5Color"/>
             <connections>
                 <outlet property="titleLabel" destination="ecA-Mw-h3c" id="Ymk-jM-dX0"/>
             </connections>
@@ -41,8 +40,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

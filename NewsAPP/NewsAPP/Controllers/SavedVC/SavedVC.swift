@@ -47,7 +47,8 @@ final class SavedVC: UIViewController {
     }
     
     private func configTitle() {
-        title = "Favoriites"
+        title = "Saved Articles"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func bind() {
@@ -98,7 +99,7 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Remove new"
+        return "Remove"
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
