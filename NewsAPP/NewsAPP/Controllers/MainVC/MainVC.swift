@@ -14,6 +14,7 @@ final class MainVC: UIViewController {
     
     //MARK: - OUTLETS & CLASS PROPERTYES
     
+    @IBOutlet private weak var addMessageView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -135,6 +136,19 @@ extension MainVC: AlertHandler {}
 //MARK: - EXTENSION MainVCViewModelDelegate
 
 extension MainVC: MainVCViewModelDelegate {
+    
+    func addMessageShowWithAnimation() {
+        UIView.animate(withDuration: 0.7) { [ weak self ] in
+            self?.addMessageView.alpha = 1.0
+        }
+    }
+    
+    func addMessageViewPutAwayWithAnimation() {
+        UIView.animate(withDuration: 0.7) { [ weak self ] in
+            self?.addMessageView.alpha = 0
+        }
+    }
+    
     
     func tableViewReloadData() {
         tableView.reloadData()

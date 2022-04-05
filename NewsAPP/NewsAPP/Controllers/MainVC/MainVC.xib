@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainVC" customModule="NewsAPP" customModuleProvider="target">
             <connections>
+                <outlet property="addMessageView" destination="w5C-ZH-30P" id="gFP-0z-dbO"/>
                 <outlet property="collectionView" destination="rJJ-wT-QDS" id="Tof-sU-ZhM"/>
                 <outlet property="tableView" destination="WEk-YZ-63a" id="qKb-qX-Wv6"/>
                 <outlet property="view" destination="iN0-l3-epB" id="x5T-Av-fPw"/>
@@ -42,6 +43,35 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </collectionView>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5C-ZH-30P">
+                    <rect key="frame" x="0.0" y="76" width="414" height="786"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe.badge.chevron.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="A5N-dL-ql8">
+                            <rect key="frame" x="130.5" y="318" width="151.5" height="149.5"/>
+                            <color key="tintColor" systemColor="systemGray3Color"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="IWM-Xt-KdP"/>
+                                <constraint firstAttribute="width" constant="150" id="sNd-wK-XO8"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-EF-c6G">
+                            <rect key="frame" x="32" y="200" width="350" height="86"/>
+                            <string key="text">
+Sorry there was an error! Failed to load news</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" systemColor="systemGray3Color"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="qc4-EF-c6G" secondAttribute="trailing" constant="32" id="4Oe-M4-6TY"/>
+                        <constraint firstItem="A5N-dL-ql8" firstAttribute="top" secondItem="qc4-EF-c6G" secondAttribute="bottom" constant="32" id="GMT-Pp-TcA"/>
+                        <constraint firstItem="qc4-EF-c6G" firstAttribute="leading" secondItem="w5C-ZH-30P" secondAttribute="leading" constant="32" id="gCX-Vu-2Tw"/>
+                        <constraint firstItem="A5N-dL-ql8" firstAttribute="centerY" secondItem="w5C-ZH-30P" secondAttribute="centerY" id="qAX-wx-4rW"/>
+                        <constraint firstItem="A5N-dL-ql8" firstAttribute="centerX" secondItem="w5C-ZH-30P" secondAttribute="centerX" id="xhp-IO-s20"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -50,6 +80,10 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rJJ-wT-QDS" secondAttribute="trailing" constant="16" id="4We-n4-9Js"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WEk-YZ-63a" secondAttribute="trailing" constant="16" id="M8e-X9-fgq"/>
                 <constraint firstItem="rJJ-wT-QDS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="M8m-Uj-dvl"/>
+                <constraint firstItem="w5C-ZH-30P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Mzr-0P-eYL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="w5C-ZH-30P" secondAttribute="trailing" id="PUn-l9-jka"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="w5C-ZH-30P" secondAttribute="bottom" id="dOt-eh-1Q5"/>
+                <constraint firstItem="w5C-ZH-30P" firstAttribute="top" secondItem="rJJ-wT-QDS" secondAttribute="bottom" id="kRo-fd-fc7"/>
                 <constraint firstItem="rJJ-wT-QDS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="pYw-V1-HEo"/>
                 <constraint firstItem="WEk-YZ-63a" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="qfE-4p-jrd"/>
                 <constraint firstAttribute="bottom" secondItem="WEk-YZ-63a" secondAttribute="bottom" constant="6" id="uhW-O1-ZjY"/>
@@ -58,8 +92,12 @@
         </view>
     </objects>
     <resources>
+        <image name="globe.badge.chevron.backward" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

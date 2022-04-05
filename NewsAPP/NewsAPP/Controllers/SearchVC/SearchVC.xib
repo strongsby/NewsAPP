@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchVC" customModule="NewsAPP" customModuleProvider="target">
             <connections>
+                <outlet property="addMessageView" destination="JhW-P4-Njz" id="DVs-Ls-2yh"/>
                 <outlet property="tableView" destination="9oi-eI-n5B" id="ZaK-5r-pRB"/>
                 <outlet property="view" destination="iN0-l3-epB" id="okZ-d6-QlW"/>
             </connections>
@@ -23,21 +24,58 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhW-P4-Njz">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XsX-r9-be6">
+                            <rect key="frame" x="132" y="366.5" width="150" height="148.5"/>
+                            <color key="tintColor" systemColor="systemGray3Color"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="MGy-dJ-nGm"/>
+                                <constraint firstAttribute="width" constant="150" id="Tpk-K3-rF2"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xr-jD-k72">
+                            <rect key="frame" x="32" y="273" width="350" height="61"/>
+                            <string key="text">
+You can find the news you are interested in using the search bar</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" systemColor="systemGray3Color"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="XsX-r9-be6" firstAttribute="centerY" secondItem="JhW-P4-Njz" secondAttribute="centerY" constant="32" id="4Bt-xa-lPE"/>
+                        <constraint firstAttribute="trailing" secondItem="8xr-jD-k72" secondAttribute="trailing" constant="32" id="aeq-b8-k5V"/>
+                        <constraint firstItem="8xr-jD-k72" firstAttribute="leading" secondItem="JhW-P4-Njz" secondAttribute="leading" constant="32" id="hen-Uc-K3J"/>
+                        <constraint firstItem="XsX-r9-be6" firstAttribute="centerX" secondItem="JhW-P4-Njz" secondAttribute="centerX" id="rTd-sO-Jfi"/>
+                        <constraint firstItem="XsX-r9-be6" firstAttribute="top" secondItem="8xr-jD-k72" secondAttribute="bottom" constant="32" id="wg8-yV-Grc"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="JhW-P4-Njz" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="1d4-n0-P5s"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JhW-P4-Njz" secondAttribute="trailing" id="55T-No-fLc"/>
+                <constraint firstItem="JhW-P4-Njz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7ec-hh-cL2"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9oi-eI-n5B" secondAttribute="trailing" id="RKm-eo-Nmo"/>
                 <constraint firstItem="9oi-eI-n5B" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="TQG-gR-YxM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="9oi-eI-n5B" secondAttribute="bottom" id="Vd3-Ak-hKd"/>
                 <constraint firstItem="9oi-eI-n5B" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hA4-Vp-16I"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="JhW-P4-Njz" secondAttribute="bottom" id="laW-8Q-yVw"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="92"/>
+            <point key="canvasLocation" x="137.68115942028987" y="91.741071428571431"/>
         </view>
     </objects>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

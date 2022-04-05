@@ -13,6 +13,7 @@ final class SavedVC: UIViewController {
     
     //MARK: - OUTLETS & CLASS PROPERTYES
     
+    @IBOutlet private weak var addMessageView: UIView!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -20,12 +21,12 @@ final class SavedVC: UIViewController {
             tableViewRegisterCells()
         }
     }
-    private var viewModel: SavedVCViewModelProtocol = SavedVCViewModel()
+    private var viewModel: SavedVCViewModelProtocol = SavedVCViewModel() 
 
     //MARK: - LIFE CYCLE
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+ 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setupAll()
     }
     
@@ -47,7 +48,7 @@ final class SavedVC: UIViewController {
     }
     
     private func configTitle() {
-        title = "Saved Articles"
+        title = "Saved"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -117,8 +118,19 @@ extension SavedVC: AlertHandler {}
 
 extension SavedVC: SavedVCViewModelDelegate {
     
+    func addMessageShowWithAnimation() {
+        UIView.animate(withDuration: 0.7) { [ weak self ] in
+            self?.addMessageView.alpha = 1.0
+        }
+    }
+    
+    func addMessageViewPutAwayWithAnimation() {
+        UIView.animate(withDuration: 0.7) { [ weak self ] in
+            self?.addMessageView.alpha = 0
+        }
+    }
+    
     func tableViewDeletRowWithAnivation(indexPath: [IndexPath]) {
-        
         tableView.deleteRows(at: indexPath, with: .left)
     }
     

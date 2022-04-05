@@ -14,4 +14,6 @@ protocol SavedVCViewModelDelegate {
     func savedVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
     func showInSafari(url: URL)
     func showShowVC(coreDataModel: CoreDataNews)
+    func addMessageShowWithAnimation()
+    func addMessageViewPutAwayWithAnimation()
 }

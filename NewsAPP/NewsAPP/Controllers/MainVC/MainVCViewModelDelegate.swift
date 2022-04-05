@@ -15,4 +15,6 @@ protocol MainVCViewModelDelegate {
     func mainVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
     func presentAddFavoritesTopicsVC()
     func tableViewReloadData()
+    func addMessageShowWithAnimation()
+    func addMessageViewPutAwayWithAnimation()
 }

@@ -18,11 +18,7 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     var delegate: MainVCViewModelDelegate?
     private var netwokService = NetwokService()
     var articles: [Article] = []
-    var topics: [String] = [] {
-        didSet {
-            delegate?.collectionViewReloadData()
-        }
-    }
+    var topics: [String] = []
     
     //MARK: - INIT
     
@@ -49,10 +45,13 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         netwokService.getLatsNews { [ weak self ] result in
             switch result {
             case .failure(let error):
+                self?.articles.removeAll()
+                self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.stopAnimatedSkeletonView()
                 self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
                 print(error)
             case .success(let news):
+                self?.delegate?.addMessageViewPutAwayWithAnimation()
                 self?.delegate?.stopAnimatedSkeletonView()
                 self?.articles = news
             }
@@ -65,9 +64,12 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         netwokService.serchNews(for: needTopic) { [ weak self ] result in
             switch result {
             case .failure(let error):
+                self?.articles.removeAll()
+                self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.stopAnimatedSkeletonView()
                 self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let articles):
+                self?.delegate?.addMessageViewPutAwayWithAnimation()
                 self?.delegate?.stopAnimatedSkeletonView()
                 self?.articles = articles
             }

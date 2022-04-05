@@ -17,8 +17,12 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     private var largeCellStyle: Bool = true {
         didSet { delegate?.tableViewReloadData() }
     }
-    var arryOfCoreDataNews: [CoreDataNews] = []
-    var delegate: SavedVCViewModelDelegate?
+    var arryOfCoreDataNews: [CoreDataNews] = [] {
+        didSet { checkArryOfCoreDataNews() }
+    }
+    var delegate: SavedVCViewModelDelegate? {
+        didSet { checkArryOfCoreDataNews() }
+    }
     private var fetchedResultsController: NSFetchedResultsController<CoreDataNews>!
     private var fileManager = FileManagerService()
     
@@ -36,6 +40,13 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
     @objc func loadCellStyleFromUserDefault() {
         largeCellStyle = UserDefaultService.shared.loadLargeCellStyle()
+    }
+    
+    private func checkArryOfCoreDataNews() {
+        switch arryOfCoreDataNews.isEmpty {
+        case true: delegate?.addMessageShowWithAnimation()
+        case false: delegate?.addMessageViewPutAwayWithAnimation()
+        }
     }
     
     func cellStyle() -> Bool {
@@ -74,9 +85,10 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     private func loadCoreDataNews() {
         try? fetchedResultsController.performFetch()
         if let resoult = fetchedResultsController.fetchedObjects {
+            delegate?.addMessageViewPutAwayWithAnimation()
             arryOfCoreDataNews = resoult
+            delegate?.tableViewReloadData()
         }
-        delegate?.tableViewReloadData()
     }
 }
 

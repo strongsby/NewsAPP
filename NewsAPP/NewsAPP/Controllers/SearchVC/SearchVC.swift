@@ -12,6 +12,7 @@ final class SearchVC: UIViewController {
 
     //MARK: - OUTLETS & CALASS PROPERTYES
     
+    @IBOutlet private weak var addMessageView: UIView!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -23,12 +24,12 @@ final class SearchVC: UIViewController {
     private var viewModel: SearchVCViewModelProtocol = SearchVCViewModel()
     
     //MARK: - LIFE CYCLE
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAll()
     }
-    
+
     //MARK: - CLASS FUNCTIONS
     
     private func setupSearchController() {
@@ -124,6 +125,18 @@ extension SearchVC: AlertHandler {}
 //MARK: - EXTENSION SearchVCViewModelDelegate
 
 extension SearchVC: SearchVCViewModelDelegate {
+    
+    func addMessageShowWithAnimation() {
+        UIView.animate(withDuration: 0.7) { [ weak self ] in
+            self?.addMessageView.alpha = 1.0
+        }
+    }
+    
+    func addMessageViewPutAwayWithAnimation() {
+        UIView.animate(withDuration: 0.7) { [ weak self ] in
+            self?.addMessageView.alpha = 0
+        }
+    }
     
     func tableViewReloadData() {
         tableView.reloadData()
