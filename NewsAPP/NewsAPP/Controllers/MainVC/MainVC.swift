@@ -61,7 +61,7 @@ final class MainVC: UIViewController {
 extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeaderView.reuseIdentifier) as! CustomHeaderView // need udate extension with type
+        let view = tableView.dequeueReusableHeaderFooterView(type: CustomHeaderView.self)
         return view
     }
     

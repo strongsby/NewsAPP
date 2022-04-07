@@ -96,7 +96,9 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
 //MARK: - EXTENSION NSFetchedResultsControllerDelegate
 
 extension SavedVCViewModel: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+  
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard type == .insert else { return }
         loadCoreDataNews()
     }
 }

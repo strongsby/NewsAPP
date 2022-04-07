@@ -14,7 +14,7 @@ final class ImageCacheService {
     private let cache: NSCache<NSString, UIImage> = {
         let cache = NSCache<NSString, UIImage>()
         cache.countLimit = 50
-        cache.totalCostLimit = 200 * 1024 * 1024 //50mb
+        cache.totalCostLimit = 200 * 1024 * 1024 
         return cache
     }()
     

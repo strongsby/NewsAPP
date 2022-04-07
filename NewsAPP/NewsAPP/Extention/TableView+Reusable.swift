@@ -14,4 +14,7 @@ extension UITableView {
         return self.dequeueReusableCell(withIdentifier: "\(CellType.self)", for: indexPath) as! CellType
     }
     
+    func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(type: T.Type) -> T {
+        return dequeueReusableHeaderFooterView(withIdentifier: "\(T.self)") as! T
+    }
 }

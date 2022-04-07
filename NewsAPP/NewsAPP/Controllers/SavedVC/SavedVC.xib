@@ -20,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qPm-eb-fcD">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qPm-eb-fcD">
+                    <rect key="frame" x="16" y="60" width="382" height="802"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ym1-kx-QZc">
@@ -57,16 +57,16 @@ You don't have saved news! They can be added on the main screen or on the search
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qPm-eb-fcD" secondAttribute="trailing" constant="16" id="7G3-rE-O2E"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ym1-kx-QZc" secondAttribute="bottom" id="BKu-82-IhN"/>
+                <constraint firstItem="qPm-eb-fcD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="Eq5-5y-yw9"/>
                 <constraint firstItem="ym1-kx-QZc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HcU-yu-w4r"/>
                 <constraint firstItem="ym1-kx-QZc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Xoi-ao-7Cy"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qPm-eb-fcD" secondAttribute="bottom" id="Zbe-OI-5BE"/>
-                <constraint firstItem="qPm-eb-fcD" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="hgm-GR-poI"/>
+                <constraint firstItem="qPm-eb-fcD" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="da0-Yj-8Mh"/>
+                <constraint firstItem="qPm-eb-fcD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="hdf-Uj-czi"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ym1-kx-QZc" secondAttribute="trailing" id="n5Q-YG-iCG"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qPm-eb-fcD" secondAttribute="trailing" id="nf5-cJ-mfY"/>
-                <constraint firstItem="qPm-eb-fcD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tdg-q6-k3U"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="82"/>
+            <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
         </view>
     </objects>
     <resources>

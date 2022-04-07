@@ -1,8 +1,6 @@
 //
 //  API.swift
 //  NewsAPP
-// fc891b5165b74a3eb0b7a55737f6c06b
-//d4d139486e884248b0051c1ad26f8681
 //  Created by Сергей Рудинский on 25.03.22.
 //
 
