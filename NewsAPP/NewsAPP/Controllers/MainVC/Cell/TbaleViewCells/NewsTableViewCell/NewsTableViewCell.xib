@@ -10,62 +10,78 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTableViewCell" rowHeight="50" id="KGk-i7-Jjw" customClass="NewsTableViewCell" customModule="NewsAPP" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="442" height="161"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTableViewCell" rowHeight="68" id="KGk-i7-Jjw" customClass="NewsTableViewCell" customModule="NewsAPP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="442" height="179"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="442" height="161"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="442" height="179"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQh-fP-Meh">
-                        <rect key="frame" x="170" y="6" width="266" height="71.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-9e-0MU">
-                        <rect key="frame" x="170" y="83.5" width="266" height="71.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" systemColor="systemGrayColor"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                        </userDefinedRuntimeAttributes>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="43U-hp-uoV" customClass="DownloadImageView" customModule="NewsAPP" customModuleProvider="target">
-                        <rect key="frame" x="6" y="6" width="158" height="149"/>
-                        <color key="tintColor" systemColor="systemGray4Color"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCV-kK-HuZ">
+                        <rect key="frame" x="0.0" y="0.0" width="442" height="161"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="43U-hp-uoV" customClass="DownloadImageView" customModule="NewsAPP" customModuleProvider="target">
+                                <rect key="frame" x="6" y="6" width="158" height="149"/>
+                                <color key="tintColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="149" id="nd4-cL-TP2"/>
+                                    <constraint firstAttribute="width" secondItem="43U-hp-uoV" secondAttribute="height" multiplier="158:149" id="zUD-s4-oLr"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gggg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-9e-0MU">
+                                <rect key="frame" x="170" y="32.5" width="266" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gggg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQh-fP-Meh">
+                                <rect key="frame" x="170" y="6" width="266" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="149" id="98G-Mt-aLU"/>
-                            <constraint firstAttribute="width" secondItem="43U-hp-uoV" secondAttribute="height" multiplier="158:149" id="Opi-h5-a9i"/>
+                            <constraint firstAttribute="trailing" secondItem="lQh-fP-Meh" secondAttribute="trailing" constant="6" id="0Gb-PI-d20"/>
+                            <constraint firstAttribute="bottom" secondItem="43U-hp-uoV" secondAttribute="bottom" constant="6" id="8N3-qB-f0F"/>
+                            <constraint firstItem="l3W-9e-0MU" firstAttribute="top" secondItem="lQh-fP-Meh" secondAttribute="bottom" constant="6" id="AyZ-Jw-KQ5"/>
+                            <constraint firstItem="lQh-fP-Meh" firstAttribute="top" secondItem="43U-hp-uoV" secondAttribute="top" id="FUK-gH-qKE"/>
+                            <constraint firstItem="43U-hp-uoV" firstAttribute="top" secondItem="WCV-kK-HuZ" secondAttribute="top" constant="6" id="G1w-1a-BRP"/>
+                            <constraint firstItem="lQh-fP-Meh" firstAttribute="leading" secondItem="43U-hp-uoV" secondAttribute="trailing" constant="6" id="HgU-g9-qQh"/>
+                            <constraint firstItem="l3W-9e-0MU" firstAttribute="height" secondItem="lQh-fP-Meh" secondAttribute="height" id="LRw-0h-fRU"/>
+                            <constraint firstItem="l3W-9e-0MU" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="43U-hp-uoV" secondAttribute="bottom" id="Tmb-nw-bNo"/>
+                            <constraint firstAttribute="height" constant="161" id="XuD-7A-9IA"/>
+                            <constraint firstItem="l3W-9e-0MU" firstAttribute="leading" secondItem="43U-hp-uoV" secondAttribute="trailing" constant="6" id="gd3-Jm-f49"/>
+                            <constraint firstItem="43U-hp-uoV" firstAttribute="leading" secondItem="WCV-kK-HuZ" secondAttribute="leading" constant="6" id="ggp-ee-5Z4"/>
+                            <constraint firstItem="l3W-9e-0MU" firstAttribute="width" secondItem="lQh-fP-Meh" secondAttribute="width" id="hIb-DT-eWY"/>
+                            <constraint firstAttribute="trailing" secondItem="l3W-9e-0MU" secondAttribute="trailing" constant="6" id="zw8-8u-Klg"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                    </imageView>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="l3W-9e-0MU" firstAttribute="bottom" secondItem="43U-hp-uoV" secondAttribute="bottom" id="Di0-yZ-ZhX"/>
-                    <constraint firstItem="l3W-9e-0MU" firstAttribute="height" secondItem="lQh-fP-Meh" secondAttribute="height" id="R9L-Te-hOd"/>
-                    <constraint firstItem="l3W-9e-0MU" firstAttribute="leading" secondItem="43U-hp-uoV" secondAttribute="trailing" constant="6" id="SFN-DU-PjH"/>
-                    <constraint firstItem="l3W-9e-0MU" firstAttribute="width" secondItem="lQh-fP-Meh" secondAttribute="width" id="UL9-z4-eqL"/>
-                    <constraint firstAttribute="trailing" secondItem="l3W-9e-0MU" secondAttribute="trailing" constant="6" id="ct8-55-DX5"/>
-                    <constraint firstItem="l3W-9e-0MU" firstAttribute="top" secondItem="lQh-fP-Meh" secondAttribute="bottom" constant="6" id="fGL-qE-rLX"/>
-                    <constraint firstAttribute="bottom" secondItem="l3W-9e-0MU" secondAttribute="bottom" constant="6" id="ge6-XV-rq9"/>
-                    <constraint firstAttribute="trailing" secondItem="lQh-fP-Meh" secondAttribute="trailing" constant="6" id="kEL-1C-T8g"/>
-                    <constraint firstAttribute="bottom" secondItem="43U-hp-uoV" secondAttribute="bottom" constant="6" id="mpF-oq-L8d"/>
-                    <constraint firstItem="43U-hp-uoV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="qqE-zE-3ok"/>
-                    <constraint firstItem="lQh-fP-Meh" firstAttribute="leading" secondItem="43U-hp-uoV" secondAttribute="trailing" constant="6" id="u92-oL-RZj"/>
-                    <constraint firstItem="lQh-fP-Meh" firstAttribute="top" secondItem="43U-hp-uoV" secondAttribute="top" id="uoG-eV-LAE"/>
-                    <constraint firstItem="lQh-fP-Meh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="vPL-vo-jDB"/>
-                    <constraint firstItem="43U-hp-uoV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="vRS-K4-3Ou"/>
+                    <constraint firstAttribute="trailing" secondItem="WCV-kK-HuZ" secondAttribute="trailing" id="MRa-LG-1QJ"/>
+                    <constraint firstItem="WCV-kK-HuZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YCP-Fm-0Jl"/>
+                    <constraint firstItem="WCV-kK-HuZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tCh-qj-UrS"/>
+                    <constraint firstAttribute="bottom" secondItem="WCV-kK-HuZ" secondAttribute="bottom" constant="6" id="tS7-Ja-trQ"/>
                 </constraints>
                 <userDefinedRuntimeAttributes>
                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -80,11 +96,14 @@
                 <outlet property="newsImage" destination="43U-hp-uoV" id="K1C-Aw-RIE"/>
                 <outlet property="titleLabel" destination="lQh-fP-Meh" id="Vfv-D2-qys"/>
             </connections>
-            <point key="canvasLocation" x="194.20289855072465" y="112.16517857142857"/>
+            <point key="canvasLocation" x="194.20289855072465" y="118.19196428571428"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="defaultImage" width="493" height="391"/>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

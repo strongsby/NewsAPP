@@ -45,6 +45,11 @@
 		3538B78827F5AED200FC8BBF /* CustomNewsTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B78727F5AED200FC8BBF /* CustomNewsTableViewCellViewModel.swift */; };
 		3538B78A27F5AF4900FC8BBF /* CustomNewsTableViewCellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B78927F5AF4900FC8BBF /* CustomNewsTableViewCellViewModelProtocol.swift */; };
 		3538B78D27F5E1BE00FC8BBF /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B78C27F5E1BE00FC8BBF /* DefaultSettings.swift */; };
+		3538B7A827FD927E00FC8BBF /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7A727FD927E00FC8BBF /* CustomHeaderView.swift */; };
+		3538B7AA27FD929000FC8BBF /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3538B7A927FD929000FC8BBF /* CustomHeaderView.xib */; };
+		3538B7AC27FDAA9E00FC8BBF /* CustomHeaderViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7AB27FDAA9E00FC8BBF /* CustomHeaderViewViewModel.swift */; };
+		3538B7AE27FDAAAF00FC8BBF /* CustomHeaderViewViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7AD27FDAAAF00FC8BBF /* CustomHeaderViewViewModelProtocol.swift */; };
+		3538B7B027FDAAC200FC8BBF /* CustomHeaderViewViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7AF27FDAAC200FC8BBF /* CustomHeaderViewViewModelDelegate.swift */; };
 		35853B5627E4942A00906167 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5527E4942A00906167 /* InfoVC.swift */; };
 		35853B5827E4943E00906167 /* InfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35853B5727E4943E00906167 /* InfoVC.xib */; };
 		35853B5B27E853DD00906167 /* FavoriteTopicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */; };
@@ -152,6 +157,11 @@
 		3538B78727F5AED200FC8BBF /* CustomNewsTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		3538B78927F5AF4900FC8BBF /* CustomNewsTableViewCellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNewsTableViewCellViewModelProtocol.swift; sourceTree = "<group>"; };
 		3538B78C27F5E1BE00FC8BBF /* DefaultSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettings.swift; sourceTree = "<group>"; };
+		3538B7A727FD927E00FC8BBF /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
+		3538B7A927FD929000FC8BBF /* CustomHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
+		3538B7AB27FDAA9E00FC8BBF /* CustomHeaderViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderViewViewModel.swift; sourceTree = "<group>"; };
+		3538B7AD27FDAAAF00FC8BBF /* CustomHeaderViewViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderViewViewModelProtocol.swift; sourceTree = "<group>"; };
+		3538B7AF27FDAAC200FC8BBF /* CustomHeaderViewViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderViewViewModelDelegate.swift; sourceTree = "<group>"; };
 		35853B5527E4942A00906167 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		35853B5727E4943E00906167 /* InfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoVC.xib; sourceTree = "<group>"; };
 		35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicsVC.swift; sourceTree = "<group>"; };
@@ -313,6 +323,7 @@
 		350C589427DCBDFB00BB5C61 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+				3538B79327FC9A9B00FC8BBF /* CustomHeaderView */,
 				350C589727DF200100BB5C61 /* Cell */,
 				350C589227DCBDF000BB5C61 /* MainVC.swift */,
 				35853B7727EB45B000906167 /* MainVCViewModel.swift */,
@@ -326,7 +337,6 @@
 		350C589727DF200100BB5C61 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				35853B6B27EA019900906167 /* CollectionViewCells */,
 				35853B6A27EA017F00906167 /* TbaleViewCells */,
 			);
 			path = Cell;
@@ -479,6 +489,27 @@
 				3538B78C27F5E1BE00FC8BBF /* DefaultSettings.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		3538B79327FC9A9B00FC8BBF /* CustomHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				3538B7B327FEE66C00FC8BBF /* Cells */,
+				3538B7A727FD927E00FC8BBF /* CustomHeaderView.swift */,
+				3538B7AB27FDAA9E00FC8BBF /* CustomHeaderViewViewModel.swift */,
+				3538B7AD27FDAAAF00FC8BBF /* CustomHeaderViewViewModelProtocol.swift */,
+				3538B7AF27FDAAC200FC8BBF /* CustomHeaderViewViewModelDelegate.swift */,
+				3538B7A927FD929000FC8BBF /* CustomHeaderView.xib */,
+			);
+			path = CustomHeaderView;
+			sourceTree = "<group>";
+		};
+		3538B7B327FEE66C00FC8BBF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				35853B6B27EA019900906167 /* CollectionViewCells */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		35853B5427E493E400906167 /* InfoVC */ = {
@@ -728,6 +759,7 @@
 				35C028AE27E36C940010C6CE /* DefaultSettingsVCCell.xib in Resources */,
 				3538B78627F5A32E00FC8BBF /* CustomNewsTableViewCell.xib in Resources */,
 				350C587C27DCA20300BB5C61 /* Main.storyboard in Resources */,
+				3538B7AA27FD929000FC8BBF /* CustomHeaderView.xib in Resources */,
 				350C589B27DF205100BB5C61 /* NewsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -793,9 +825,12 @@
 				35853B8027EB54F500906167 /* SearchVCViewModel.swift in Sources */,
 				350C587527DCA20300BB5C61 /* AppDelegate.swift in Sources */,
 				35853B6827E8D7E100906167 /* FavoriteTopicsVCCell.swift in Sources */,
+				3538B7B027FDAAC200FC8BBF /* CustomHeaderViewViewModelDelegate.swift in Sources */,
 				350C58A927E0751900BB5C61 /* DateFormator+SerchDate.swift in Sources */,
 				35853BA927EDD7C600906167 /* NewCollectionViewCellViewModel.swift in Sources */,
 				35853B8E27EBCADD00906167 /* FavoriteTopicsVCViewModelDelegate.swift in Sources */,
+				3538B7AE27FDAAAF00FC8BBF /* CustomHeaderViewViewModelProtocol.swift in Sources */,
+				3538B7AC27FDAA9E00FC8BBF /* CustomHeaderViewViewModel.swift in Sources */,
 				35853BB327EE018C00906167 /* NewsTableViewCellViewModel.swift in Sources */,
 				35C028B227E37D240010C6CE /* SwitchSettingsCell.swift in Sources */,
 				35853BC927F1BB3E00906167 /* FavoriteTopicsVCCellViewModelProtocol.swift in Sources */,
@@ -845,6 +880,7 @@
 				350C588D27DCA23800BB5C61 /* News.swift in Sources */,
 				35853B9427EC4C4400906167 /* ShowVCViewModel.swift in Sources */,
 				35853B6027E8C12700906167 /* AddFavoritesTopicsVC.swift in Sources */,
+				3538B7A827FD927E00FC8BBF /* CustomHeaderView.swift in Sources */,
 				35853B8A27EBC5E900906167 /* SettingsVCViewModelDelegate.swift in Sources */,
 				35853B7627EB1E4800906167 /* TableView+Reusable.swift in Sources */,
 				3538B77827F4A7FA00FC8BBF /* CustomSavedVCCell.swift in Sources */,

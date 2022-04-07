@@ -12,22 +12,20 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     //MARK: - CLASS PROPERTYES
     
-    private var largeCellStyle: Bool = true {
+    private var largeCellStyle: Bool = false {
         didSet { delegate?.tableViewReloadData() }
     }
-    var delegate: MainVCViewModelDelegate?
     private var netwokService = NetwokService()
+    var delegate: MainVCViewModelDelegate?
     var articles: [Article] = []
-    var topics: [String] = []
     
     //MARK: - INIT
     
     override init() {
         super.init()
-        updateTopics()
         loadCellStyleFromUserDefault()
         NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: NSNotification.Name("ChangeCellStyle"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTopics), name: NSNotification.Name("AddNewTopic"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(collectionViewDidSelectItemAt(notification:)), name: NSNotification.Name("CustomHeaderDidSelectItem"), object: nil)
     }
     
     //MARK: - CLASS FUNCTIONS
@@ -36,8 +34,28 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         largeCellStyle = UserDefaultService.shared.loadLargeCellStyle()
     }
     
+    @objc func collectionViewDidSelectItemAt(notification: NSNotification) {
+        guard let index = notification.userInfo?["index"] as? Int else { return }
+        switch index {
+        case 0:
+            delegate?.presentAddFavoritesTopicsVC()
+        case 1:
+            getLastNews()
+        default:
+            getNewsWithIndex(index: index)
+        }
+    }
+    
+    func getArticle(indexPath: IndexPath) -> Article {
+        return articles[indexPath.row]
+    }
+    
     func cellStyle() -> Bool {
         return largeCellStyle
+    }
+    
+    func articlesCount() -> Int {
+        return articles.count
     }
     
     func getLastNews() {
@@ -54,13 +72,14 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
                 self?.delegate?.addMessageViewPutAwayWithAnimation()
                 self?.delegate?.stopAnimatedSkeletonView()
                 self?.articles = news
+                self?.delegate?.tableViewReloadData()
             }
         }
     }
     
     func getNewsWithIndex(index: Int) {
         delegate?.startAnimatedSkeletonView()
-        let needTopic = topics[index]
+        let needTopic = UserDefaultService.shared.loadTopics()[index - 2]
         netwokService.serchNews(for: needTopic) { [ weak self ] result in
             switch result {
             case .failure(let error):
@@ -72,30 +91,10 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
                 self?.delegate?.addMessageViewPutAwayWithAnimation()
                 self?.delegate?.stopAnimatedSkeletonView()
                 self?.articles = articles
+                self?.delegate?.tableViewReloadData()
             }
         }
     }
-    
-    func collectionViewDidSelectItemAt(indexPath: IndexPath) {
-        switch indexPath.item {
-        case 0:
-            delegate?.presentAddFavoritesTopicsVC()
-        case 1:
-            getLastNews()
-        default:
-            getNewsWithIndex(index: indexPath.item)
-        }
-    }
-    
-    func articlesCount() -> Int {
-        return articles.count
-    }
-    
-    func topicsCount() -> Int {
-        return topics.count
-    }
-    
-    @objc private func updateTopics() {
-        topics = ["+", "Last"] + UserDefaultService.shared.loadTopics()
-    }
 }
+
+

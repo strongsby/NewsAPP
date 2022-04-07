@@ -85,3 +85,12 @@ extension NewsAPPNibLoadable where Self: UICollectionReusableView {
     }
 
 }
+
+
+extension NewsAPPNibLoadable where Self: UITableViewHeaderFooterView {
+
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+
+}
