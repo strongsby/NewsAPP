@@ -18,5 +18,6 @@ protocol ShowVCViewModelProtocol: NSObject {
     func shareDidTapped() -> Void
     func getCashedImage() -> UIImage?
     func getImageURL() -> URL?
-    func getLablesText() -> (title: String, description: String, sourse: String)
+    func getLablesText() -> (title: String?, description: String?, sourse: String?)
+    func scrollViewDidScroll(scrollView: UIScrollView)
 }

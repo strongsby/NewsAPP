@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEc-Ye-vjT">
-                    <rect key="frame" x="26" y="106" width="362" height="150"/>
+                    <rect key="frame" x="26" y="373" width="362" height="150"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pleace add your topic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O47-Uf-bek">
                             <rect key="frame" x="8" y="16" width="346" height="20.5"/>
@@ -71,7 +71,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="SEc-Ye-vjT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="26" id="8FB-Ch-7v4"/>
-                <constraint firstItem="SEc-Ye-vjT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="62" id="pj2-IH-MIv"/>
+                <constraint firstItem="SEc-Ye-vjT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="329" id="pj2-IH-MIv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SEc-Ye-vjT" secondAttribute="trailing" constant="26" id="yHf-mX-4D5"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="93.75"/>

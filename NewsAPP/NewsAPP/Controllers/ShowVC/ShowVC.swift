@@ -13,11 +13,15 @@ final class ShowVC: UIViewController {
     
     //MARK: - OUTLETS & CLASS PROPETYES
     
-    @IBOutlet private weak var addButton: UIButton!
+    @IBOutlet private weak var addButton: UIButton! 
     @IBOutlet private weak var titleLabel:  UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var sourseLabel: UILabel!
     @IBOutlet private weak var newsImage: DownloadImageView!
+    @IBOutlet private weak var heightNewsImageConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var scrollView: UIScrollView! {
+        didSet { scrollView.delegate = self }
+    }
     var viewModel: ShowVCViewModelProtocol = ShowVCViewModel()
     
     //MARK: - LIFE CYCLE
@@ -33,7 +37,7 @@ final class ShowVC: UIViewController {
         let lablesText = viewModel.getLablesText()
         descriptionLabel.text = lablesText.description
         titleLabel.text = lablesText.title
-        sourseLabel.text = "Sourse: \(lablesText.sourse)"
+        sourseLabel.text = lablesText.sourse
     }
     
     private func setupImage() {
@@ -82,9 +86,23 @@ final class ShowVC: UIViewController {
 extension ShowVC: AlertHandler {}
 
 
+//MARK: - UIScrollViewDelegate
+
+extension ShowVC: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        viewModel.scrollViewDidScroll(scrollView: scrollView)
+    }
+}
+
+
 //MARK: - EXTENSION ShowVCViewModelDelegate
 
 extension ShowVC: ShowVCViewModelDelegate {
+    
+    func changeImageHeightConstrain(height: CGFloat) {
+        heightNewsImageConstraint.constant = height
+    }
     
     func showVCShowActivityVC(url: URL) {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)

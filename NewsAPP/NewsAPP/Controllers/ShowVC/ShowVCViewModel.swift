@@ -41,6 +41,12 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     
     //MARK: - CLASS FUNCTIONS
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let ofsetY = 250 - (scrollView.contentOffset.y )
+        let minMax = max(250, ofsetY)
+        delegate?.changeImageHeightConstrain(height: minMax)
+    }
+    
     func addButtonIsHidden() -> Bool {
         return addButtonIsHiddenFlag 
     }
@@ -60,11 +66,14 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
         return url
     }
     
-    func getLablesText() -> (title: String, description: String, sourse: String) {
-        let title = article?.title ?? ""
-        let description = article?.content ?? ""
-        let sourse = article?.source?.name ?? ""
-        return (title, description, sourse)
+    func getLablesText() -> (title: String?, description: String?, sourse: String?) {
+        guard let title = article?.title,
+              let description = article?.articleDescription,
+              let sourse = article?.source?.name,
+              let content = article?.content else {
+                  return (nil,nil,nil)
+              }
+        return (title, description + content + content + content + content, "Sourse: " + sourse)
     }
     
     func showInSafariDidTapped() {
