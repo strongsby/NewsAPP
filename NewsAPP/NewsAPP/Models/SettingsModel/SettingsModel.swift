@@ -10,8 +10,8 @@ import UIKit
 
 
 struct SettingsSection {
-    var headerTitle: String
-    var footerTitle: String
+    var headerTitle: String?
+    var footerTitle: String?
     var options: [SettingsOptionsType]
 }
 
@@ -23,6 +23,7 @@ enum SettingsOptionsType {
 struct DefaultSettingsOptions {
     var imageBackgroundColor: UIColor
     var title: String
+    var tappedAction: (() -> Void)?
     var settingsImage: UIImage?
 }
 

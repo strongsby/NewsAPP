@@ -1,13 +1,13 @@
 //
-//  SettingsVC.swift
+//  VisualSettingsVC.swift
 //  NewsAPP
 //
-//  Created by Сергей Рудинский on 17.03.22.
+//  Created by Сергей Рудинский on 11.04.22.
 //
 
 import UIKit
 
-final class SettingsVC: UIViewController {
+class VisualSettingsVC: UIViewController {
     
     //MARK: - OUTLETS & CLASS PROPERTYES
     
@@ -18,7 +18,7 @@ final class SettingsVC: UIViewController {
             tableViewRegisterCells()
         }
     }
-    var viewModel: SettingsVCViewModelProtocol = SettingsVCViewModel()
+    var viewModel: VisualSettingsVCViewModelProyocol = VisualSettingsVCViewModel()
     
     //MARK: - LIFE CYCLE
     
@@ -35,24 +35,19 @@ final class SettingsVC: UIViewController {
     }
     
     private func setTitle() {
-        title = "Settings"
+        title = "Visual Settings"
         navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    private func bind() {
-        viewModel.delegate = self
     }
     
     private func setupAll() {
         setTitle()
-        bind()
     }
 }
 
 
 //MARK: - EXTENSION UITableViewDelegate & UITableViewDataSource
 
-extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
+extension VisualSettingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.settingsArrayTitleForHeaderInSection(section: section)
@@ -83,28 +78,6 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
             cell.viewModel = SwitchSettingsCellViewModel(model: switchSettingsModel)
             return cell
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.tableViewDidSelectRowAT(indexPath: indexPath)
-    }
-}
-
-
-//MARK: - EXTENSION SettingsVCViewModelDelegate
-
-extension SettingsVC: SettingsVCViewModelDelegate {
-    
-    func showSettingsVCWithMode() {
-        navigationController?.pushViewController(VisualSettingsVC(), animated: true)
-    }
-    
-    func showFavoriteTopicsVC() {
-        navigationController?.pushViewController(FavoriteTopicsVC(), animated: true)
-    }
-    
-    func showInfoVC() {
-        navigationController?.pushViewController(InfoVC(), animated: true)
     }
 }
 
