@@ -14,6 +14,7 @@ final class MainVC: UIViewController {
     
     //MARK: - OUTLETS & CLASS PROPERTYES
     
+    @IBOutlet private weak var activity: UIActivityIndicatorView!
     @IBOutlet private weak var addMessageView: UIView!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -113,6 +114,14 @@ extension MainVC: AlertHandler {}
 
 extension MainVC: MainVCViewModelDelegate {
     
+    func startActivityAnimated() {
+        activity.startAnimating()
+    }
+    
+    func stopActivityAnimated() {
+        activity.stopAnimating()
+    }
+    
     func addMessageShowWithAnimation() {
         UIView.animate(withDuration: 0.7) { [ weak self ] in
             self?.addMessageView.alpha = 1.0
@@ -127,6 +136,7 @@ extension MainVC: MainVCViewModelDelegate {
     
     func tableViewReloadData() {
         tableView.reloadData()
+        tableView.startCustomAnimation()
     }
     
     func presentAddFavoritesTopicsVC() {
@@ -141,8 +151,6 @@ extension MainVC: MainVCViewModelDelegate {
     func stopAnimatedSkeletonView() {
         tableView.stopSkeletonAnimation()
         view.hideSkeleton()
-        view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-        tableView.startCustomAnimation()
     }
     
     func mainVCShowAllert(title: String?, message: String?, completion: (() -> Void)?) {

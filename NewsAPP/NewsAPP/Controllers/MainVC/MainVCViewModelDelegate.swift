@@ -16,4 +16,6 @@ protocol MainVCViewModelDelegate {
     func tableViewReloadData()
     func addMessageShowWithAnimation()
     func addMessageViewPutAwayWithAnimation()
+    func startActivityAnimated()
+    func stopActivityAnimated()
 }

@@ -10,9 +10,11 @@ import Foundation
 
 protocol SearchVCViewModelDelegate {
     func startAnimatedSkeletonView()
-    func stopAnomatedSkeleton()
+    func stopAnimatedSkeleton()
     func searchVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
     func tableViewReloadData()
     func addMessageShowWithAnimation()
     func addMessageViewPutAwayWithAnimation()
+    func startActivityAnimated()
+    func stopActivityAnimated()
 }

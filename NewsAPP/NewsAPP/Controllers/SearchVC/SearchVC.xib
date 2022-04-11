@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchVC" customModule="NewsAPP" customModuleProvider="target">
             <connections>
+                <outlet property="activity" destination="a3f-nb-vPc" id="2UT-cf-JTE"/>
                 <outlet property="addMessageView" destination="JhW-P4-Njz" id="DVs-Ls-2yh"/>
                 <outlet property="tableView" destination="9oi-eI-n5B" id="ZaK-5r-pRB"/>
                 <outlet property="view" destination="iN0-l3-epB" id="okZ-d6-QlW"/>
@@ -53,6 +54,9 @@ You can find the news you are interested in using the search bar</string>
                         <constraint firstItem="XsX-r9-be6" firstAttribute="top" secondItem="8xr-jD-k72" secondAttribute="bottom" constant="32" id="wg8-yV-Grc"/>
                     </constraints>
                 </view>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="a3f-nb-vPc">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -60,9 +64,11 @@ You can find the news you are interested in using the search bar</string>
                 <constraint firstItem="JhW-P4-Njz" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="1d4-n0-P5s"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JhW-P4-Njz" secondAttribute="trailing" id="55T-No-fLc"/>
                 <constraint firstItem="JhW-P4-Njz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7ec-hh-cL2"/>
+                <constraint firstItem="a3f-nb-vPc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7mj-Qq-Y7m"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9oi-eI-n5B" secondAttribute="trailing" constant="16" id="RKm-eo-Nmo"/>
                 <constraint firstItem="9oi-eI-n5B" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="TQG-gR-YxM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="9oi-eI-n5B" secondAttribute="bottom" id="Vd3-Ak-hKd"/>
+                <constraint firstItem="a3f-nb-vPc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cbJ-PW-55w"/>
                 <constraint firstItem="9oi-eI-n5B" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="hA4-Vp-16I"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="JhW-P4-Njz" secondAttribute="bottom" id="laW-8Q-yVw"/>
             </constraints>

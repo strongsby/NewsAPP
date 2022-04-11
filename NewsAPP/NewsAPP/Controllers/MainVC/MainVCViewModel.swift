@@ -17,7 +17,9 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     }
     private var netwokService = NetwokService()
     var delegate: MainVCViewModelDelegate?
-    var articles: [Article] = []
+    var articles: [Article] = [] {
+        didSet { delegate?.tableViewReloadData() }
+    }
     
     //MARK: - INIT
     
@@ -59,39 +61,44 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     }
     
     func getLastNews() {
-        delegate?.startAnimatedSkeletonView()
+        articles.removeAll()
+        delegate?.startActivityAnimated()
+        delegate?.addMessageViewPutAwayWithAnimation()
         netwokService.getLatsNews { [ weak self ] result in
             switch result {
             case .failure(let error):
-                self?.articles.removeAll()
+                self?.delegate?.stopActivityAnimated()
                 self?.delegate?.addMessageShowWithAnimation()
-                self?.delegate?.stopAnimatedSkeletonView()
                 self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
                 print(error)
             case .success(let news):
-                self?.delegate?.addMessageViewPutAwayWithAnimation()
+                self?.delegate?.stopActivityAnimated()
+                if news.isEmpty {
+                    self?.delegate?.addMessageShowWithAnimation()
+                }
                 self?.delegate?.stopAnimatedSkeletonView()
                 self?.articles = news
-                self?.delegate?.tableViewReloadData()
             }
         }
     }
     
     func getNewsWithIndex(index: Int) {
-        delegate?.startAnimatedSkeletonView()
+        articles.removeAll()
+        delegate?.addMessageViewPutAwayWithAnimation()
+        delegate?.startActivityAnimated()
         let needTopic = UserDefaultService.shared.loadTopics()[index - 2]
         netwokService.serchNews(for: needTopic) { [ weak self ] result in
             switch result {
             case .failure(let error):
-                self?.articles.removeAll()
+                self?.delegate?.stopActivityAnimated()
                 self?.delegate?.addMessageShowWithAnimation()
-                self?.delegate?.stopAnimatedSkeletonView()
                 self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let articles):
-                self?.delegate?.addMessageViewPutAwayWithAnimation()
-                self?.delegate?.stopAnimatedSkeletonView()
+                self?.delegate?.stopActivityAnimated()
+                if articles.isEmpty {
+                    self?.delegate?.addMessageShowWithAnimation()
+                }
                 self?.articles = articles
-                self?.delegate?.tableViewReloadData()
             }
         }
     }

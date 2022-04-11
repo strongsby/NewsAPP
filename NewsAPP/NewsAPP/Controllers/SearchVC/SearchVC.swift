@@ -12,6 +12,7 @@ final class SearchVC: UIViewController {
 
     //MARK: - OUTLETS & CALASS PROPERTYES
     
+    @IBOutlet private weak var activity: UIActivityIndicatorView!
     @IBOutlet private weak var addMessageView: UIView!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -126,6 +127,14 @@ extension SearchVC: AlertHandler {}
 
 extension SearchVC: SearchVCViewModelDelegate {
     
+    func startActivityAnimated() {
+        activity.startAnimating()
+    }
+    
+    func stopActivityAnimated() {
+        activity.stopAnimating()
+    }
+    
     func addMessageShowWithAnimation() {
         UIView.animate(withDuration: 0.7) { [ weak self ] in
             self?.addMessageView.alpha = 1.0
@@ -140,17 +149,19 @@ extension SearchVC: SearchVCViewModelDelegate {
     
     func tableViewReloadData() {
         tableView.reloadData()
+        tableView.startCustomAnimation()
     }
+    
+    //Wee can change skelletonAnimation or activityAnimation
     
     func startAnimatedSkeletonView() {
         tableView.isSkeletonable = true
         tableView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .systemGray), animation: nil, transition: .crossDissolve(0.25))
     }
     
-    func stopAnomatedSkeleton() {
+    func stopAnimatedSkeleton() {
         tableView.stopSkeletonAnimation()
-        view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-        tableView.startCustomAnimation()
+        view.hideSkeleton()
     }
     
     func searchVCShowAllert(title: String?, message: String?, completion: (() -> Void)?) {

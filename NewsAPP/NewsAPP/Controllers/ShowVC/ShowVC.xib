@@ -32,7 +32,7 @@
                     </constraints>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-qB-tLA">
-                    <rect key="frame" x="0.0" y="300" width="414" height="562"/>
+                    <rect key="frame" x="0.0" y="316" width="414" height="546"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAE-Rt-nNP">
                             <rect key="frame" x="0.0" y="0.0" width="406" height="269"/>
@@ -137,7 +137,7 @@
             <viewLayoutGuide key="safeArea" id="0dH-gB-3cI"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="sBi-qB-tLA" firstAttribute="top" secondItem="0dH-gB-3cI" secondAttribute="top" constant="256" id="6fO-xr-2NG"/>
+                <constraint firstItem="sBi-qB-tLA" firstAttribute="top" secondItem="0dH-gB-3cI" secondAttribute="top" constant="272" id="6fO-xr-2NG"/>
                 <constraint firstItem="sBi-qB-tLA" firstAttribute="bottom" secondItem="0dH-gB-3cI" secondAttribute="bottom" id="Cgf-u4-kVd"/>
                 <constraint firstItem="rIb-ed-0bf" firstAttribute="trailing" secondItem="0dH-gB-3cI" secondAttribute="trailing" id="GQt-mc-RUv"/>
                 <constraint firstItem="sBi-qB-tLA" firstAttribute="leading" secondItem="0dH-gB-3cI" secondAttribute="leading" id="adq-4H-En6"/>

@@ -13,8 +13,10 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     //MARK: - CLASS PROPERTYES
     
     private var networkService = NetwokService()
-    var newsArray: [Article] = []
     var delegate: SearchVCViewModelDelegate?
+    var newsArray: [Article] = [] {
+        didSet { delegate?.tableViewReloadData() }
+    }
     private var largeCellStyle: Bool = true {
         didSet { delegate?.tableViewReloadData() }
     }
@@ -43,19 +45,23 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
     func getNewsWithString(title: String?) {
         guard let newsCategory = title else { return }
-        delegate?.startAnimatedSkeletonView()
+        newsArray.removeAll()
+        delegate?.addMessageViewPutAwayWithAnimation()
+        delegate?.startActivityAnimated()
         networkService.serchNews(for: newsCategory) { [ weak self ] result in
             switch result {
             case .failure(let error):
-                self?.newsArray.removeAll()
                 self?.delegate?.addMessageShowWithAnimation()
-                self?.delegate?.stopAnomatedSkeleton()
+                self?.delegate?.stopActivityAnimated()
                 print("\(error.localizedDescription)")
                 self?.delegate?.searchVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let news):
-                self?.delegate?.addMessageViewPutAwayWithAnimation()
+                self?.delegate?.stopActivityAnimated()
+                if news.isEmpty {
+                    self?.delegate?.addMessageShowWithAnimation()
+                }
+                self?.delegate?.stopAnimatedSkeleton()
                 self?.newsArray = news
-                self?.delegate?.stopAnomatedSkeleton()
             }
         }
     }    

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainVC" customModule="NewsAPP" customModuleProvider="target">
             <connections>
+                <outlet property="activity" destination="Dre-HA-qew" id="DE4-1D-F8g"/>
                 <outlet property="addMessageView" destination="w5C-ZH-30P" id="gFP-0z-dbO"/>
                 <outlet property="tableView" destination="WEk-YZ-63a" id="qKb-qX-Wv6"/>
                 <outlet property="view" destination="iN0-l3-epB" id="x5T-Av-fPw"/>
@@ -53,6 +54,10 @@ Sorry there was an error! Failed to load news</string>
                         <constraint firstItem="A5N-dL-ql8" firstAttribute="centerX" secondItem="w5C-ZH-30P" secondAttribute="centerX" id="xhp-IO-s20"/>
                     </constraints>
                 </view>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Dre-HA-qew">
+                    <rect key="frame" x="188" y="429" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
