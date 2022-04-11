@@ -65,6 +65,11 @@ extension CustomHeaderView: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.collectionDidSelectItem(indexPath: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let selectedIdexPath = IndexPath(item: 1, section: 0)
+        collectionView.selectItem(at: selectedIdexPath, animated: true, scrollPosition: [])
+    }
 }
 
 

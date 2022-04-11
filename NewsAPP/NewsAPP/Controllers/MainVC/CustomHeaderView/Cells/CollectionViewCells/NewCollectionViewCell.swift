@@ -16,12 +16,24 @@ final class NewCollectionViewCell: UICollectionViewCell {
         didSet { configCell() }
     }
 
-    //MARK: - LIFU CYCLE
+    //MARK: - LIFE CYCLE
     
         override func awakeFromNib() {
         super.awakeFromNib()
     }
 
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                backgroundColor = .systemGray
+                titleLabel.textColor = .white
+            } else {
+                backgroundColor = .systemFill
+                titleLabel.textColor = .label
+            }
+        }
+    }
+    
     //MARK: - CLASS FUNCS
     
     func configCell() {

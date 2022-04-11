@@ -41,7 +41,7 @@ final class MainVC: UIViewController {
     }
     
     private func configTitle() {
-        title = "Favoriites"
+        title = "Most Recent"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

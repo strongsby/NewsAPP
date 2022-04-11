@@ -35,13 +35,12 @@ final class SearchVC: UIViewController {
     
     private func setupSearchController() {
         let resoultVC = UIViewController()
-        //resoultVC.view.backgroundColor = .systemGray       // for test
         searcController = UISearchController(searchResultsController: resoultVC)
         searcController.searchBar.placeholder = "Search for some news"
         navigationItem.searchController = searcController
         navigationItem.hidesSearchBarWhenScrolling = true
         searcController.searchBar.delegate = self
-        //searcController.searchResultsUpdater = self        // i can handle result here
+        //searcController.searchResultsUpdater = self        // wee can handle result here
     }
     
     private func tableViewRegisterCells() {
