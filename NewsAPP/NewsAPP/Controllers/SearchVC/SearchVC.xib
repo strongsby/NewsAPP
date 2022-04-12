@@ -66,7 +66,7 @@ You can find the news you are interested in using the search bar</string>
                 <constraint firstItem="JhW-P4-Njz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7ec-hh-cL2"/>
                 <constraint firstItem="a3f-nb-vPc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7mj-Qq-Y7m"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9oi-eI-n5B" secondAttribute="trailing" constant="16" id="RKm-eo-Nmo"/>
-                <constraint firstItem="9oi-eI-n5B" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="TQG-gR-YxM"/>
+                <constraint firstItem="9oi-eI-n5B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="TQG-gR-YxM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="9oi-eI-n5B" secondAttribute="bottom" id="Vd3-Ak-hKd"/>
                 <constraint firstItem="a3f-nb-vPc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cbJ-PW-55w"/>
                 <constraint firstItem="9oi-eI-n5B" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="hA4-Vp-16I"/>

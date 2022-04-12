@@ -21,9 +21,9 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="52" estimatedSectionHeaderHeight="52" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WEk-YZ-63a">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="52" estimatedSectionHeaderHeight="52" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WEk-YZ-63a">
                     <rect key="frame" x="16" y="44" width="382" height="852"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5C-ZH-30P">
                     <rect key="frame" x="0.0" y="50" width="414" height="812"/>
@@ -63,7 +63,7 @@ Sorry there was an error! Failed to load news</string>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="WEk-YZ-63a" secondAttribute="bottom" id="5Vp-zx-8Fp"/>
-                <constraint firstItem="WEk-YZ-63a" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="60g-pk-48F"/>
+                <constraint firstItem="WEk-YZ-63a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="60g-pk-48F"/>
                 <constraint firstItem="w5C-ZH-30P" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="8ar-3P-jps"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WEk-YZ-63a" secondAttribute="trailing" constant="16" id="M8e-X9-fgq"/>
                 <constraint firstItem="w5C-ZH-30P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Mzr-0P-eYL"/>

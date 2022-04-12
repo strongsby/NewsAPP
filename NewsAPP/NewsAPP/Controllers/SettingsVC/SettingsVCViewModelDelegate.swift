@@ -11,5 +11,5 @@ import Foundation
 protocol SettingsVCViewModelDelegate {
     func showFavoriteTopicsVC()
     func showInfoVC()
-    func showSettingsVCWithMode()
+    func showSettingsVC()
 }

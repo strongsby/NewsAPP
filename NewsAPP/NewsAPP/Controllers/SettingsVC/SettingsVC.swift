@@ -95,7 +95,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension SettingsVC: SettingsVCViewModelDelegate {
     
-    func showSettingsVCWithMode() {
+    func showSettingsVC() {
         navigationController?.pushViewController(VisualSettingsVC(), animated: true)
     }
     

@@ -14,16 +14,9 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     //MARK: - CLASS PROPERTYES
     
     var delegate: SettingsVCViewModelDelegate?
-    var settingsArray: [SettingsSection] = [
-        SettingsSection(headerTitle: "Visual settings", footerTitle: "In these settings, you can make changes to the visual part of the application",
-                        options: [SettingsOptionsType.DefaultSettingsVCCell(defaultModel: DefaultSettingsOptions(imageBackgroundColor: .green, title: "Visual Settings", settingsImage: UIImage(systemName: "iphone.homebutton.circle")))]),
-
-        SettingsSection(headerTitle: "General settings", footerTitle: "In these settings, you can change the main elements of the program",
-                        options: [SettingsOptionsType.DefaultSettingsVCCell(defaultModel: DefaultSettingsOptions(imageBackgroundColor: .purple, title: "Favorite topics", settingsImage: UIImage(systemName: "star.leadinghalf.fill")))]),
-
-        SettingsSection(headerTitle: "Information", footerTitle: "These settings contain all information about the application, including the API",
-                        options: [SettingsOptionsType.DefaultSettingsVCCell(defaultModel: DefaultSettingsOptions(imageBackgroundColor: .link, title: "info", settingsImage: UIImage(systemName: "info.circle")))])
-    ]
+    var settingsArray: [SettingsSection] {
+        return DefaultSettings.getSettings(type: .mainSettings)
+    }
     
     //MARK: - CLASS FUNCTIONS
     
@@ -49,7 +42,7 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     
     func tableViewDidSelectRowAT(indexPath: IndexPath) {
         switch indexPath.section {
-        case 0: delegate?.showSettingsVCWithMode()
+        case 0: delegate?.showSettingsVC()
         case 1: delegate?.showFavoriteTopicsVC() 
         case 2: delegate?.showInfoVC()  
         default: break
