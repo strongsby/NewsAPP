@@ -33,7 +33,7 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
         setupFetchController()
         loadCoreDataNews()
         loadCellStyleFromUserDefault()
-        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: NSNotification.Name("ChangeCellStyle"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: .ChangeCellStyle(), object: nil)
     }
     
     //MARK: - CLASS FUNCTIONS

@@ -51,7 +51,7 @@ struct DefaultSettings {
                                                                                                               switchPosition: UserDefaultService.shared.loadLargeCellStyle,
                                                                                                               switchChangeValue: { isOn in
                                                    UserDefaultService.shared.saveLargeCellStyle(bool: isOn)
-                                                   NotificationCenter.default.post(name: NSNotification.Name("ChangeCellStyle"), object: nil)
+                                                                                                                  NotificationCenter.default.post(name: .ChangeCellStyle(), object: nil)
                                                }))])
             ]
         }

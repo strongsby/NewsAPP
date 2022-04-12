@@ -19,7 +19,7 @@ final class AddFavoritesTopicsVCViewModel: NSObject, AddFavoritesTopicsVCProtoco
             delegate?.AddFavoritesTopicsVCShowAllert(title: "Warning", message: "You have \(newElement) in your list! Do you really want to add it again?") {
                 topics.append(newElement)
                 UserDefaultService.shared.saveTopics(topics: topics)
-                NotificationCenter.default.post(name: NSNotification.Name("AddNewTopic"), object: nil)
+                NotificationCenter.default.post(name: .AddNewTopic(), object: nil)
                 self.delegate?.dismis()
             }
             return false
@@ -27,7 +27,7 @@ final class AddFavoritesTopicsVCViewModel: NSObject, AddFavoritesTopicsVCProtoco
         topics.append(newElement)
         UserDefaultService.shared.saveTopics(topics: topics)
         delegate?.dismis()
-        NotificationCenter.default.post(name: NSNotification.Name("AddNewTopic"), object: nil)
+        NotificationCenter.default.post(name: .AddNewTopic(), object: nil)
         return true
     }
 }

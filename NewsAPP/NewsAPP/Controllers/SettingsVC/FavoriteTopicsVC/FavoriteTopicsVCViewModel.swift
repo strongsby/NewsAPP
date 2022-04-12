@@ -24,7 +24,7 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     override init() {
         super.init()
         loadAllTopics()
-        NotificationCenter.default.addObserver(self, selector: #selector(loadAllTopics), name: NSNotification.Name("AddNewTopic"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadAllTopics), name: .AddNewTopic(), object: nil)
     }
     
     //MARK: - CLASS FUNCTIONS

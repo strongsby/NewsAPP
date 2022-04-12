@@ -53,6 +53,9 @@
 		3538B7BB2804190100FC8BBF /* VisualSettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3538B7B92804190100FC8BBF /* VisualSettingsVC.xib */; };
 		3538B7BD28041ADB00FC8BBF /* VisualSettingsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7BC28041ADB00FC8BBF /* VisualSettingsVCViewModel.swift */; };
 		3538B7BF28041AFF00FC8BBF /* VisualSettingsVCViewModelProyocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7BE28041AFF00FC8BBF /* VisualSettingsVCViewModelProyocol.swift */; };
+		3538B7C72805A58900FC8BBF /* CGFloat+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7C62805A58800FC8BBF /* CGFloat+Alpha.swift */; };
+		3538B7C92805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7C82805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift */; };
+		3538B7CD2805B46800FC8BBF /* NSNotification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7CC2805B46800FC8BBF /* NSNotification+Name.swift */; };
 		35853B5627E4942A00906167 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5527E4942A00906167 /* InfoVC.swift */; };
 		35853B5827E4943E00906167 /* InfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35853B5727E4943E00906167 /* InfoVC.xib */; };
 		35853B5B27E853DD00906167 /* FavoriteTopicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */; };
@@ -168,6 +171,9 @@
 		3538B7B92804190100FC8BBF /* VisualSettingsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualSettingsVC.xib; sourceTree = "<group>"; };
 		3538B7BC28041ADB00FC8BBF /* VisualSettingsVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSettingsVCViewModel.swift; sourceTree = "<group>"; };
 		3538B7BE28041AFF00FC8BBF /* VisualSettingsVCViewModelProyocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSettingsVCViewModelProyocol.swift; sourceTree = "<group>"; };
+		3538B7C62805A58800FC8BBF /* CGFloat+Alpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Alpha.swift"; sourceTree = "<group>"; };
+		3538B7C82805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+AddMessageDuration.swift"; sourceTree = "<group>"; };
+		3538B7CC2805B46800FC8BBF /* NSNotification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Name.swift"; sourceTree = "<group>"; };
 		35853B5527E4942A00906167 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		35853B5727E4943E00906167 /* InfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoVC.xib; sourceTree = "<group>"; };
 		35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicsVC.swift; sourceTree = "<group>"; };
@@ -492,6 +498,9 @@
 			isa = PBXGroup;
 			children = (
 				3538B78C27F5E1BE00FC8BBF /* DefaultSettings.swift */,
+				3538B7C62805A58800FC8BBF /* CGFloat+Alpha.swift */,
+				3538B7C82805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift */,
+				3538B7CC2805B46800FC8BBF /* NSNotification+Name.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -875,12 +884,14 @@
 				3538B76727F31ABB00FC8BBF /* TableView+Animation.swift in Sources */,
 				350C58AF27E09EF000BB5C61 /* SearchVCCell.swift in Sources */,
 				35853BB527EE01A600906167 /* NewsTableViewCellViewModelProtocol.swift in Sources */,
+				3538B7C72805A58900FC8BBF /* CGFloat+Alpha.swift in Sources */,
 				35853BA127EDBF3A00906167 /* SettingsVCViewModelProtocol.swift in Sources */,
 				35853B5627E4942A00906167 /* InfoVC.swift in Sources */,
 				35853B5B27E853DD00906167 /* FavoriteTopicsVC.swift in Sources */,
 				35853B8827EBBF2600906167 /* SettingsVCViewModel.swift in Sources */,
 				350C589327DCBDF000BB5C61 /* MainVC.swift in Sources */,
 				35853B6427E8D48800906167 /* UserDefaultService.swift in Sources */,
+				3538B7C92805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift in Sources */,
 				35853BBF27F1A3C700906167 /* SwitchSettingsCellViewModel.swift in Sources */,
 				3538B77E27F4AB9800FC8BBF /* CustomSavedVCCellViewModelProtocol.swift in Sources */,
 				35853BA527EDBFC800906167 /* AddFavoritesTopicsVCProtocol.swift in Sources */,
@@ -892,6 +903,7 @@
 				35853B9027EBD70000906167 /* AddFavoritesTopicsVCViewModel.swift in Sources */,
 				3538B78A27F5AF4900FC8BBF /* CustomNewsTableViewCellViewModelProtocol.swift in Sources */,
 				35853B9627EC4CC900906167 /* ShowVCViewModelDelegate.swift in Sources */,
+				3538B7CD2805B46800FC8BBF /* NSNotification+Name.swift in Sources */,
 				350C587F27DCA20300BB5C61 /* NewsAPP.xcdatamodeld in Sources */,
 				35853BC527F1B79200906167 /* DefaultSettingsVCCellViewModelProtocol.swift in Sources */,
 				35853BC327F1B78200906167 /* DefaultSettingsVCCellViewModel.swift in Sources */,

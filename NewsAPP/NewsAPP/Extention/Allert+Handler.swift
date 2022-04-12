@@ -24,5 +24,4 @@ extension AlertHandler {
         }
         present(alert, animated: true, completion: nil)
     }
-    
 }

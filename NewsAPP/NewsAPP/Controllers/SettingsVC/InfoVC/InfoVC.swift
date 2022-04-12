@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class InfoVC: UIViewController {
     
     private func setupTitle() {

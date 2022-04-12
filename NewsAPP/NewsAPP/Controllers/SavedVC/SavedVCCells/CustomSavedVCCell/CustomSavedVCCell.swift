@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class CustomSavedVCCell: UITableViewCell {
     
     @IBOutlet private weak var titleLabel: UILabel!

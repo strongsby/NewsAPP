@@ -6,9 +6,8 @@
 //
 
 import Foundation
-
-
 import CoreData
+
 
 final class CoreDataService {
     
@@ -35,7 +34,6 @@ final class CoreDataService {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        
         return container
     }()
 
@@ -52,5 +50,4 @@ final class CoreDataService {
             }
         }
     }
-
 }

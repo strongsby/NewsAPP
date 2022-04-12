@@ -36,4 +36,5 @@ final class DownloadImageView: UIImageView {
         downloadTask = nil
         image = UIImage(named: "defaultImage")
     }
+    
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class DefaultSettingsVCCell: UITableViewCell {
     
     //MARK: - OUTLETS & CLASS PROPERTYES

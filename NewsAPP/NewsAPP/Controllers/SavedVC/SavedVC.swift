@@ -119,14 +119,14 @@ extension SavedVC: AlertHandler {}
 extension SavedVC: SavedVCViewModelDelegate {
     
     func addMessageShowWithAnimation() {
-        UIView.animate(withDuration: 0.7) { [ weak self ] in
-            self?.addMessageView.alpha = 1.0
+        UIView.animate(withDuration: .addMessgeDuration()) { [ weak self ] in
+            self?.addMessageView.alpha = .maxAlpha()
         }
     }
     
     func addMessageViewPutAwayWithAnimation() {
-        UIView.animate(withDuration: 0.7) { [ weak self ] in
-            self?.addMessageView.alpha = 0
+        UIView.animate(withDuration: .addMessgeDuration()) { [ weak self ] in
+            self?.addMessageView.alpha = .minAlpha()
         }
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class NewCollectionViewCell: UICollectionViewCell {
     
     //MARK: - OUTLETS & CLASS PROPERTYES

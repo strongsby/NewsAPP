@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class FavoriteTopicsVCCell: UITableViewCell {
     
     //MARK: - OUTLETS & CLASS PROPERTYES

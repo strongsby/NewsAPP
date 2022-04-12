@@ -22,7 +22,7 @@ final class CustomHeaderViewViewModel: NSObject, CustomHeaderViewViewModelProtoc
     override init() {
         super.init()
         updateTopics()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTopics), name: NSNotification.Name("AddNewTopic"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTopics), name: .AddNewTopic(), object: nil)
     }
     
     //MARK: - CLASS FUNCTIONS

@@ -27,7 +27,7 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     override init() {
         super.init()
         loadCellStyleFromUserDefault()
-        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: NSNotification.Name("ChangeCellStyle"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: .ChangeCellStyle(), object: nil)
     }
     
     //MARK: - CLASSFUNCTIONS

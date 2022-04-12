@@ -10,6 +10,7 @@ import UIKit
 
 
 extension UITableView {
+    
     func startCustomAnimation() {
         let cells = visibleCells
         let tableViewHeight = bounds.height

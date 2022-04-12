@@ -7,7 +7,8 @@
 
 import UIKit
 
-class VisualSettingsVC: UIViewController {
+
+final class VisualSettingsVC: UIViewController {
     
     //MARK: - OUTLETS & CLASS PROPERTYES
     

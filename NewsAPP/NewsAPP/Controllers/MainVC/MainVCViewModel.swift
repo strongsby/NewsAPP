@@ -27,8 +27,8 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     override init() {
         super.init()
         loadCellStyleFromUserDefault()
-        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: NSNotification.Name("ChangeCellStyle"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(collectionViewDidSelectItemAt(notification:)), name: NSNotification.Name("CustomHeaderDidSelectItem"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: .ChangeCellStyle(), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(collectionViewDidSelectItemAt(notification:)), name: .customHeaderDidSelectItem(), object: nil)
     }
     
     //MARK: - CLASS FUNCTIONS
