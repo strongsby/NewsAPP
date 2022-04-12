@@ -17,4 +17,6 @@ protocol SearchVCViewModelDelegate {
     func addMessageViewPutAwayWithAnimation()
     func startActivityAnimated()
     func stopActivityAnimated()
+    func endRefreshing()
+    func refreshControlIsRefreshing() -> Bool
 }

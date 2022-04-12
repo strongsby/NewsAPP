@@ -14,6 +14,7 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
     private var networkService = NetwokService()
     var delegate: SearchVCViewModelDelegate?
+    private var serchTitle: String?
     var newsArray: [Article] = [] {
         didSet { delegate?.tableViewReloadData() }
     }
@@ -45,26 +46,34 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
     func getNewsWithString(title: String?) {
         guard let newsCategory = title else { return }
+        serchTitle = title
         newsArray.removeAll()
         delegate?.addMessageViewPutAwayWithAnimation()
-        delegate?.startActivityAnimated()
+        if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
+            delegate.startActivityAnimated()
+        }
         networkService.serchNews(for: newsCategory) { [ weak self ] result in
             switch result {
             case .failure(let error):
+                self?.delegate?.endRefreshing()
                 self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.stopActivityAnimated()
                 print("\(error.localizedDescription)")
                 self?.delegate?.searchVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let news):
+                self?.delegate?.endRefreshing()
                 self?.delegate?.stopActivityAnimated()
-                if news.isEmpty {
-                    self?.delegate?.addMessageShowWithAnimation()
-                }
-                self?.delegate?.stopAnimatedSkeleton()
                 self?.newsArray = news
             }
         }
-    }    
+    }
+    
+    func refreshDidPull() {
+        guard let serchTitle = serchTitle else {
+            return
+        }
+        getNewsWithString(title: serchTitle)
+    }
 }
 
 

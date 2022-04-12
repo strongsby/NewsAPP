@@ -96,7 +96,7 @@ final class NetwokService {
 
             do {
                 let news = try JSONDecoder().decode(News.self, from: data)
-                guard let arrayOfArticles = news.articles else {
+                guard let arrayOfArticles = news.articles , !arrayOfArticles.isEmpty else {
                     DispatchQueue.main.async {
                         complition(.failure(.invalidNews))
                     }

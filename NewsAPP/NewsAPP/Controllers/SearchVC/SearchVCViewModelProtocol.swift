@@ -14,4 +14,5 @@ protocol SearchVCViewModelProtocol: NSObject {
     func getNewsWithString(title: String?)
     func newsArrayCount() -> Int
     func cellStyle() -> Bool
+    func refreshDidPull()
 }

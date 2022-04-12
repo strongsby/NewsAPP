@@ -18,4 +18,6 @@ protocol MainVCViewModelDelegate {
     func addMessageViewPutAwayWithAnimation()
     func startActivityAnimated()
     func stopActivityAnimated()
+    func endRefreshing()
+    func refreshControlIsRefreshing() -> Bool
 }

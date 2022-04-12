@@ -14,13 +14,7 @@ final class SearchVC: UIViewController {
     
     @IBOutlet private weak var activity: UIActivityIndicatorView!
     @IBOutlet private weak var addMessageView: UIView!
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableViewRegisterCells()
-        }
-    }
+    @IBOutlet private weak var tableView: UITableView!
     private var searcController: UISearchController!
     private var viewModel: SearchVCViewModelProtocol = SearchVCViewModel()
     
@@ -32,6 +26,10 @@ final class SearchVC: UIViewController {
     }
 
     //MARK: - CLASS FUNCTIONS
+    
+    @objc private func didPullToRefresh() {
+        viewModel.refreshDidPull()
+    }
     
     private func setupSearchController() {
         let resoultVC = UIViewController()
@@ -57,7 +55,16 @@ final class SearchVC: UIViewController {
         viewModel.delegate = self
     }
     
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+    }
+    
     private func setupAll() {
+        setupTableView()
+        tableViewRegisterCells()
         bind()
         setupSearchController()
         setTitle()
@@ -125,6 +132,15 @@ extension SearchVC: AlertHandler {}
 //MARK: - EXTENSION SearchVCViewModelDelegate
 
 extension SearchVC: SearchVCViewModelDelegate {
+    func endRefreshing() {
+        tableView.refreshControl?.endRefreshing()
+    }
+    
+    func refreshControlIsRefreshing() -> Bool {
+        guard let refreshControl = tableView.refreshControl else { return false }
+        return refreshControl.isRefreshing
+    }
+    
     
     func startActivityAnimated() {
         activity.startAnimating()

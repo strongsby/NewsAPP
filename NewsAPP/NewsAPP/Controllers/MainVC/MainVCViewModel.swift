@@ -16,6 +16,7 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         didSet { delegate?.tableViewReloadData() }
     }
     private var netwokService = NetwokService()
+    private var serchIndex: Int?
     var delegate: MainVCViewModelDelegate?
     var articles: [Article] = [] {
         didSet { delegate?.tableViewReloadData() }
@@ -62,45 +63,55 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     func getLastNews() {
         articles.removeAll()
-        delegate?.startActivityAnimated()
         delegate?.addMessageViewPutAwayWithAnimation()
+        if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
+            delegate.startActivityAnimated()
+        }
         netwokService.getLatsNews { [ weak self ] result in
             switch result {
             case .failure(let error):
+                self?.delegate?.endRefreshing()
                 self?.delegate?.stopActivityAnimated()
                 self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
                 print(error)
             case .success(let news):
+                self?.delegate?.endRefreshing()
                 self?.delegate?.stopActivityAnimated()
-                if news.isEmpty {
-                    self?.delegate?.addMessageShowWithAnimation()
-                }
-                self?.delegate?.stopAnimatedSkeletonView()
                 self?.articles = news
             }
         }
     }
     
     func getNewsWithIndex(index: Int) {
+        serchIndex = index
         articles.removeAll()
         delegate?.addMessageViewPutAwayWithAnimation()
-        delegate?.startActivityAnimated()
+        if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
+            delegate.startActivityAnimated()
+        }
         let needTopic = UserDefaultService.shared.loadTopics()[index - 2]
         netwokService.serchNews(for: needTopic) { [ weak self ] result in
             switch result {
             case .failure(let error):
+                self?.delegate?.endRefreshing()
                 self?.delegate?.stopActivityAnimated()
                 self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let articles):
+                self?.delegate?.endRefreshing()
                 self?.delegate?.stopActivityAnimated()
-                if articles.isEmpty {
-                    self?.delegate?.addMessageShowWithAnimation()
-                }
                 self?.articles = articles
             }
         }
+    }
+    
+    func refreshDidPull() {
+        guard let index = serchIndex else {
+            getLastNews()
+            return
+        }
+        getNewsWithIndex(index: index)
     }
 }
 

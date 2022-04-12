@@ -16,13 +16,7 @@ final class MainVC: UIViewController {
     
     @IBOutlet private weak var activity: UIActivityIndicatorView!
     @IBOutlet private weak var addMessageView: UIView!
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
-            registerTableViewCells()
-        }
-    }
+    @IBOutlet private weak var tableView: UITableView!
     private var viewModel: MainVCViewModelProtocol = MainVCViewModel()
 
     //MARK: - LIFE CYCLE
@@ -33,6 +27,17 @@ final class MainVC: UIViewController {
     }
     
     //MARK: - CLASS FUNCTIONS
+    
+    @objc private func didPullToRefresh() {
+        viewModel.refreshDidPull()
+    }
+    
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+    }
     
     private func registerTableViewCells() {
         tableView.register(CustomHeaderView.defaultNib, forHeaderFooterViewReuseIdentifier: CustomHeaderView.reuseIdentifier)    // reuseIdentifire
@@ -50,6 +55,8 @@ final class MainVC: UIViewController {
     }
     
     private func setupAll() {
+        setupTableView()
+        registerTableViewCells()
         bind()
         configTitle()
         viewModel.getLastNews()
@@ -64,10 +71,6 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(type: CustomHeaderView.self)
         return view
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 52
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -113,6 +116,15 @@ extension MainVC: AlertHandler {}
 //MARK: - EXTENSION MainVCViewModelDelegate
 
 extension MainVC: MainVCViewModelDelegate {
+    
+    func refreshControlIsRefreshing() -> Bool {
+        guard let refreschControl = tableView.refreshControl else { return false }
+        return refreschControl.isRefreshing
+    }
+    
+    func endRefreshing() {
+        tableView.refreshControl?.endRefreshing()
+    }
     
     func startActivityAnimated() {
         activity.startAnimating()
