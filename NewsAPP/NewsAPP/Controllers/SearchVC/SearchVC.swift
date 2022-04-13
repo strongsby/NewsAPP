@@ -82,14 +82,14 @@ extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let article = viewModel.newsArray[indexPath.row]
+        let article = viewModel.getArticle(indexPath: indexPath)
         
         switch viewModel.cellStyle() {
-        case true:
+        case .largeCell:
             let cell = tableView.dequeueReusableCells(type: CustomeSearchVCCell.self, indexPath: indexPath)
             cell.viewModel = CustomeSearchVCCellViewModel(article: article)
             return cell
-        case false:
+        case .defaultCell:
             let cell = tableView.dequeueReusableCells(type: SearchVCCell.self, indexPath: indexPath)
             cell.viewModel = SearchVCCellViewModel(article: article)
             return cell
@@ -98,15 +98,15 @@ extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let showVC = ShowVC()
-        let article = viewModel.newsArray[indexPath.row]
+        let article = viewModel.getArticle(indexPath: indexPath)
         showVC.viewModel = ShowVCViewModel.init(art: article)
         navigationController?.pushViewController(showVC, animated: true)
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         switch viewModel.cellStyle() {
-        case true : return CustomeSearchVCCell.reuseIdentifier
-        case false: return SearchVCCell.reuseIdentifier
+        case .largeCell : return CustomeSearchVCCell.reuseIdentifier
+        case .defaultCell: return SearchVCCell.reuseIdentifier
         }
     }
 }

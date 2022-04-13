@@ -14,7 +14,7 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     //MARK: - CLASS PROPERTYES
     
     var delegate: SettingsVCViewModelDelegate?
-    var settingsArray: [SettingsSection] {
+    private var settingsArray: [SettingsSection] {
         return DefaultSettings.getSettings(type: .mainSettings)
     }
     

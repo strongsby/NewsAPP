@@ -73,7 +73,7 @@ extension FavoriteTopicsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCells(type: FavoriteTopicsVCCell.self, indexPath: indexPath)
-        let newTopicTitle = viewModel.newTopics[indexPath.row]
+        let newTopicTitle = viewModel.getTopic(indexPath: indexPath)
         cell.viewModel = FavoriteTopicsVCCellViewModel(titleText: newTopicTitle)
         return cell
     }

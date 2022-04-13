@@ -14,6 +14,6 @@ protocol MainVCViewModelProtocol: NSObject {
     func getLastNews()
     func getNewsWithIndex(index: Int)
     func articlesCount() -> Int
-    func cellStyle() -> Bool
+    func cellStyle() -> CellStyle
     func refreshDidPull()
 }

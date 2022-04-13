@@ -14,10 +14,10 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
     //MARK: - CALSS PROPERTYES
     
-    private var largeCellStyle: Bool = true {
+    private var cellStyles: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
     }
-    var arryOfCoreDataNews: [CoreDataNews] = [] {
+    private var arryOfCoreDataNews: [CoreDataNews] = [] {
         didSet { checkArryOfCoreDataNews() }
     }
     var delegate: SavedVCViewModelDelegate? {
@@ -38,8 +38,12 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
     //MARK: - CLASS FUNCTIONS
     
+    func getCoreDataNews(indexPath: IndexPath) -> CoreDataNews {
+        return arryOfCoreDataNews[indexPath.row]
+    }
+    
     @objc func loadCellStyleFromUserDefault() {
-        largeCellStyle = UserDefaultService.shared.loadLargeCellStyle()
+        cellStyles = UserDefaultService.shared.loadCellStyle()
     }
     
     private func checkArryOfCoreDataNews() {
@@ -49,8 +53,8 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
         }
     }
     
-    func cellStyle() -> Bool {
-        return largeCellStyle
+    func cellStyle() -> CellStyle {
+        return cellStyles
     }
     
     func rowDidSelect(indexPath: IndexPath) {
@@ -69,16 +73,20 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
         return arryOfCoreDataNews.count
     }
     
+    private func deletFromFileManager(indexPath: IndexPath) {
+        guard let localeName = arryOfCoreDataNews[indexPath.row].urlToImage else { return }
+        fileManager.deletImage(localeName: localeName)
+    }
+    
     func deletCoreDataModel(indexPath: IndexPath) {
         delegate?.savedVCShowAllert(title: "Sorry", message: "Are you sure you want to delete this post?") { [ weak self ] in
-            guard let localeName = self?.arryOfCoreDataNews[indexPath.row].urlToImage else { return }
-            self?.fileManager.deletImage(localeName: localeName)
+            self?.deletFromFileManager(indexPath: indexPath)
             if let coreDataModel = self?.arryOfCoreDataNews[indexPath.row] {
             CoreDataService.shared.managedObjectContext.delete(coreDataModel)
             self?.arryOfCoreDataNews.remove(at: indexPath.row)
-            self?.delegate?.tableViewDeletRowWithAnivation(indexPath: [indexPath])
             CoreDataService.shared.saveContext()
             }
+            self?.delegate?.tableViewDeletRowWithAnivation(indexPath: [indexPath])
         }
     }
     

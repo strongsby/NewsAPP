@@ -77,14 +77,14 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let coreDataModel = viewModel.arryOfCoreDataNews[indexPath.row]
+        let coreDataModel = viewModel.getCoreDataNews(indexPath: indexPath)
         
         switch viewModel.cellStyle() {
-        case true:
+        case .largeCell:
             let cell = tableView.dequeueReusableCells(type: CustomSavedVCCell.self, indexPath: indexPath)
             cell.viewModel = CustomSavedVCCellViewModel(coreDataMode: coreDataModel)
             return cell
-        case false:
+        case .defaultCell:
             let cell = tableView.dequeueReusableCells(type: SavedVCCell.self, indexPath: indexPath)
             cell.viewModel = SavedVCCellViewModel(coreDataMode: coreDataModel)
             return cell

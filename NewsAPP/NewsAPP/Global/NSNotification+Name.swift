@@ -15,7 +15,7 @@ extension Notification.Name {
     }
     
     static func ChangeCellStyle() -> NSNotification.Name {
-        return NSNotification.Name("ChangeCellStyle")
+        return NSNotification.Name("CellStyle")   
     }
     
     static func AddNewTopic() -> NSNotification.Name {

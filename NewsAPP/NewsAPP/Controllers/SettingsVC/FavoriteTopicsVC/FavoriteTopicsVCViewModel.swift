@@ -15,7 +15,7 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     var delegate: FavoriteTopicsVCViewModelDelegate? {
         didSet { checkNewsTopic() }
     }
-    var newTopics: [String] = [] {
+    private var newTopics: [String] = [] {
         didSet { checkNewsTopic() }
     }
     
@@ -28,6 +28,10 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     }
     
     //MARK: - CLASS FUNCTIONS
+    
+    func getTopic(indexPath: IndexPath) -> String {
+        return newTopics[indexPath.row]
+    }
     
     func newTopicsCount() -> Int {
         return newTopics.count

@@ -12,13 +12,13 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     //MARK: - CLASS PROPERTYES
     
-    private var largeCellStyle: Bool = false {
+    private var cellStyles: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
     }
     private var netwokService = NetwokService()
     private var serchIndex: Int?
     var delegate: MainVCViewModelDelegate?
-    var articles: [Article] = [] {
+    private var articles: [Article] = [] {
         didSet { delegate?.tableViewReloadData() }
     }
     
@@ -34,7 +34,7 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     //MARK: - CLASS FUNCTIONS
     
     @objc func loadCellStyleFromUserDefault() {
-        largeCellStyle = UserDefaultService.shared.loadLargeCellStyle()
+        cellStyles = UserDefaultService.shared.loadCellStyle()
     }
     
     @objc func collectionViewDidSelectItemAt(notification: NSNotification) {
@@ -53,8 +53,8 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         return articles[indexPath.row]
     }
     
-    func cellStyle() -> Bool {
-        return largeCellStyle
+    func cellStyle() -> CellStyle {
+        return cellStyles
     }
     
     func articlesCount() -> Int {

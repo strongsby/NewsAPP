@@ -56,6 +56,7 @@
 		3538B7C72805A58900FC8BBF /* CGFloat+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7C62805A58800FC8BBF /* CGFloat+Alpha.swift */; };
 		3538B7C92805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7C82805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift */; };
 		3538B7CD2805B46800FC8BBF /* NSNotification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7CC2805B46800FC8BBF /* NSNotification+Name.swift */; };
+		3538B7D72806E01600FC8BBF /* SettingsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7D62806E01600FC8BBF /* SettingsType.swift */; };
 		35853B5627E4942A00906167 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5527E4942A00906167 /* InfoVC.swift */; };
 		35853B5827E4943E00906167 /* InfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35853B5727E4943E00906167 /* InfoVC.xib */; };
 		35853B5B27E853DD00906167 /* FavoriteTopicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */; };
@@ -174,6 +175,7 @@
 		3538B7C62805A58800FC8BBF /* CGFloat+Alpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Alpha.swift"; sourceTree = "<group>"; };
 		3538B7C82805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+AddMessageDuration.swift"; sourceTree = "<group>"; };
 		3538B7CC2805B46800FC8BBF /* NSNotification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Name.swift"; sourceTree = "<group>"; };
+		3538B7D62806E01600FC8BBF /* SettingsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsType.swift; sourceTree = "<group>"; };
 		35853B5527E4942A00906167 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		35853B5727E4943E00906167 /* InfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoVC.xib; sourceTree = "<group>"; };
 		35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicsVC.swift; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				35C028B627E46A9A0010C6CE /* SettingsModel.swift */,
+				3538B7D62806E01600FC8BBF /* SettingsType.swift */,
 			);
 			path = SettingsModel;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				35853BAB27EDD7E100906167 /* NewCollectionViewCellViewModelProtocol.swift in Sources */,
 				35C028AD27E36C940010C6CE /* DefaultSettingsVCCell.swift in Sources */,
 				35C0289A27E1F0EE0010C6CE /* CoreDataNews+CoreDataProperties.swift in Sources */,
+				3538B7D72806E01600FC8BBF /* SettingsType.swift in Sources */,
 				350C58A127DF32C600BB5C61 /* ImageCacheService.swift in Sources */,
 				35853B7427EB1E1300906167 /* CollectionView+Reusable.swift in Sources */,
 				350C58B327E0BF0600BB5C61 /* ShowVC.swift in Sources */,

@@ -15,10 +15,10 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     private var networkService = NetwokService()
     var delegate: SearchVCViewModelDelegate?
     private var serchTitle: String?
-    var newsArray: [Article] = [] {
+    private var newsArray: [Article] = [] {
         didSet { delegate?.tableViewReloadData() }
     }
-    private var largeCellStyle: Bool = true {
+    private var cellStyles: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
     }
     
@@ -32,12 +32,16 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
     //MARK: - CLASSFUNCTIONS
     
-    @objc func loadCellStyleFromUserDefault() {
-        largeCellStyle = UserDefaultService.shared.loadLargeCellStyle()
+    func getArticle(indexPath: IndexPath) -> Article {
+        return newsArray[indexPath.row]
     }
     
-    func cellStyle() -> Bool {
-        return largeCellStyle
+    @objc func loadCellStyleFromUserDefault() {
+        cellStyles = UserDefaultService.shared.loadCellStyle()
+    }
+    
+    func cellStyle() -> CellStyle {
+        return cellStyles
     }
     
     func newsArrayCount() -> Int {

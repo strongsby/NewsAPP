@@ -38,12 +38,21 @@ final class UserDefaultService {
         standart.set(bool, forKey: "DarkMode")
     }
     
-    func saveLargeCellStyle(bool: Bool) {
-        standart.set(bool, forKey: "ChangeCellStyle")
+    func saveCellStyle(cellStyle: CellStyle) {
+        let cell = try? JSONEncoder().encode(cellStyle)
+        UserDefaults.standard.set(cell, forKey: "CellStyle")
     }
     
-    func loadLargeCellStyle() -> Bool {
-        return standart.bool(forKey: "ChangeCellStyle")
+    func loadCellStyle() -> CellStyle {
+        guard let data = UserDefaults.standard.data(forKey: "CellStyle"),
+              let cell = try? JSONDecoder().decode(CellStyle.self, from: data) else { return .defaultCell }
+        return cell
     }
 }
 
+
+
+enum CellStyle: Codable {
+    case defaultCell
+    case largeCell
+}

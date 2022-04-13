@@ -48,17 +48,26 @@ struct DefaultSettings {
                                                                                         SwitchSettingsOptions(imageBackgroundColor: UIColor.blue,
                                                                                                               title: "Large cell mode",
                                                                                                               settingsImage: UIImage(systemName: "book"),
-                                                                                                              switchPosition: UserDefaultService.shared.loadLargeCellStyle,
+                                                                                                              switchPosition: {
+                                                                                                                  let style = UserDefaultService.shared.loadCellStyle()
+                                                                                                                  switch style {
+                                                                                                                  case .defaultCell:
+                                                                                                                      return false
+                                                                                                                  case .largeCell:
+                                                                                                                      return true
+                                                                                                                  }
+                                                                                                              }
+                                                                                                                  ,
                                                                                                               switchChangeValue: { isOn in
-                                                                                                                  UserDefaultService.shared.saveLargeCellStyle(bool: isOn)
+                                                                                                                  switch isOn {
+                                                                                                                  case true:
+                                                                                                                      UserDefaultService.shared.saveCellStyle(cellStyle: .largeCell)
+                                                                                                                  case false:
+                                                                                                                      UserDefaultService.shared.saveCellStyle(cellStyle: .defaultCell)
+                                                                                                                  }
                                                                                                                   NotificationCenter.default.post(name: .ChangeCellStyle(), object: nil)
                                                }))])
             ]
         }
-    }
-    
-    enum SettingsType {
-        case mainSettings
-        case visualSettings
     }
 }

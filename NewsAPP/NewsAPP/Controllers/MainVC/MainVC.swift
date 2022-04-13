@@ -80,11 +80,11 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
         let article = viewModel.getArticle(indexPath: indexPath)
         
         switch viewModel.cellStyle() {
-        case true:
+        case .largeCell:
             let cell = tableView.dequeueReusableCells(type: CustomNewsTableViewCell.self, indexPath: indexPath)
             cell.viewModel = CustomNewsTableViewCellViewModel(article: article)
             return cell
-        case false:
+        case .defaultCell:
             let newCell = tableView.dequeueReusableCells(type: NewsTableViewCell.self, indexPath: indexPath)
             newCell.viewModel = NewsTableViewCellViewModel(article: article)
             return newCell
@@ -100,8 +100,8 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         switch viewModel.cellStyle() {
-        case true: return CustomNewsTableViewCell.reuseIdentifier
-        case false: return NewsTableViewCell.reuseIdentifier
+        case .largeCell: return CustomNewsTableViewCell.reuseIdentifier
+        case .defaultCell: return NewsTableViewCell.reuseIdentifier
         }
     }
 }
