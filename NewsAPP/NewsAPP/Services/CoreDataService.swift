@@ -36,6 +36,20 @@ final class CoreDataService {
         })
         return container
     }()
+    
+    func backGroundDelet(object: NSManagedObject?) {
+        guard let objectID = object?.objectID else { return }
+        let newContext = backGroudContext
+        newContext.perform {
+            do {
+                let object = newContext.object(with: objectID)
+                newContext.delete(object)
+                try newContext.save()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     func saveContext () {
         

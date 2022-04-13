@@ -81,11 +81,8 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     func deletCoreDataModel(indexPath: IndexPath) {
         delegate?.savedVCShowAllert(title: "Sorry", message: "Are you sure you want to delete this post?") { [ weak self ] in
             self?.deletFromFileManager(indexPath: indexPath)
-            if let coreDataModel = self?.arryOfCoreDataNews[indexPath.row] {
-            CoreDataService.shared.managedObjectContext.delete(coreDataModel)
+            CoreDataService.shared.backGroundDelet(object: self?.arryOfCoreDataNews[indexPath.row] )
             self?.arryOfCoreDataNews.remove(at: indexPath.row)
-            CoreDataService.shared.saveContext()
-            }
             self?.delegate?.tableViewDeletRowWithAnivation(indexPath: [indexPath])
         }
     }
