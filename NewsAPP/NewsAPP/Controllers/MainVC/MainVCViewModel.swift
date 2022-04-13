@@ -63,21 +63,20 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     func getLastNews() {
         articles.removeAll()
+        serchIndex = nil
         delegate?.addMessageViewPutAwayWithAnimation()
         if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
             delegate.startActivityAnimated()
         }
         netwokService.getLatsNews { [ weak self ] result in
+            self?.delegate?.endRefreshing()
+            self?.delegate?.stopActivityAnimated()
             switch result {
             case .failure(let error):
-                self?.delegate?.endRefreshing()
-                self?.delegate?.stopActivityAnimated()
                 self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
                 print(error)
             case .success(let news):
-                self?.delegate?.endRefreshing()
-                self?.delegate?.stopActivityAnimated()
                 self?.articles = news
             }
         }
@@ -89,18 +88,16 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         delegate?.addMessageViewPutAwayWithAnimation()
         if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
             delegate.startActivityAnimated()
-        }
+        } 
         let needTopic = UserDefaultService.shared.loadTopics()[index - 2]
         netwokService.serchNews(for: needTopic) { [ weak self ] result in
+            self?.delegate?.endRefreshing()
+            self?.delegate?.stopActivityAnimated()
             switch result {
             case .failure(let error):
-                self?.delegate?.endRefreshing()
-                self?.delegate?.stopActivityAnimated()
                 self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let articles):
-                self?.delegate?.endRefreshing()
-                self?.delegate?.stopActivityAnimated()
                 self?.articles = articles
             }
         }

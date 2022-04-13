@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="insetGrouped" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="35" estimatedSectionHeaderHeight="35" sectionFooterHeight="45" estimatedSectionFooterHeight="45" translatesAutoresizingMaskIntoConstraints="NO" id="K1l-Lc-npj">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="insetGrouped" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="K1l-Lc-npj">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="sectionIndexBackgroundColor" systemColor="systemGroupedBackgroundColor"/>
                 </tableView>

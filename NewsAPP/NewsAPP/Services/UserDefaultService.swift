@@ -46,3 +46,4 @@ final class UserDefaultService {
         return standart.bool(forKey: "ChangeCellStyle")
     }
 }
+

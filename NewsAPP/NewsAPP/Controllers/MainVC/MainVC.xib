@@ -26,10 +26,10 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5C-ZH-30P">
-                    <rect key="frame" x="0.0" y="50" width="414" height="812"/>
+                    <rect key="frame" x="0.0" y="96" width="414" height="766"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe.badge.chevron.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="A5N-dL-ql8">
-                            <rect key="frame" x="130.5" y="331" width="151.5" height="149.5"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nosign" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="A5N-dL-ql8">
+                            <rect key="frame" x="132" y="308.5" width="150" height="149"/>
                             <color key="tintColor" systemColor="systemGray3Color"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="150" id="IWM-Xt-KdP"/>
@@ -37,7 +37,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qc4-EF-c6G">
-                            <rect key="frame" x="32" y="213" width="350" height="86"/>
+                            <rect key="frame" x="32" y="190" width="350" height="86"/>
                             <string key="text">
 Sorry there was an error! Failed to load news</string>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -64,7 +64,7 @@ Sorry there was an error! Failed to load news</string>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="WEk-YZ-63a" secondAttribute="bottom" id="5Vp-zx-8Fp"/>
                 <constraint firstItem="WEk-YZ-63a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="60g-pk-48F"/>
-                <constraint firstItem="w5C-ZH-30P" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="6" id="8ar-3P-jps"/>
+                <constraint firstItem="w5C-ZH-30P" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="52" id="8ar-3P-jps"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WEk-YZ-63a" secondAttribute="trailing" constant="16" id="M8e-X9-fgq"/>
                 <constraint firstItem="w5C-ZH-30P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Mzr-0P-eYL"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="w5C-ZH-30P" secondAttribute="trailing" id="PUn-l9-jka"/>
@@ -75,7 +75,7 @@ Sorry there was an error! Failed to load news</string>
         </view>
     </objects>
     <resources>
-        <image name="globe.badge.chevron.backward" catalog="system" width="128" height="113"/>
+        <image name="nosign" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

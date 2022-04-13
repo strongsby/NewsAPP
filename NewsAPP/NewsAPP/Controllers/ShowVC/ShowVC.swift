@@ -19,9 +19,7 @@ final class ShowVC: UIViewController {
     @IBOutlet private weak var sourseLabel: UILabel!
     @IBOutlet private weak var newsImage: DownloadImageView!
     @IBOutlet private weak var heightNewsImageConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var scrollView: UIScrollView! {
-        didSet { scrollView.delegate = self }
-    }
+    @IBOutlet private weak var scrollView: UIScrollView!
     var viewModel: ShowVCViewModelProtocol = ShowVCViewModel()
     
     //MARK: - LIFE CYCLE
@@ -50,6 +48,10 @@ final class ShowVC: UIViewController {
         }
     }
 
+    private func setupScrollView() {
+        scrollView.delegate = self
+    }
+    
     private func bind() {
         viewModel.delegate = self
     }
@@ -60,6 +62,7 @@ final class ShowVC: UIViewController {
     
     private func setupAll() {
         bind()
+        setupScrollView()
         setupImage()
         setupLables()
         setupAddButton()

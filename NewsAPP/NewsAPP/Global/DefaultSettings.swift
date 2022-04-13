@@ -50,7 +50,7 @@ struct DefaultSettings {
                                                                                                               settingsImage: UIImage(systemName: "book"),
                                                                                                               switchPosition: UserDefaultService.shared.loadLargeCellStyle,
                                                                                                               switchChangeValue: { isOn in
-                                                   UserDefaultService.shared.saveLargeCellStyle(bool: isOn)
+                                                                                                                  UserDefaultService.shared.saveLargeCellStyle(bool: isOn)
                                                                                                                   NotificationCenter.default.post(name: .ChangeCellStyle(), object: nil)
                                                }))])
             ]
