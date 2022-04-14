@@ -22,6 +22,7 @@ extension AlertHandler {
             }
             alert.addAction(complitionAction)
         }
+
         present(alert, animated: true, completion: nil)
     }
 }

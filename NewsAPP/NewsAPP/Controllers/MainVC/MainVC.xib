@@ -45,7 +45,7 @@ Sorry there was an error! Failed to load news</string>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="qc4-EF-c6G" secondAttribute="trailing" constant="32" id="4Oe-M4-6TY"/>
                         <constraint firstItem="A5N-dL-ql8" firstAttribute="top" secondItem="qc4-EF-c6G" secondAttribute="bottom" constant="32" id="GMT-Pp-TcA"/>
