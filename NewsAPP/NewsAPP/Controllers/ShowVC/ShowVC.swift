@@ -31,6 +31,11 @@ final class ShowVC: UIViewController {
     
     //MARK: - CLASS FUNCTIONS
     
+    private func setupBackButton() {
+        navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
+        navigationController?.navigationBar.tintColor = .systemGray
+    }
+    
     private func setupLables() {
         let lablesText = viewModel.getLablesText()
         descriptionLabel.text = lablesText.description
@@ -62,6 +67,7 @@ final class ShowVC: UIViewController {
     
     private func setupAll() {
         bind()
+        setupBackButton()
         setupScrollView()
         setupImage()
         setupLables()

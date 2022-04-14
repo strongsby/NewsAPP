@@ -67,7 +67,8 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     }
     
     func getLablesText() -> (title: String?, description: String?, sourse: String?) {
-        return (article?.title, article?.articleDescription, article?.source?.name)
+        let description = article?.articleDescription ?? ""
+        return (article?.title, description + description + description, article?.source?.name)
     }
     
     func showInSafariDidTapped() {
