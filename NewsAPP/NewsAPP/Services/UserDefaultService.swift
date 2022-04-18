@@ -12,30 +12,30 @@ final class UserDefaultService {
     
     static let shared = UserDefaultService()
     
-    private var standart = UserDefaults.standard
+    private var standard = UserDefaults.standard
     
     private init() {}
         
     func saveTopics(topics: [String]){
         if let jsonData = try? JSONEncoder().encode(topics){
-            standart.set(jsonData, forKey: "AddNewTopic")
+            standard.set(jsonData, forKey: "AddNewTopic")
         }
     }
         
     func loadTopics() -> [String] {
-        if let jsonData = standart.data(forKey: "AddNewTopic"),
-           let topiocs = try? JSONDecoder().decode([String].self, from: jsonData) {
-            return topiocs
+        if let jsonData = standard.data(forKey: "AddNewTopic"),
+           let topics = try? JSONDecoder().decode([String].self, from: jsonData) {
+            return topics
         }
         return []
     }
         
     func loadDarkMode() -> Bool {
-        return standart.bool(forKey: "DarkMode")
+        return standard.bool(forKey: "DarkMode")
     }
     
     func saveDarkMode(bool: Bool) {
-        standart.set(bool, forKey: "DarkMode")
+        standard.set(bool, forKey: "DarkMode")
     }
     
     func saveCellStyle(cellStyle: CellStyle) {

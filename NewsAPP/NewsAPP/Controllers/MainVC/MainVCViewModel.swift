@@ -67,7 +67,7 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         delegate?.addMessageViewPutAwayWithAnimation()
         if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
             delegate.startActivityAnimated()
-        }
+        }        
         networkService.getLatsNews { [ weak self ] result in
             self?.delegate?.endRefreshing()
             self?.delegate?.stopActivityAnimated()

@@ -1,5 +1,5 @@
 //
-//  NetwokService.swift
+//  NetworkService.swift
 //  NewsAPP
 //
 //  Created by Сергей Рудинский on 12.03.22.
@@ -14,105 +14,86 @@ final class NetworkService {
 
     // MARK: - Call For Last News
     
-    func getLatsNews(complition: @escaping (Result<[Article],NetworkError>) -> Void) {
+    func getLatsNews(completion: @escaping (Result<[Article],NetworkError>) -> Void) {
         guard let url = URL(string: api.getURLStringForLastNews()) else {
             DispatchQueue.main.async {
-                complition(.failure(.URLError))
+                completion(.failure(.URLError))
             }
             return
         }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil else {
-                DispatchQueue.main.async {
-                    complition(.failure(.error(error: error!.localizedDescription)))
-                }
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                DispatchQueue.main.async {
-                    complition(.failure(.invalidResponse))
-                }
-                return
-            }
-
-            guard let data = data else {
-                DispatchQueue.main.async {
-                    complition(.failure(.invalidData))
-                }
-                return
-            }
-
-            do {
-                let news = try JSONDecoder().decode(News.self, from: data)
-                guard let arrayOfArticles = news.articles else {
-                    DispatchQueue.main.async {
-                        complition(.failure(.invalidNews))
-                    }
+        
+        taskWithURL(model: News.self, url: url) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let news):
+                guard let newsArray = news.articles, !newsArray.isEmpty else {
+                    completion(.failure(.invalidNews))
                     return
                 }
-                DispatchQueue.main.async {
-                    complition(.success(arrayOfArticles))
-                }
-            } catch let err {
-                DispatchQueue.main.async {
-                    complition(.failure(.decodingError(error: err.localizedDescription)))
-                }
+                completion(.success(newsArray))
             }
-        }.resume()
+        }
     }
 
     
-    // MARK: - Call Fore Serching News
+    // MARK: - Call Fore Searching News
     
-    func searchNews(for news: String, complition: @escaping (Result<[Article],NetworkError>) -> Void) {
+    func searchNews(for news: String, completion: @escaping (Result<[Article],NetworkError>) -> Void) {
+        
         guard let url = URL(string: api.getURLStringForSearchNews(news: news)) else {
-            DispatchQueue.main.async {
-                complition(.failure(.URLError))
-            }
+            completion(.failure(.URLError))
             return
         }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil else {
-                DispatchQueue.main.async {
-                    complition(.failure(.error(error: error!.localizedDescription)))
-                }
-                return
-            }
-
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                DispatchQueue.main.async {
-                    complition(.failure(.invalidResponse))
-                }
-                return
-            }
-
-            guard let data = data else {
-                DispatchQueue.main.async {
-                    complition(.failure(.invalidData))
-                }
-                return
-            }
-
-            do {
-                let news = try JSONDecoder().decode(News.self, from: data)
-                guard let arrayOfArticles = news.articles , !arrayOfArticles.isEmpty else {
-                    DispatchQueue.main.async {
-                        complition(.failure(.invalidNews))
-                    }
+        
+        taskWithURL(model: News.self, url: url) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let news):
+                guard let newsArray = news.articles, !newsArray.isEmpty else {
+                    completion(.failure(.invalidNews))
                     return
                 }
-                DispatchQueue.main.async {
-                    complition(.success(arrayOfArticles))
+                completion(.success(newsArray))
+            }
+        }
+    }
+    
+    //MARK: - CLASS FUNCS
+    
+    private func taskWithURL<T:Codable>(model: T.Type, url: URL, completion: @escaping (Result<T, NetworkError>) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            do {
+                guard error == nil else {
+                    throw NetworkError.error(error: error!.localizedDescription)
                 }
-            } catch let err {
+        
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    throw NetworkError.invalidResponse
+                }
+        
+                guard let data = data else {
+                    throw NetworkError.invalidData
+                }
+        
+                guard let news = try? JSONDecoder().decode(model.self, from: data) else {
+                    throw NetworkError.decodingError
+                }
+                
                 DispatchQueue.main.async {
-                    complition(.failure(.decodingError(error: err.localizedDescription)))
+                    completion(.success(news))
+                }
+            } catch let errors {
+                guard let error = errors as? NetworkError else { return }
+                DispatchQueue.main.async {
+                    completion(.failure(error))
                 }
             }
         }.resume()
     }
-
+    
     // MARK: - Handling Errors
     
     enum NetworkError: Error {
@@ -121,6 +102,6 @@ final class NetworkService {
         case invalidData
         case invalidNews
         case error(error: String)
-        case decodingError(error: String)
+        case decodingError
     }
 }

@@ -18,7 +18,7 @@ final class API {
     }
     
     func getURLStringForSearchNews(news: String) -> String {
-        let serchString = "&q=" + news
-        return urlForSearch + apiKey + serchString
+        let searchString = "&q=" + news
+        return urlForSearch + apiKey + searchString
     }
 }

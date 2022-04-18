@@ -75,13 +75,13 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
     private func deletFromFileManager(indexPath: IndexPath) {
         guard let localeName = arryOfCoreDataNews[indexPath.row].urlToImage else { return }
-        fileManager.deletImage(localeName: localeName)
+        fileManager.deleteImage(localeName: localeName)
     }
     
     func deletCoreDataModel(indexPath: IndexPath) {
         delegate?.savedVCShowAllert(title: "Sorry", message: "Are you sure you want to delete this post?") { [ weak self ] in
             self?.deletFromFileManager(indexPath: indexPath)
-            CoreDataService.shared.backGroundDelet(object: self?.arryOfCoreDataNews[indexPath.row] )
+            CoreDataService.shared.backGroundDelete(object: self?.arryOfCoreDataNews[indexPath.row] )
             self?.arryOfCoreDataNews.remove(at: indexPath.row)
             self?.delegate?.tableViewDeletRowWithAnivation(indexPath: [indexPath])
         }

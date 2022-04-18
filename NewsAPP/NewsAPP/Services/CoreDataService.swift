@@ -20,7 +20,7 @@ final class CoreDataService {
        return context
     }
     
-    var backGroudContext: NSManagedObjectContext {
+    var backGroundContext: NSManagedObjectContext {
         let context = persistentContainer.newBackgroundContext()
         return context
     }
@@ -37,9 +37,9 @@ final class CoreDataService {
         return container
     }()
     
-    func backGroundDelet(object: NSManagedObject?) {
+    func backGroundDelete(object: NSManagedObject?) {
         guard let objectID = object?.objectID else { return }
-        let newContext = backGroudContext
+        let newContext = backGroundContext
         newContext.perform {
             do {
                 let object = newContext.object(with: objectID)

@@ -35,9 +35,9 @@ final class FileManagerService {
     func loadImage(localName: String?, completion: @escaping (UIImage?) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             
-            guard let subname = localName?.split(separator: "/").last else { return }
+            guard let subName = localName?.split(separator: "/").last else { return }
             
-            let localName = String(subname) + ".jpg"
+            let localName = String(subName) + ".jpg"
             
             do {
                 var directoryPath = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
@@ -61,7 +61,7 @@ final class FileManagerService {
         }
     }
     
-    func deletImage(localeName: String?) {
+    func deleteImage(localeName: String?) {
         DispatchQueue.global(qos: .userInitiated).async {
             guard let subName = localeName?.split(separator: "/").last else { return }
             let name = String(subName) + ".jpg"
