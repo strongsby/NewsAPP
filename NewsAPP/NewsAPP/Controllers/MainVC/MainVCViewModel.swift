@@ -10,13 +10,13 @@ import Foundation
 
 final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
     private var cellStyles: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
     }
-    private var netwokService = NetwokService()
-    private var serchIndex: Int?
+    private var networkService = NetworkService()
+    private var searchIndex: Int?
     var delegate: MainVCViewModelDelegate?
     private var articles: [Article] = [] {
         didSet { delegate?.tableViewReloadData() }
@@ -63,18 +63,18 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     func getLastNews() {
         articles.removeAll()
-        serchIndex = nil
+        searchIndex = nil
         delegate?.addMessageViewPutAwayWithAnimation()
         if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
             delegate.startActivityAnimated()
         }
-        netwokService.getLatsNews { [ weak self ] result in
+        networkService.getLatsNews { [ weak self ] result in
             self?.delegate?.endRefreshing()
             self?.delegate?.stopActivityAnimated()
             switch result {
             case .failure(let error):
                 self?.delegate?.addMessageShowWithAnimation()
-                self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
+                self?.delegate?.mainVCShowAlert(title: "Sorry", message: "\(error)", completion: nil)
                 print(error)
             case .success(let news):
                 self?.articles = news
@@ -83,20 +83,20 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     }
     
     func getNewsWithIndex(index: Int) {
-        serchIndex = index
+        searchIndex = index
         articles.removeAll()
         delegate?.addMessageViewPutAwayWithAnimation()
         if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
             delegate.startActivityAnimated()
         } 
         let needTopic = UserDefaultService.shared.loadTopics()[index - 2]
-        netwokService.serchNews(for: needTopic) { [ weak self ] result in
+        networkService.searchNews(for: needTopic) { [ weak self ] result in
             self?.delegate?.endRefreshing()
             self?.delegate?.stopActivityAnimated()
             switch result {
             case .failure(let error):
                 self?.delegate?.addMessageShowWithAnimation()
-                self?.delegate?.mainVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
+                self?.delegate?.mainVCShowAlert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let articles):
                 self?.articles = articles
             }
@@ -104,7 +104,7 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     }
     
     func refreshDidPull() {
-        guard let index = serchIndex else {
+        guard let index = searchIndex else {
             getLastNews()
             return
         }

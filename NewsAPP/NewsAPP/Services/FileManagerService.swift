@@ -22,7 +22,6 @@ final class FileManagerService {
 
             do {
                 var directoryPath = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                print(directoryPath)
                 directoryPath.appendPathComponent(name)
                 try data?.write(to: directoryPath)
                 print("FileManagerService: \(#function) did save success with localName = \(localName)")

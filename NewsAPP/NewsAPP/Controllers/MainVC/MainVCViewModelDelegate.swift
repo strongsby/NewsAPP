@@ -11,7 +11,7 @@ import Foundation
 protocol MainVCViewModelDelegate {
     func startAnimatedSkeletonView()
     func stopAnimatedSkeletonView()
-    func mainVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
+    func mainVCShowAlert(title: String?, message: String?, completion: (() -> Void)?)
     func presentAddFavoritesTopicsVC()
     func tableViewReloadData()
     func addMessageShowWithAnimation()

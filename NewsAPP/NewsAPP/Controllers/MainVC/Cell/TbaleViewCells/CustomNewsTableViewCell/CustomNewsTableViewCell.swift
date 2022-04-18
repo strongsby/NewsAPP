@@ -14,7 +14,7 @@ class CustomNewsTableViewCell: UITableViewCell {
     @IBOutlet private weak var newsImage: DownloadImageView!
     var viewModel: CustomNewsTableViewCellViewModelProtocol = CustomNewsTableViewCellViewModel() {
         didSet {
-            configLables()
+            configLabels()
             configImage()
         }
     }
@@ -34,10 +34,10 @@ class CustomNewsTableViewCell: UITableViewCell {
         newsImage.cancel()
     }
     
-    private func configLables() {
-        let lablesText = viewModel.getTextForLable()
-        titleLabel.text = lablesText.title
-        descriptionLabel.text = lablesText.description
+    private func configLabels() {
+        let labelsText = viewModel.getTextForLabel()
+        titleLabel.text = labelsText.title
+        descriptionLabel.text = labelsText.description
     }
     
     private func configImage() {

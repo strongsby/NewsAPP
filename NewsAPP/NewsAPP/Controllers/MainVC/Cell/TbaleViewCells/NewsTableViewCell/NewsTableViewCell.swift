@@ -16,7 +16,7 @@ final class NewsTableViewCell: UITableViewCell {
     @IBOutlet private weak var newsImage: DownloadImageView! 
     var viewModel: NewsTableViewCellViewModelProtocol = NewsTableViewCellViewModel() {
         didSet {
-            configLables()
+            configLabels()
             configImage()
         }
     }
@@ -36,10 +36,10 @@ final class NewsTableViewCell: UITableViewCell {
         newsImage.cancel()
     }
     
-    private func configLables() {
-        let lablesText = viewModel.getTextForLable()
-        titleLabel.text = lablesText.title
-        descriptionLabel.text = lablesText.description
+    private func configLabels() {
+        let labelsText = viewModel.getTextForLabels()
+        titleLabel.text = labelsText.title
+        descriptionLabel.text = labelsText.description
     }
     
     private func configImage() {

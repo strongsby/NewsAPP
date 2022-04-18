@@ -33,7 +33,7 @@ final class ShowVC: UIViewController {
     
     private func setupBackButton() {
         navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
-        navigationController?.navigationBar.tintColor = .systemGray
+        navigationController?.navigationBar.tintColor = .white
     }
     
     private func setupLables() {

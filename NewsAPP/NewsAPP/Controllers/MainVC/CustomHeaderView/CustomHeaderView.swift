@@ -10,7 +10,7 @@ import UIKit
 
 class CustomHeaderView: UITableViewHeaderFooterView {
     
-    //MARK: - OOTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
 
     @IBOutlet private weak var collectionView: UICollectionView! 
     private var viewModel: CustomHeaderViewViewModelProtocol = CustomHeaderViewViewModel()
@@ -67,8 +67,8 @@ extension CustomHeaderView: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let selectedIdexPath = IndexPath(item: 1, section: 0)
-        collectionView.selectItem(at: selectedIdexPath, animated: true, scrollPosition: [])
+        let selectedIndexPath = IndexPath(item: 1, section: 0)
+        collectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
     }
 }
 

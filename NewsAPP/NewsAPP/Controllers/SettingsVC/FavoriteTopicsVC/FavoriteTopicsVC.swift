@@ -105,13 +105,13 @@ extension FavoriteTopicsVC: UITableViewDelegate, UITableViewDataSource {
 extension FavoriteTopicsVC: FavoriteTopicsVCViewModelDelegate {
     
     func addMessageShowWithAnimation() {
-        UIView.animate(withDuration: .addMessgeDuration()) { [ weak self ] in
+        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
             self?.addMessageView.alpha = .maxAlpha()
         }
     }
     
     func addMessageViewPutAwayWithAnimation() {
-        UIView.animate(withDuration: .addMessgeDuration()) { [ weak self ] in
+        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
             self?.addMessageView.alpha = .minAlpha()
         }
     }

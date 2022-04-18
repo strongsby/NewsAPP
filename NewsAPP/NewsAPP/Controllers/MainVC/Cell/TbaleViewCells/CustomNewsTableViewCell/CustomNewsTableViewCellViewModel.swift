@@ -24,7 +24,7 @@ final class CustomNewsTableViewCellViewModel: NSObject, CustomNewsTableViewCellV
     
     //MARK: - CLASS FUNCS
     
-    func getTextForLable() -> (title: String, description: String) {
+    func getTextForLabel() -> (title: String, description: String) {
         return (newArticle?.title ?? "", newArticle?.articleDescription ?? "")
     }
     

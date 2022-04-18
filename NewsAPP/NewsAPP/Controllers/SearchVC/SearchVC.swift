@@ -16,7 +16,7 @@ final class SearchVC: UIViewController {
     @IBOutlet private weak var activity: UIActivityIndicatorView!
     @IBOutlet private weak var addMessageView: UIView!
     @IBOutlet private weak var tableView: UITableView!
-    private var searcController: UISearchController!
+    private var searshController: UISearchController!
     private var viewModel: SearchVCViewModelProtocol = SearchVCViewModel()
     
     //MARK: - LIFE CYCLE
@@ -34,11 +34,11 @@ final class SearchVC: UIViewController {
     
     private func setupSearchController() {
         let resoultVC = UIViewController()
-        searcController = UISearchController(searchResultsController: resoultVC)
-        searcController.searchBar.placeholder = "Search for some news"
-        navigationItem.searchController = searcController
+        searshController = UISearchController(searchResultsController: resoultVC)
+        searshController.searchBar.placeholder = "Search for some news"
+        navigationItem.searchController = searshController
         navigationItem.hidesSearchBarWhenScrolling = true
-        searcController.searchBar.delegate = self
+        searshController.searchBar.delegate = self
         //searcController.searchResultsUpdater = self        // wee can handle result here
     }
     
@@ -152,13 +152,13 @@ extension SearchVC: SearchVCViewModelDelegate {
     }
     
     func addMessageShowWithAnimation() {
-        UIView.animate(withDuration: .addMessgeDuration()) { [ weak self ] in
+        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
             self?.addMessageView.alpha = .maxAlpha()
         }
     }
     
     func addMessageViewPutAwayWithAnimation() {
-        UIView.animate(withDuration: .addMessgeDuration()) { [ weak self ] in
+        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
             self?.addMessageView.alpha = .minAlpha()
         }
     }
@@ -180,7 +180,7 @@ extension SearchVC: SearchVCViewModelDelegate {
         view.hideSkeleton()
     }
     
-    func searchVCShowAllert(title: String?, message: String?, completion: (() -> Void)?) {
+    func searchVCShowAlert(title: String?, message: String?, completion: (() -> Void)?) {
         showAlert(title: title, message: message, completion: completion)
     }
 }

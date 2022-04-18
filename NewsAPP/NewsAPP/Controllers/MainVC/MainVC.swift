@@ -117,8 +117,8 @@ extension MainVC: AlertHandler {}
 extension MainVC: MainVCViewModelDelegate {
     
     func refreshControlIsRefreshing() -> Bool {
-        guard let refreschControl = tableView.refreshControl else { return false }
-        return refreschControl.isRefreshing
+        guard let refreshControl = tableView.refreshControl else { return false }
+        return refreshControl.isRefreshing
     }
     
     func endRefreshing() {
@@ -134,13 +134,13 @@ extension MainVC: MainVCViewModelDelegate {
     }
     
     func addMessageShowWithAnimation() {
-        UIView.animate(withDuration: .addMessgeDuration()) { [ weak self ] in
+        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
             self?.addMessageView.alpha = .maxAlpha()
         }
     }
     
     func addMessageViewPutAwayWithAnimation() {
-        UIView.animate(withDuration: .addMessgeDuration()) { [ weak self ] in
+        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
             self?.addMessageView.alpha = .minAlpha()
         }
     }
@@ -164,7 +164,7 @@ extension MainVC: MainVCViewModelDelegate {
         view.hideSkeleton()
     }
     
-    func mainVCShowAllert(title: String?, message: String?, completion: (() -> Void)?) {
+    func mainVCShowAlert(title: String?, message: String?, completion: (() -> Void)?) {
         showAlert(title: title, message: message, completion: completion)
     }
 }

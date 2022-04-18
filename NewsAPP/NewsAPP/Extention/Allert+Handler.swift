@@ -16,11 +16,11 @@ extension AlertHandler {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancelButton)
-        if let complition = completion {
-            let complitionAction = UIAlertAction(title: "OK", style: .default) { _ in
-                complition()
+        if let completion = completion {
+            let completionAction = UIAlertAction(title: "OK", style: .default) { _ in
+                completion()
             }
-            alert.addAction(complitionAction)
+            alert.addAction(completionAction)
         }
 
         present(alert, animated: true, completion: nil)

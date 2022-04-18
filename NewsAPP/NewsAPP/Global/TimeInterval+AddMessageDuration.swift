@@ -10,7 +10,7 @@ import Foundation
 
 extension TimeInterval {
 
-    static func addMessgeDuration() -> Double {
+    static func addMessageDuration() -> Double {
         return 0.7
     }
 }

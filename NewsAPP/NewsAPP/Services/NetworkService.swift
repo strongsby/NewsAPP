@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class NetwokService {
+final class NetworkService {
 
     private var api = API()
 
@@ -65,7 +65,7 @@ final class NetwokService {
     
     // MARK: - Call Fore Serching News
     
-    func serchNews(for news: String, complition: @escaping (Result<[Article],NetworkError>) -> Void) {
+    func searchNews(for news: String, complition: @escaping (Result<[Article],NetworkError>) -> Void) {
         guard let url = URL(string: api.getURLStringForSearchNews(news: news)) else {
             DispatchQueue.main.async {
                 complition(.failure(.URLError))

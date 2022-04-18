@@ -24,7 +24,7 @@ final class NewsTableViewCellViewModel: NSObject, NewsTableViewCellViewModelProt
     
     //MARK: - CLASS FUNCS
     
-    func getTextForLable() -> (title: String, description: String) {
+    func getTextForLabels() -> (title: String, description: String) {
         return (newArticle?.title ?? "", newArticle?.articleDescription ?? "")
     }
     

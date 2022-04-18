@@ -17,5 +17,4 @@ extension UITableView {
     func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(type: T.Type) -> T {
         return dequeueReusableHeaderFooterView(withIdentifier: "\(T.self)") as! T
     }
-    
 }

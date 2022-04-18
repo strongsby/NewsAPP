@@ -10,7 +10,7 @@ import Foundation
 
 final class CustomHeaderViewViewModel: NSObject, CustomHeaderViewViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
     var delegate: CustomHeaderViewViewModelDelegate?
     var topics: [String] = [] {

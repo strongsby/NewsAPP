@@ -12,9 +12,9 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
     //MARK: - CLASS PROPERTYES
     
-    private var networkService = NetwokService()
+    private var networkService = NetworkService()
     var delegate: SearchVCViewModelDelegate?
-    private var serchTitle: String?
+    private var searchTitle: String?
     private var newsArray: [Article] = [] {
         didSet { delegate?.tableViewReloadData() }
     }
@@ -30,7 +30,7 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
         NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: .ChangeCellStyle(), object: nil)
     }
     
-    //MARK: - CLASSFUNCTIONS
+    //MARK: - CLASS FUNCTIONS
     
     func getArticle(indexPath: IndexPath) -> Article {
         return newsArray[indexPath.row]
@@ -50,20 +50,20 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
     func getNewsWithString(title: String?) {
         guard let newsCategory = title else { return }
-        serchTitle = title
+        searchTitle = title
         newsArray.removeAll()
         delegate?.addMessageViewPutAwayWithAnimation()
         if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
             delegate.startActivityAnimated()
         }
-        networkService.serchNews(for: newsCategory) { [ weak self ] result in
+        networkService.searchNews(for: newsCategory) { [ weak self ] result in
             switch result {
             case .failure(let error):
                 self?.delegate?.endRefreshing()
                 self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.stopActivityAnimated()
                 print("\(error.localizedDescription)")
-                self?.delegate?.searchVCShowAllert(title: "Sorry", message: "\(error)", completion: nil)
+                self?.delegate?.searchVCShowAlert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let news):
                 self?.delegate?.endRefreshing()
                 self?.delegate?.stopActivityAnimated()
@@ -73,10 +73,10 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     }
     
     func refreshDidPull() {
-        guard let serchTitle = serchTitle else {
+        guard let searchTitle = searchTitle else {
             return
         }
-        getNewsWithString(title: serchTitle)
+        getNewsWithString(title: searchTitle)
     }
 }
 
