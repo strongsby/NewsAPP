@@ -21,20 +21,20 @@ class MainVCTabBarController: UITabBarController {
     private func setupTabBarController() {
         let mainVC = MainVC()
         mainVC.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 1)
-        let nc = UINavigationController(rootViewController: mainVC)
+        let navigationController = UINavigationController(rootViewController: mainVC)
         
         let searchVC = SearchVC()
-        let nc2 = UINavigationController(rootViewController: searchVC)
+        let navigationController2 = UINavigationController(rootViewController: searchVC)
         searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
         
         let savedVC = SavedVC()
-        let nc3 = UINavigationController(rootViewController: savedVC)
+        let navigationController3 = UINavigationController(rootViewController: savedVC)
         savedVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 3)
         
         let settingsVC = SettingsVC()
-        let nc4 = UINavigationController(rootViewController: settingsVC)
+        let navigationController4 = UINavigationController(rootViewController: settingsVC)
         settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gearshape"), tag: 4)
         
-        viewControllers = [nc, nc2, nc3, nc4]
+        viewControllers = [navigationController, navigationController2, navigationController3, navigationController4]
     }
 }

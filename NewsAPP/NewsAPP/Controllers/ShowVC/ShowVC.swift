@@ -29,6 +29,13 @@ final class ShowVC: UIViewController {
         setupAll()
     }
     
+    //MARK: - INIT
+    
+    convenience init(article: Article) {
+        self.init()
+        viewModel = ShowVCViewModel(art: article)
+    }
+    
     //MARK: - CLASS FUNCTIONS
     
     private func setupBackButton() {

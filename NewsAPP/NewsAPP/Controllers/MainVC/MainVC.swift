@@ -9,9 +9,9 @@ import UIKit
 import SkeletonView
 
 
-final class MainVC: UIViewController {
+final class MainVC: UIViewController, AlertHandler {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var activity: UIActivityIndicatorView!
     @IBOutlet private weak var addMessageView: UIView!
@@ -29,6 +29,12 @@ final class MainVC: UIViewController {
     
     @objc private func didPullToRefresh() {
         viewModel.refreshDidPull()
+    }
+    
+    private func openWithShowVC(indexPath: IndexPath) {
+        let article = viewModel.getArticle(indexPath: indexPath)
+        let showVC = ShowVC(article: article)
+        navigationController?.pushViewController(showVC, animated: true)
     }
     
     private func setupTableView() {
@@ -68,8 +74,7 @@ final class MainVC: UIViewController {
 extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(type: CustomHeaderView.self)
-        return view
+        return tableView.dequeueReusableHeaderFooterView(type: CustomHeaderView.self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,17 +90,14 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
             cell.viewModel = CustomNewsTableViewCellViewModel(article: article)
             return cell
         case .defaultCell:
-            let newCell = tableView.dequeueReusableCells(type: NewsTableViewCell.self, indexPath: indexPath)
-            newCell.viewModel = NewsTableViewCellViewModel(article: article)
-            return newCell
+            let cell = tableView.dequeueReusableCells(type: NewsTableViewCell.self, indexPath: indexPath)
+            cell.viewModel = NewsTableViewCellViewModel(article: article)
+            return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let showVC = ShowVC()
-        let article = viewModel.getArticle(indexPath: indexPath)
-        showVC.viewModel = ShowVCViewModel.init(art: article)
-        navigationController?.pushViewController(showVC, animated: true)
+       openWithShowVC(indexPath: indexPath)
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
@@ -105,11 +107,6 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
         }
     }
 }
-
-
-//MARK: - EXTENSION AlertHandler
-
-extension MainVC: AlertHandler {}
 
 
 //MARK: - EXTENSION MainVCViewModelDelegate

@@ -12,16 +12,16 @@ import SafariServices
 
 final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
-    //MARK: - CALSS PROPERTYES
+    //MARK: - CALSS PROPERTIES
     
     private var cellStyles: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
     }
-    private var arryOfCoreDataNews: [CoreDataNews] = [] {
-        didSet { checkArryOfCoreDataNews() }
+    private var arrayOfCoreDataNews: [CoreDataNews] = [] {
+        didSet { checkArrayOfCoreDataNews() }
     }
     var delegate: SavedVCViewModelDelegate? {
-        didSet { checkArryOfCoreDataNews() }
+        didSet { checkArrayOfCoreDataNews() }
     }
     private var fetchedResultsController: NSFetchedResultsController<CoreDataNews>!
     private var fileManager = FileManagerService()
@@ -39,15 +39,15 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     //MARK: - CLASS FUNCTIONS
     
     func getCoreDataNews(indexPath: IndexPath) -> CoreDataNews {
-        return arryOfCoreDataNews[indexPath.row]
+        return arrayOfCoreDataNews[indexPath.row]
     }
     
     @objc func loadCellStyleFromUserDefault() {
         cellStyles = UserDefaultService.shared.loadCellStyle()
     }
     
-    private func checkArryOfCoreDataNews() {
-        switch arryOfCoreDataNews.isEmpty {
+    private func checkArrayOfCoreDataNews() {
+        switch arrayOfCoreDataNews.isEmpty {
         case true: delegate?.addMessageShowWithAnimation()
         case false: delegate?.addMessageViewPutAwayWithAnimation()
         }
@@ -58,7 +58,7 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     }
     
     func rowDidSelect(indexPath: IndexPath) {
-        delegate?.showShowVC(coreDataModel: arryOfCoreDataNews[indexPath.row])
+        delegate?.showShowVC(coreDataModel: arrayOfCoreDataNews[indexPath.row])
     }
     
     private func setupFetchController() {
@@ -69,29 +69,29 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
         fetchedResultsController.delegate = self
     }
     
-    func arryOfCoreDataNewsCount() -> Int {
-        return arryOfCoreDataNews.count
+    func arrayOfCoreDataNewsCount() -> Int {
+        return arrayOfCoreDataNews.count
     }
     
-    private func deletFromFileManager(indexPath: IndexPath) {
-        guard let localeName = arryOfCoreDataNews[indexPath.row].urlToImage else { return }
+    private func deleteFromFileManager(indexPath: IndexPath) {
+        guard let localeName = arrayOfCoreDataNews[indexPath.row].urlToImage else { return }
         fileManager.deleteImage(localeName: localeName)
     }
     
-    func deletCoreDataModel(indexPath: IndexPath) {
-        delegate?.savedVCShowAllert(title: "Sorry", message: "Are you sure you want to delete this post?") { [ weak self ] in
-            self?.deletFromFileManager(indexPath: indexPath)
-            CoreDataService.shared.backGroundDelete(object: self?.arryOfCoreDataNews[indexPath.row] )
-            self?.arryOfCoreDataNews.remove(at: indexPath.row)
-            self?.delegate?.tableViewDeletRowWithAnivation(indexPath: [indexPath])
+    func deleteCoreDataModel(indexPath: IndexPath) {
+        delegate?.savedVCShowAlert(title: "Sorry", message: "Are you sure you want to delete this post?") { [ weak self ] in
+            self?.deleteFromFileManager(indexPath: indexPath)
+            CoreDataService.shared.backGroundDelete(object: self?.arrayOfCoreDataNews[indexPath.row] )
+            self?.arrayOfCoreDataNews.remove(at: indexPath.row)
+            self?.delegate?.tableViewDeleteRowWithAnimation(indexPath: [indexPath])
         }
     }
     
     private func loadCoreDataNews() {
         try? fetchedResultsController.performFetch()
-        if let resoult = fetchedResultsController.fetchedObjects {
+        if let result = fetchedResultsController.fetchedObjects {
             delegate?.addMessageViewPutAwayWithAnimation()
-            arryOfCoreDataNews = resoult
+            arrayOfCoreDataNews = result
             delegate?.tableViewReloadData()
         }
     }

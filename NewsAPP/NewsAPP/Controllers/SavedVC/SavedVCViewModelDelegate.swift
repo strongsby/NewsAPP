@@ -9,9 +9,9 @@ import Foundation
 
 
 protocol SavedVCViewModelDelegate {
-    func tableViewDeletRowWithAnivation(indexPath: [IndexPath])
+    func tableViewDeleteRowWithAnimation(indexPath: [IndexPath])
     func tableViewReloadData()
-    func savedVCShowAllert(title: String?, message: String?, completion: (() -> Void)?)
+    func savedVCShowAlert(title: String?, message: String?, completion: (() -> Void)?)
     func showInSafari(url: URL)
     func showShowVC(coreDataModel: CoreDataNews)
     func addMessageShowWithAnimation()

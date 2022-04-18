@@ -9,9 +9,9 @@ import UIKit
 import SafariServices
 
 
-final class SavedVC: UIViewController {
+final class SavedVC: UIViewController, AlertHandler {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var addMessageView: UIView!
     @IBOutlet private weak var tableView: UITableView! {
@@ -43,7 +43,7 @@ final class SavedVC: UIViewController {
     }
     
     private func addNavigationItem() {
-        let item = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(deletDidTapped))
+        let item = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(deleteDidTapped))
         navigationItem.setRightBarButton(item, animated: true)
     }
     
@@ -62,7 +62,7 @@ final class SavedVC: UIViewController {
         bind()
     }
     
-    @objc func deletDidTapped() {
+    @objc func deleteDidTapped() {
         tableView.isEditing = !tableView.isEditing
     }
 }
@@ -73,7 +73,7 @@ final class SavedVC: UIViewController {
 extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.arryOfCoreDataNewsCount()
+        return viewModel.arrayOfCoreDataNewsCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,14 +104,10 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        viewModel.deletCoreDataModel(indexPath: indexPath)
+        viewModel.deleteCoreDataModel(indexPath: indexPath)
     }
 }
 
-
-//MARK: - EXTENSION AlertHandler
-
-extension SavedVC: AlertHandler {}
 
 
 //MARK: - EXTENSION SavedVCViewModelDelegate
@@ -130,7 +126,7 @@ extension SavedVC: SavedVCViewModelDelegate {
         }
     }
     
-    func tableViewDeletRowWithAnivation(indexPath: [IndexPath]) {
+    func tableViewDeleteRowWithAnimation(indexPath: [IndexPath]) {
         tableView.deleteRows(at: indexPath, with: .left)
     }
     
@@ -144,7 +140,7 @@ extension SavedVC: SavedVCViewModelDelegate {
         tableView.reloadData()
     }
     
-    func savedVCShowAllert(title: String?, message: String?, completion: (() -> Void)?) {
+    func savedVCShowAlert(title: String?, message: String?, completion: (() -> Void)?) {
         showAlert(title: title, message: message, completion: completion)
     }
     

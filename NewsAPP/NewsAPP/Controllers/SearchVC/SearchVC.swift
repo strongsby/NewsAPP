@@ -9,14 +9,14 @@ import UIKit
 import SkeletonView
 
 
-final class SearchVC: UIViewController {
+final class SearchVC: UIViewController, AlertHandler {
 
-    //MARK: - OUTLETS & CALASS PROPERTYES
+    //MARK: - OUTLETS & CALASS PROPERTIES
     
     @IBOutlet private weak var activity: UIActivityIndicatorView!
     @IBOutlet private weak var addMessageView: UIView!
     @IBOutlet private weak var tableView: UITableView!
-    private var searshController: UISearchController!
+    private var searchController: UISearchController!
     private var viewModel: SearchVCViewModelProtocol = SearchVCViewModel()
     
     //MARK: - LIFE CYCLE
@@ -34,12 +34,12 @@ final class SearchVC: UIViewController {
     
     private func setupSearchController() {
         let resoultVC = UIViewController()
-        searshController = UISearchController(searchResultsController: resoultVC)
-        searshController.searchBar.placeholder = "Search for some news"
-        navigationItem.searchController = searshController
+        searchController = UISearchController(searchResultsController: resoultVC)
+        searchController.searchBar.placeholder = "Search for some news"
+        navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
-        searshController.searchBar.delegate = self
-        //searcController.searchResultsUpdater = self        // wee can handle result here
+        searchController.searchBar.delegate = self
+        //searchController.searchResultsUpdater = self        // wee can handle result here
     }
     
     private func tableViewRegisterCells() {
@@ -125,14 +125,10 @@ extension SearchVC: UISearchBarDelegate {
 }
 
 
-//MARK: - EXTENSION AlertHandler
-
-extension SearchVC: AlertHandler {}
-
-
 //MARK: - EXTENSION SearchVCViewModelDelegate
 
 extension SearchVC: SearchVCViewModelDelegate {
+    
     func endRefreshing() {
         tableView.refreshControl?.endRefreshing()
     }
@@ -168,7 +164,7 @@ extension SearchVC: SearchVCViewModelDelegate {
         tableView.startCustomAnimation()
     }
     
-    //Wee can change skelletonAnimation or activityAnimation
+    //Wee can change skeletonAnimation or activityAnimation
     
     func startAnimatedSkeletonView() {
         tableView.isSkeletonable = true
