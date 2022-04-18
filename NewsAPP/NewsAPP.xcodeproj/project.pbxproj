@@ -57,6 +57,7 @@
 		3538B7C92805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7C82805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift */; };
 		3538B7CD2805B46800FC8BBF /* NSNotification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7CC2805B46800FC8BBF /* NSNotification+Name.swift */; };
 		3538B7D72806E01600FC8BBF /* SettingsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7D62806E01600FC8BBF /* SettingsType.swift */; };
+		3538B7DC280DB68200FC8BBF /* MainVCTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3538B7DB280DB68200FC8BBF /* MainVCTabBarController.swift */; };
 		35853B5627E4942A00906167 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5527E4942A00906167 /* InfoVC.swift */; };
 		35853B5827E4943E00906167 /* InfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35853B5727E4943E00906167 /* InfoVC.xib */; };
 		35853B5B27E853DD00906167 /* FavoriteTopicsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */; };
@@ -176,6 +177,7 @@
 		3538B7C82805AC1700FC8BBF /* TimeInterval+AddMessageDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+AddMessageDuration.swift"; sourceTree = "<group>"; };
 		3538B7CC2805B46800FC8BBF /* NSNotification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Name.swift"; sourceTree = "<group>"; };
 		3538B7D62806E01600FC8BBF /* SettingsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsType.swift; sourceTree = "<group>"; };
+		3538B7DB280DB68200FC8BBF /* MainVCTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVCTabBarController.swift; sourceTree = "<group>"; };
 		35853B5527E4942A00906167 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		35853B5727E4943E00906167 /* InfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoVC.xib; sourceTree = "<group>"; };
 		35853B5A27E853DD00906167 /* FavoriteTopicsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicsVC.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 		350C589127DCBDAB00BB5C61 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3538B7D8280DB5F600FC8BBF /* MainVCTabBarController */,
 				350C58B127E0BECE00BB5C61 /* ShowVC */,
 				35C028A527E35CD10010C6CE /* SettingsVC */,
 				350C58B827E0D5DE00BB5C61 /* SavedVC */,
@@ -545,6 +548,14 @@
 				3538B7B92804190100FC8BBF /* VisualSettingsVC.xib */,
 			);
 			path = VisualSettingsVC;
+			sourceTree = "<group>";
+		};
+		3538B7D8280DB5F600FC8BBF /* MainVCTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				3538B7DB280DB68200FC8BBF /* MainVCTabBarController.swift */,
+			);
+			path = MainVCTabBarController;
 			sourceTree = "<group>";
 		};
 		35853B5427E493E400906167 /* InfoVC */ = {
@@ -876,6 +887,7 @@
 				35853B8627EB6D1E00906167 /* SavedVCViewModelDelegate.swift in Sources */,
 				3538B77C27F4AB7E00FC8BBF /* CustomSavedVCCellViewModel.swift in Sources */,
 				350C589A27DF205100BB5C61 /* NewsTableViewCell.swift in Sources */,
+				3538B7DC280DB68200FC8BBF /* MainVCTabBarController.swift in Sources */,
 				35853B7227EB1DAE00906167 /* NewsAPPNibLoadable.swift in Sources */,
 				35853BC127F1A3EC00906167 /* SettingsCellViewModelProtocol.swift in Sources */,
 				35C0289627E1E9F70010C6CE /* CoreDataService.swift in Sources */,
