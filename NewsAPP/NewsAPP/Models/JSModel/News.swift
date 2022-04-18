@@ -12,21 +12,21 @@ import CoreData
 // MARK: - News
 
 struct News: Codable {
-    let status: String?
-    let totalResults: Int?
-    let articles: [Article]?
+    var status: String?
+    var totalResults: Int?
+    var articles: [Article]?
 }
 
 
 // MARK: - Article
 
 struct Article: Codable {
-    let source: Source?
-    let author, title, articleDescription: String?
-    let url: String?
-    let urlToImage: String?
-    let publishedAt: String?
-    let content: String?
+    var source: Source?
+    var author, title, articleDescription: String?
+    var url: String?
+    var urlToImage: String?
+    var publishedAt: String?
+    var content: String?
 
     enum CodingKeys: String, CodingKey {
         case source, author, title
@@ -52,7 +52,7 @@ struct Article: Codable {
 // MARK: - Source
 
 struct Source: Codable {
-    let id: String?
-    let name: String?
+    var id: String?
+    var name: String?
 }
 
