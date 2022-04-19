@@ -11,10 +11,20 @@ import UIKit
 
 final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
     private var fileManagerService = FileManagerService()
-    private var addButtonIsHiddenFlag = false
+    var getTitle: String? {
+        return article?.title
+    }
+    var getDescription: String? {
+        guard let description = article?.articleDescription else { return nil }
+        return description + description + description
+    }
+    var getSource: String? {
+        return article?.source?.name
+    }
+    var addButtonIsHidden: Bool = false
     var article: Article?
     var delegate: ShowVCViewModelDelegate?
     
@@ -27,7 +37,7 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     
     convenience init(coreDataModel: CoreDataNews) {
         self.init()
-        let newArticle = Article(source: nil,
+        article = Article(source: nil,
                               author: coreDataModel.author,
                               title: coreDataModel.title,
                               articleDescription: coreDataModel.articleDescription,
@@ -35,20 +45,30 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
                               urlToImage: coreDataModel.urlToImage,
                               publishedAt: coreDataModel.publishedAt,
                               content: coreDataModel.content)
-        article = newArticle
-        addButtonIsHiddenFlag = true
+        addButtonIsHidden = true
     }
     
     //MARK: - CLASS FUNCTIONS
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let ofsetY = 250 - (scrollView.contentOffset.y )
-        let minMax = max(250, ofsetY)
-        delegate?.changeImageHeightConstrain(height: minMax)
+    func setImage(downloadImageView: DownloadImageView) {
+        if let image = getCashedImage() {
+            downloadImageView.image = image
+        } else if let url = getImageURL() {
+            downloadImageView.load(url) {  image in
+                downloadImageView.image = image
+            }
+        }
     }
     
-    func addButtonIsHidden() -> Bool {
-        return addButtonIsHiddenFlag 
+    func getImageURL() -> URL? {
+        guard let urlStr = article?.urlToImage else { return nil }
+        return URL(string: urlStr)
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offsetY = 250 - (scrollView.contentOffset.y )
+        let minMax = max(250, offsetY)
+        delegate?.changeImageHeightConstrain(height: minMax)
     }
     
     func shareDidTapped() {
@@ -61,33 +81,15 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
             return image
     }
     
-    func getImageURL() -> URL? {
-        guard let urlStr = article?.urlToImage, let url = URL(string: urlStr) else { return nil }
-        return url
-    }
-    
-    func getLablesText() -> (title: String?, description: String?, sourse: String?) {
-        let description = article?.articleDescription ?? ""
-        return (article?.title, description + description + description, article?.source?.name)
-    }
-    
     func showInSafariDidTapped() {
-        guard let urlstr = article?.url, let url = URL(string: urlstr) else { return }
+        guard let urlString = article?.url, let url = URL(string: urlString) else { return }
         delegate?.showInSafari(url: url)
     }
     
     func saveArticle(image: UIImage?) {
-        self.delegate?.showVCShowAllert(title: "Sorry", message: "are you sure you want to save this news") { [ weak self ] in
+        self.delegate?.showVCShowAlert(title: "Sorry", message: "are you sure you want to save this news") { [ weak self ] in
             guard let article = self?.article else { return }
-            let context = CoreDataService.shared.backGroundContext
-            context.perform {
-                do {
-                    article.addCoreDataNews(context: context)
-                    try context.save()
-                } catch let error {
-                    print(error.localizedDescription)
-                }
-            }
+            CoreDataService.shared.saveCoreDataNews(article: article)
             if let image = image, let localName = article.urlToImage {
                 self?.fileManagerService.save(image: image, localName: localName)
             }

@@ -10,11 +10,11 @@ import Foundation
 
 protocol MainVCViewModelProtocol: NSObject {
     var delegate: MainVCViewModelDelegate? { get set }
+    var articlesCount: Int { get }
+    var cellStyle: CellStyle { get }
     func getArticle(indexPath: IndexPath) -> Article
     func getLastNews()
     func getNewsWithIndex(index: Int)
-    var articlesCount: Int { get }
-    var cellStyle: CellStyle { get }
     func refreshDidPull()
     func collectionViewDidSelectItemAt(indexPath: IndexPath)
 }

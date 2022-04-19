@@ -32,7 +32,7 @@ final class SavedVC: UIViewController, AlertHandler {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        tableView.isEditing = false
+        makeTableViewIsEditingFalse()
     }
     
     //MARK: - CLASS FUNCTION
@@ -45,6 +45,16 @@ final class SavedVC: UIViewController, AlertHandler {
     private func addNavigationItem() {
         let item = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(deleteDidTapped))
         navigationItem.setRightBarButton(item, animated: true)
+    }
+    
+    private func openWithShowVC(indexPath: IndexPath) {
+        let coreDataModel = viewModel.getCoreDataNews(indexPath: indexPath)
+        let showVC = ShowVC(coreDataModel: coreDataModel)
+        navigationController?.pushViewController(showVC, animated: true)
+    }
+    
+    private func makeTableViewIsEditingFalse() {
+        tableView.isEditing = false
     }
     
     private func configTitle() {
@@ -73,13 +83,13 @@ final class SavedVC: UIViewController, AlertHandler {
 extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.arrayOfCoreDataNewsCount()
+        return viewModel.arrayOfCoreDataNewsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let coreDataModel = viewModel.getCoreDataNews(indexPath: indexPath)
         
-        switch viewModel.cellStyle() {
+        switch viewModel.cellStyle {
         case .largeCell:
             let cell = tableView.dequeueReusableCells(type: CustomNewsTableViewCell.self, indexPath: indexPath)
             cell.viewModel = CustomNewsTableViewCellViewModel(coreDataModel: coreDataModel)
@@ -92,7 +102,7 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.rowDidSelect(indexPath: indexPath)
+        openWithShowVC(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -128,12 +138,6 @@ extension SavedVC: SavedVCViewModelDelegate {
     
     func tableViewDeleteRowWithAnimation(indexPath: [IndexPath]) {
         tableView.deleteRows(at: indexPath, with: .left)
-    }
-    
-    func showShowVC(coreDataModel: CoreDataNews) {
-        let showVC = ShowVC()
-        showVC.viewModel = ShowVCViewModel(coreDataModel: coreDataModel)
-        navigationController?.pushViewController(showVC, animated: true)
     }
     
     func tableViewReloadData() {

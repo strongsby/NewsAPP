@@ -14,7 +14,10 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
     //MARK: - CALSS PROPERTIES
     
-    private var cellStyles: CellStyle = .defaultCell {
+    var arrayOfCoreDataNewsCount: Int {
+        return arrayOfCoreDataNews.count
+    }
+    var cellStyle: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
     }
     private var arrayOfCoreDataNews: [CoreDataNews] = [] {
@@ -38,12 +41,12 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
     //MARK: - CLASS FUNCTIONS
     
-    func getCoreDataNews(indexPath: IndexPath) -> CoreDataNews {
-        return arrayOfCoreDataNews[indexPath.row]
+    @objc func loadCellStyleFromUserDefault() {
+        cellStyle = UserDefaultService.shared.loadCellStyle()
     }
     
-    @objc func loadCellStyleFromUserDefault() {
-        cellStyles = UserDefaultService.shared.loadCellStyle()
+    func getCoreDataNews(indexPath: IndexPath) -> CoreDataNews {
+        return arrayOfCoreDataNews[indexPath.row]
     }
     
     private func checkArrayOfCoreDataNews() {
@@ -53,24 +56,12 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
         }
     }
     
-    func cellStyle() -> CellStyle {
-        return cellStyles
-    }
-    
-    func rowDidSelect(indexPath: IndexPath) {
-        delegate?.showShowVC(coreDataModel: arrayOfCoreDataNews[indexPath.row])
-    }
-    
     private func setupFetchController() {
         let request = NSFetchRequest<CoreDataNews>(entityName: "CoreDataNews")
         let sortedDescription = NSSortDescriptor(key: "publishedAt", ascending: true)
         request.sortDescriptors = [sortedDescription]
         fetchedResultsController = NSFetchedResultsController<CoreDataNews>(fetchRequest: request, managedObjectContext: CoreDataService.shared.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
-    }
-    
-    func arrayOfCoreDataNewsCount() -> Int {
-        return arrayOfCoreDataNews.count
     }
     
     private func deleteFromFileManager(indexPath: IndexPath) {

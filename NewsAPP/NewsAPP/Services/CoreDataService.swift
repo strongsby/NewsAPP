@@ -50,6 +50,18 @@ final class CoreDataService {
             }
         }
     }
+    
+    func saveCoreDataNews(article: Article) {
+        let context = backGroundContext
+        context.perform {
+            do {
+                article.addCoreDataNews(context: context)
+                try context.save()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
 
     func saveContext () {
         
@@ -59,8 +71,8 @@ final class CoreDataService {
             do {
                 try context.save()
             } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }

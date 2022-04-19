@@ -10,9 +10,8 @@ import Foundation
 
 protocol SavedVCViewModelProtocol: NSObject {
     var delegate: SavedVCViewModelDelegate? { get set }
-    func arrayOfCoreDataNewsCount() -> Int
+    var arrayOfCoreDataNewsCount: Int { get }
+    var cellStyle: CellStyle { get }
     func deleteCoreDataModel(indexPath: IndexPath)
-    func rowDidSelect(indexPath: IndexPath)
-    func cellStyle() -> CellStyle
     func getCoreDataNews(indexPath: IndexPath) -> CoreDataNews
 }

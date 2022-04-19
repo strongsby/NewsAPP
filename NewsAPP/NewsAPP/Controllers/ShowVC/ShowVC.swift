@@ -9,14 +9,14 @@ import UIKit
 import  SafariServices
 
 
-final class ShowVC: UIViewController {
+final class ShowVC: UIViewController, AlertHandler {
     
-    //MARK: - OUTLETS & CLASS PROPETYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var addButton: UIButton! 
     @IBOutlet private weak var titleLabel:  UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var sourseLabel: UILabel!
+    @IBOutlet private weak var sourceLabel: UILabel!
     @IBOutlet private weak var newsImage: DownloadImageView!
     @IBOutlet private weak var heightNewsImageConstraint: NSLayoutConstraint!
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -36,6 +36,11 @@ final class ShowVC: UIViewController {
         viewModel = ShowVCViewModel(art: article)
     }
     
+    convenience init(coreDataModel: CoreDataNews) {
+        self.init()
+        viewModel = ShowVCViewModel(coreDataModel: coreDataModel)
+    }
+    
     //MARK: - CLASS FUNCTIONS
     
     private func setupBackButton() {
@@ -43,21 +48,14 @@ final class ShowVC: UIViewController {
         navigationController?.navigationBar.tintColor = .white
     }
     
-    private func setupLables() {
-        let lablesText = viewModel.getLablesText()
-        descriptionLabel.text = lablesText.description
-        titleLabel.text = lablesText.title
-        sourseLabel.text = lablesText.sourse
+    private func setupLabels() {
+        descriptionLabel.text = viewModel.getDescription
+        titleLabel.text = viewModel.getTitle
+        sourceLabel.text = viewModel.getSource
     }
     
     private func setupImage() {
-        if let image = viewModel.getCashedImage() {
-            newsImage.image = image
-        } else if let url = viewModel.getImageURL() {
-            newsImage.load(url) { [ weak self ] image in
-                self?.newsImage.image = image
-            }
-        }
+        viewModel.setImage(downloadImageView: newsImage)
     }
 
     private func setupScrollView() {
@@ -69,7 +67,7 @@ final class ShowVC: UIViewController {
     }
     
     private func setupAddButton() {
-        addButton.isHidden = viewModel.addButtonIsHidden()
+        addButton.isHidden = viewModel.addButtonIsHidden
     }
     
     private func setupAll() {
@@ -77,7 +75,7 @@ final class ShowVC: UIViewController {
         setupBackButton()
         setupScrollView()
         setupImage()
-        setupLables()
+        setupLabels()
         setupAddButton()
     }
     
@@ -91,15 +89,11 @@ final class ShowVC: UIViewController {
         viewModel.saveArticle(image: newsImage.image)
     }
     
-    @IBAction func LernMoreWithSafariDidTapped(_ sender: Any) {
+    @IBAction func LearnMoreWithSafariDidTapped(_ sender: Any) {
         viewModel.showInSafariDidTapped()
     }
 }
 
-
-//MARK: - EXTENSION AlertHandler
-
-extension ShowVC: AlertHandler {}
 
 
 //MARK: - UIScrollViewDelegate
@@ -125,8 +119,8 @@ extension ShowVC: ShowVCViewModelDelegate {
         navigationController?.present(activityVC, animated: true, completion: nil)
     }
     
-    func showVCShowAllert(title: String?, message: String?, complition: (() -> Void)?) {
-        showAlert(title: title, message: message, completion: complition)
+    func showVCShowAlert(title: String?, message: String?, completion: (() -> Void)?) {
+        showAlert(title: title, message: message, completion: completion)
     }
     
     func showInSafari(url: URL) {

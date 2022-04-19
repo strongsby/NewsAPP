@@ -11,7 +11,7 @@ import UIKit
 
 protocol ShowVCViewModelDelegate {
     func showVCShowActivityVC(url: URL) -> Void
-    func showVCShowAllert(title: String?, message: String?, complition: (() -> Void)?)
+    func showVCShowAlert(title: String?, message: String?, completion: (() -> Void)?)
     func showInSafari(url: URL)
     func changeImageHeightConstrain(height: CGFloat)
 }

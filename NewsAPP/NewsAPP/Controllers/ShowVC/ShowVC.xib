@@ -15,7 +15,7 @@
                 <outlet property="heightNewsImageConstraint" destination="2vP-yj-Npy" id="5fK-Zl-eLN"/>
                 <outlet property="newsImage" destination="rIb-ed-0bf" id="KaA-Ob-VKR"/>
                 <outlet property="scrollView" destination="sBi-qB-tLA" id="cPM-iR-pCg"/>
-                <outlet property="sourseLabel" destination="qea-np-GRA" id="jbS-mU-cFD"/>
+                <outlet property="sourceLabel" destination="qea-np-GRA" id="jbS-mU-cFD"/>
                 <outlet property="titleLabel" destination="Eoc-BQ-34v" id="RZC-qh-SOa"/>
                 <outlet property="view" destination="j0J-gs-vo9" id="c91-lv-lQj"/>
             </connections>
