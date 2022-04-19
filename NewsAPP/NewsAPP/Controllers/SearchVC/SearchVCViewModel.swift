@@ -10,15 +10,18 @@ import Foundation
 
 final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
     private var networkService = NetworkService()
     var delegate: SearchVCViewModelDelegate?
     private var searchTitle: String?
+    var newsArrayCount: Int {
+        return newsArray.count
+    }
     private var newsArray: [Article] = [] {
         didSet { delegate?.tableViewReloadData() }
     }
-    private var cellStyles: CellStyle = .defaultCell {
+    var cellStyle: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
     }
     
@@ -37,15 +40,7 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
     }
     
     @objc func loadCellStyleFromUserDefault() {
-        cellStyles = UserDefaultService.shared.loadCellStyle()
-    }
-    
-    func cellStyle() -> CellStyle {
-        return cellStyles
-    }
-    
-    func newsArrayCount() -> Int {
-        return newsArray.count
+        cellStyle = UserDefaultService.shared.loadCellStyle()
     }
     
     func getNewsWithString(title: String?) {
@@ -53,9 +48,7 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
         searchTitle = title
         newsArray.removeAll()
         delegate?.addMessageViewPutAwayWithAnimation()
-        if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
-            delegate.startActivityAnimated()
-        }
+        delegate?.startActivityAnimated()
         networkService.searchNews(for: newsCategory) { [ weak self ] result in
             switch result {
             case .failure(let error):

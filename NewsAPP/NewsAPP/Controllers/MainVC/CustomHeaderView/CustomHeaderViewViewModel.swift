@@ -13,6 +13,7 @@ final class CustomHeaderViewViewModel: NSObject, CustomHeaderViewViewModelProtoc
     //MARK: - CLASS PROPERTIES
     
     var delegate: CustomHeaderViewViewModelDelegate?
+    var customHeaderDelegate: CustomHeaderDelegate?
     var topics: [String] = [] {
         didSet { delegate?.collectionViewReloadData() }
     }
@@ -40,7 +41,6 @@ final class CustomHeaderViewViewModel: NSObject, CustomHeaderViewViewModelProtoc
     }
     
     func collectionDidSelectItem(indexPath: IndexPath) {
-        NotificationCenter.default.post(name: NSNotification.Name("CustomHeaderDidSelectItem"), object: nil, userInfo: ["index" : indexPath.item])
-
+        customHeaderDelegate?.collectionViewDidSelectItemAt(indexPath: indexPath)
     }
 }

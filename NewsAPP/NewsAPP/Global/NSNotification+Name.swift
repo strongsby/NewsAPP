@@ -10,10 +10,6 @@ import Foundation
 
 extension Notification.Name {
     
-    static func customHeaderDidSelectItem() -> NSNotification.Name {
-        return NSNotification.Name("CustomHeaderDidSelectItem")
-    }
-    
     static func ChangeCellStyle() -> NSNotification.Name {
         return NSNotification.Name("CellStyle")   
     }

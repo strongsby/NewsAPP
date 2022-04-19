@@ -10,6 +10,7 @@ import Foundation
 
 protocol CustomHeaderViewViewModelProtocol: NSObject {
     var delegate: CustomHeaderViewViewModelDelegate? { get set }
+    var customHeaderDelegate: CustomHeaderDelegate? { get set }
     func topicsCount() -> Int
     func getTopic(indexPath: IndexPath) -> String
     func collectionDidSelectItem(indexPath: IndexPath)

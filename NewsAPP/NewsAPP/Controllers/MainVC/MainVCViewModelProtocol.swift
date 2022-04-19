@@ -13,7 +13,8 @@ protocol MainVCViewModelProtocol: NSObject {
     func getArticle(indexPath: IndexPath) -> Article
     func getLastNews()
     func getNewsWithIndex(index: Int)
-    func articlesCount() -> Int
-    func cellStyle() -> CellStyle
+    var articlesCount: Int { get }
+    var cellStyle: CellStyle { get }
     func refreshDidPull()
+    func collectionViewDidSelectItemAt(indexPath: IndexPath)
 }

@@ -10,9 +10,9 @@ import Foundation
 
 protocol SearchVCViewModelProtocol: NSObject {
     var delegate: SearchVCViewModelDelegate? { get set }
+    var newsArrayCount: Int { get }
+    var cellStyle: CellStyle { get }
     func getNewsWithString(title: String?)
-    func newsArrayCount() -> Int
-    func cellStyle() -> CellStyle
     func refreshDidPull()
     func getArticle(indexPath: IndexPath) -> Article
 }

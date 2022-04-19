@@ -38,8 +38,8 @@ final class SavedVC: UIViewController, AlertHandler {
     //MARK: - CLASS FUNCTION
     
     private func tableViewRegisterCells() {
-        tableView.register(CustomSavedVCCell.defaultNib, forCellReuseIdentifier: CustomSavedVCCell.reuseIdentifier)
-        tableView.register(SavedVCCell.defaultNib, forCellReuseIdentifier: SavedVCCell.reuseIdentifier)
+        tableView.register(CustomNewsTableViewCell.defaultNib, forCellReuseIdentifier: CustomNewsTableViewCell.reuseIdentifier)
+        tableView.register(NewsTableViewCell.defaultNib, forCellReuseIdentifier: NewsTableViewCell.reuseIdentifier)
     }
     
     private func addNavigationItem() {
@@ -81,12 +81,12 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         
         switch viewModel.cellStyle() {
         case .largeCell:
-            let cell = tableView.dequeueReusableCells(type: CustomSavedVCCell.self, indexPath: indexPath)
-            cell.viewModel = CustomSavedVCCellViewModel(coreDataMode: coreDataModel)
+            let cell = tableView.dequeueReusableCells(type: CustomNewsTableViewCell.self, indexPath: indexPath)
+            cell.viewModel = CustomNewsTableViewCellViewModel(coreDataModel: coreDataModel)
             return cell
         case .defaultCell:
-            let cell = tableView.dequeueReusableCells(type: SavedVCCell.self, indexPath: indexPath)
-            cell.viewModel = SavedVCCellViewModel(coreDataMode: coreDataModel)
+            let cell = tableView.dequeueReusableCells(type: NewsTableViewCell.self, indexPath: indexPath)
+            cell.viewModel = NewsTableViewCellViewModel(coreDataModel: coreDataModel)
             return cell
         }
     }

@@ -10,7 +10,7 @@ import UIKit
 
 final class NewCollectionViewCell: UICollectionViewCell {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERIYES
     
     @IBOutlet private weak var titleLabel: UILabel! 
     var viewModel: NewCollectionViewCellViewModelProtocol = NewCollectionViewCellViewModel() {
@@ -22,23 +22,27 @@ final class NewCollectionViewCell: UICollectionViewCell {
         override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                backgroundColor = .systemGray
-                titleLabel.textColor = .white
-            } else {
-                backgroundColor = .systemFill
-                titleLabel.textColor = .label
-            }
+            changeBackGroundColor()
         }
     }
     
     //MARK: - CLASS FUNCS
     
+    private func changeBackGroundColor() {
+        if isSelected {
+            backgroundColor = .systemGray
+            titleLabel.textColor = .white
+        } else {
+            backgroundColor = .systemFill
+            titleLabel.textColor = .label
+        }
+    }
+    
     func configCell() {
-        titleLabel.text = viewModel.getTitle()
+        titleLabel.text = viewModel.getTitle
     }
 }
 

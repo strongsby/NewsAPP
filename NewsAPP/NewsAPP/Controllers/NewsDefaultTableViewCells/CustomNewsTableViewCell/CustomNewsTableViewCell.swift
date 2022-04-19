@@ -9,10 +9,13 @@ import UIKit
 
 class CustomNewsTableViewCell: UITableViewCell {
     
+    //MARK: - OUTLETS & CLASS PROPERTIES
+
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var newsImage: DownloadImageView!
-    var viewModel: CustomNewsTableViewCellViewModelProtocol = CustomNewsTableViewCellViewModel() {
+    var viewModel: CustomNewsTableViewCellViewModelProtocol! {
         didSet {
             configLabels()
             configImage()
@@ -35,9 +38,8 @@ class CustomNewsTableViewCell: UITableViewCell {
     }
     
     private func configLabels() {
-        let labelsText = viewModel.getTextForLabel()
-        titleLabel.text = labelsText.title
-        descriptionLabel.text = labelsText.description
+        titleLabel.text = viewModel.getTitle
+        descriptionLabel.text = viewModel.getDescription
     }
     
     private func configImage() {

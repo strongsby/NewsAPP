@@ -19,5 +19,4 @@ protocol MainVCViewModelDelegate {
     func startActivityAnimated()
     func stopActivityAnimated()
     func endRefreshing()
-    func refreshControlIsRefreshing() -> Bool
 }

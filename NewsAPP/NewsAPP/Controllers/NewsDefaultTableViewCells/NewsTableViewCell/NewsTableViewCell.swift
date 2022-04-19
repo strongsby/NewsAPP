@@ -1,22 +1,22 @@
 //
-//  SearchVCCell.swift
+//  NewsTableViewCell.swift
 //  NewsAPP
 //
-//  Created by Сергей Рудинский on 15.03.22.
+//  Created by Сергей Рудинский on 14.03.22.
 //
 
 import UIKit
 
-final class SearchVCCell: UITableViewCell {
+final class NewsTableViewCell: UITableViewCell {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
-    @IBOutlet private weak var newsImage: DownloadImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    var viewModel: SearchVCCellViewModelProtocol = SearchVCCellViewModel() {
+    @IBOutlet private weak var newsImage: DownloadImageView! 
+    var viewModel: NewsTableViewCellViewModelProtocol = NewsTableViewCellViewModel() {    //Need Refactoring
         didSet {
-            configLables()
+            configLabels()
             configImage()
         }
     }
@@ -36,10 +36,9 @@ final class SearchVCCell: UITableViewCell {
         newsImage.cancel()
     }
     
-    private func configLables() {
-        let lablesText = viewModel.getTextForLable()
-        titleLabel.text = lablesText.title
-        descriptionLabel.text = lablesText.description
+    private func configLabels() {
+        titleLabel.text = viewModel.getTitle
+        descriptionLabel.text = viewModel.getDescription
     }
     
     private func configImage() {
@@ -57,4 +56,4 @@ final class SearchVCCell: UITableViewCell {
 
 //MARK: - EXTENSION NewsAPPNibLoadable
 
-extension SearchVCCell: NewsAPPNibLoadable {}
+extension NewsTableViewCell: NewsAPPNibLoadable {}

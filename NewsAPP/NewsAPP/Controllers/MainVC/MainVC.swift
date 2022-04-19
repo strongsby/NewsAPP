@@ -74,17 +74,19 @@ final class MainVC: UIViewController, AlertHandler {
 extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterView(type: CustomHeaderView.self)
+        let header = tableView.dequeueReusableHeaderFooterView(type: CustomHeaderView.self)
+        header.viewModel.customHeaderDelegate = self
+        return header
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.articlesCount()
+        return viewModel.articlesCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = viewModel.getArticle(indexPath: indexPath)
         
-        switch viewModel.cellStyle() {
+        switch viewModel.cellStyle {
         case .largeCell:
             let cell = tableView.dequeueReusableCells(type: CustomNewsTableViewCell.self, indexPath: indexPath)
             cell.viewModel = CustomNewsTableViewCellViewModel(article: article)
@@ -101,7 +103,7 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        switch viewModel.cellStyle() {
+        switch viewModel.cellStyle {
         case .largeCell: return CustomNewsTableViewCell.reuseIdentifier
         case .defaultCell: return NewsTableViewCell.reuseIdentifier
         }
@@ -112,17 +114,14 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
 //MARK: - EXTENSION MainVCViewModelDelegate
 
 extension MainVC: MainVCViewModelDelegate {
-    
-    func refreshControlIsRefreshing() -> Bool {
-        guard let refreshControl = tableView.refreshControl else { return false }
-        return refreshControl.isRefreshing
-    }
-    
+  
     func endRefreshing() {
         tableView.refreshControl?.endRefreshing()
     }
     
     func startActivityAnimated() {
+        guard let refreshControl = tableView.refreshControl,
+        !refreshControl.isRefreshing else { return }
         activity.startAnimating()
     }
     
@@ -163,5 +162,15 @@ extension MainVC: MainVCViewModelDelegate {
     
     func mainVCShowAlert(title: String?, message: String?, completion: (() -> Void)?) {
         showAlert(title: title, message: message, completion: completion)
+    }
+}
+
+
+//MARK: - EXTENSION CustomHeaderDelegate
+
+extension MainVC: CustomHeaderDelegate {
+    
+    func collectionViewDidSelectItemAt(indexPath: IndexPath) {
+        viewModel.collectionViewDidSelectItemAt(indexPath: indexPath)
     }
 }

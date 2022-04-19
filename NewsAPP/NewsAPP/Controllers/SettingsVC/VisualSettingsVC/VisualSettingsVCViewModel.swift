@@ -14,7 +14,7 @@ final class VisualSettingsVCViewModel:  NSObject, VisualSettingsVCViewModelProyo
     //MARK: - CLASS PROPERTYES
     
     var settingsArray: [SettingsSection] {
-        return DefaultSettings.getSettings(type: .visualSettings)
+        return DefaultSettings.visualSettings
     }
     
     //MARK: - CLASS FUNCTIONS

@@ -33,8 +33,8 @@ final class SearchVC: UIViewController, AlertHandler {
     }
     
     private func setupSearchController() {
-        let resoultVC = UIViewController()
-        searchController = UISearchController(searchResultsController: resoultVC)
+        let resultVC = UIViewController()
+        searchController = UISearchController(searchResultsController: resultVC)
         searchController.searchBar.placeholder = "Search for some news"
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -42,9 +42,21 @@ final class SearchVC: UIViewController, AlertHandler {
         //searchController.searchResultsUpdater = self        // wee can handle result here
     }
     
+    private func openWithShowVC(indexPath: IndexPath) {
+        let article = viewModel.getArticle(indexPath: indexPath)
+        let showVC = ShowVC(article: article)
+        navigationController?.pushViewController(showVC, animated: true)
+    }
+    
+    private func cleanSearchBar(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+    }
+    
     private func tableViewRegisterCells() {
-        tableView.register(CustomeSearchVCCell.defaultNib, forCellReuseIdentifier: CustomeSearchVCCell.reuseIdentifier)
-        tableView.register(SearchVCCell.defaultNib, forCellReuseIdentifier: SearchVCCell.reuseIdentifier)
+        tableView.register(CustomNewsTableViewCell.defaultNib, forCellReuseIdentifier: CustomNewsTableViewCell.reuseIdentifier)
+        tableView.register(NewsTableViewCell.defaultNib, forCellReuseIdentifier: NewsTableViewCell.reuseIdentifier)
     }
     
     private func setTitle() {
@@ -78,35 +90,32 @@ final class SearchVC: UIViewController, AlertHandler {
 extension  SearchVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.newsArrayCount()
+        return viewModel.newsArrayCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = viewModel.getArticle(indexPath: indexPath)
         
-        switch viewModel.cellStyle() {
+        switch viewModel.cellStyle {
         case .largeCell:
-            let cell = tableView.dequeueReusableCells(type: CustomeSearchVCCell.self, indexPath: indexPath)
-            cell.viewModel = CustomeSearchVCCellViewModel(article: article)
+            let cell = tableView.dequeueReusableCells(type: CustomNewsTableViewCell.self, indexPath: indexPath)
+            cell.viewModel = CustomNewsTableViewCellViewModel(article: article)
             return cell
         case .defaultCell:
-            let cell = tableView.dequeueReusableCells(type: SearchVCCell.self, indexPath: indexPath)
-            cell.viewModel = SearchVCCellViewModel(article: article)
+            let cell = tableView.dequeueReusableCells(type: NewsTableViewCell.self, indexPath: indexPath)
+            cell.viewModel = NewsTableViewCellViewModel(article: article)
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let showVC = ShowVC()
-        let article = viewModel.getArticle(indexPath: indexPath)
-        showVC.viewModel = ShowVCViewModel.init(art: article)
-        navigationController?.pushViewController(showVC, animated: true)
+       openWithShowVC(indexPath: indexPath)
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        switch viewModel.cellStyle() {
-        case .largeCell : return CustomeSearchVCCell.reuseIdentifier
-        case .defaultCell: return SearchVCCell.reuseIdentifier
+        switch viewModel.cellStyle {
+        case .largeCell : return CustomNewsTableViewCell.reuseIdentifier
+        case .defaultCell: return NewsTableViewCell.reuseIdentifier
         }
     }
 }
@@ -118,9 +127,7 @@ extension SearchVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         viewModel.getNewsWithString(title: searchBar.text)
-        searchBar.text = nil
-        searchBar.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+        cleanSearchBar(searchBar)
     }
 }
 
@@ -133,13 +140,9 @@ extension SearchVC: SearchVCViewModelDelegate {
         tableView.refreshControl?.endRefreshing()
     }
     
-    func refreshControlIsRefreshing() -> Bool {
-        guard let refreshControl = tableView.refreshControl else { return false }
-        return refreshControl.isRefreshing
-    }
-    
-    
     func startActivityAnimated() {
+        guard let refreshControl = tableView.refreshControl,
+        !refreshControl.isRefreshing else { return }
         activity.startAnimating()
     }
     

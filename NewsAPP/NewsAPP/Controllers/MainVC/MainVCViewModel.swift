@@ -12,8 +12,11 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     
     //MARK: - CLASS PROPERTIES
     
-    private var cellStyles: CellStyle = .defaultCell {
+    var cellStyle: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
+    }
+    var articlesCount: Int {
+        return articles.count
     }
     private var networkService = NetworkService()
     private var searchIndex: Int?
@@ -28,24 +31,22 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         super.init()
         loadCellStyleFromUserDefault()
         NotificationCenter.default.addObserver(self, selector: #selector(loadCellStyleFromUserDefault), name: .ChangeCellStyle(), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(collectionViewDidSelectItemAt(notification:)), name: .customHeaderDidSelectItem(), object: nil)
     }
     
     //MARK: - CLASS FUNCTIONS
     
     @objc func loadCellStyleFromUserDefault() {
-        cellStyles = UserDefaultService.shared.loadCellStyle()
+        cellStyle = UserDefaultService.shared.loadCellStyle()
     }
     
-    @objc func collectionViewDidSelectItemAt(notification: NSNotification) {
-        guard let index = notification.userInfo?["index"] as? Int else { return }
-        switch index {
+    func collectionViewDidSelectItemAt(indexPath: IndexPath) {
+        switch indexPath.item {
         case 0:
             delegate?.presentAddFavoritesTopicsVC()
         case 1:
             getLastNews()
         default:
-            getNewsWithIndex(index: index)
+            getNewsWithIndex(index: indexPath.item)
         }
     }
     
@@ -53,21 +54,11 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         return articles[indexPath.row]
     }
     
-    func cellStyle() -> CellStyle {
-        return cellStyles
-    }
-    
-    func articlesCount() -> Int {
-        return articles.count
-    }
-    
     func getLastNews() {
         articles.removeAll()
         searchIndex = nil
         delegate?.addMessageViewPutAwayWithAnimation()
-        if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
-            delegate.startActivityAnimated()
-        }        
+        delegate?.startActivityAnimated()
         networkService.getLatsNews { [ weak self ] result in
             self?.delegate?.endRefreshing()
             self?.delegate?.stopActivityAnimated()
@@ -86,9 +77,7 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
         searchIndex = index
         articles.removeAll()
         delegate?.addMessageViewPutAwayWithAnimation()
-        if let delegate = delegate,  !delegate.refreshControlIsRefreshing() {
-            delegate.startActivityAnimated()
-        } 
+        delegate?.startActivityAnimated()
         let needTopic = UserDefaultService.shared.loadTopics()[index - 2]
         networkService.searchNews(for: needTopic) { [ weak self ] result in
             self?.delegate?.endRefreshing()

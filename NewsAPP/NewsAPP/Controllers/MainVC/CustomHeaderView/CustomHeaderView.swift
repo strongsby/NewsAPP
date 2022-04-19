@@ -13,7 +13,7 @@ class CustomHeaderView: UITableViewHeaderFooterView {
     //MARK: - OUTLETS & CLASS PROPERTIES
 
     @IBOutlet private weak var collectionView: UICollectionView! 
-    private var viewModel: CustomHeaderViewViewModelProtocol = CustomHeaderViewViewModel()
+    var viewModel: CustomHeaderViewViewModelProtocol = CustomHeaderViewViewModel()
     
     //MARK: - INIT
     
@@ -82,6 +82,6 @@ extension CustomHeaderView: CustomHeaderViewViewModelDelegate {
 }
 
 
-//MAK: - EXTENSION NewsAPPNibLoadable
+//MARK: - EXTENSION NewsAPPNibLoadable
 
 extension CustomHeaderView: NewsAPPNibLoadable { }

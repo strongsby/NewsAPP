@@ -13,6 +13,12 @@ final class NewsTableViewCellViewModel: NSObject, NewsTableViewCellViewModelProt
     
     //MARK: - CLASS PROPERTIES
     
+    var getTitle: String? {
+        return newArticle?.title
+    }
+    var getDescription: String? {
+        return newArticle?.articleDescription
+    }
     private var newArticle: Article?
     
     //MARK: - LIFE CYCLE
@@ -22,11 +28,20 @@ final class NewsTableViewCellViewModel: NSObject, NewsTableViewCellViewModelProt
         newArticle = article
     }
     
-    //MARK: - CLASS FUNCS
-    
-    func getTextForLabels() -> (title: String, description: String) {
-        return (newArticle?.title ?? "", newArticle?.articleDescription ?? "")
+    convenience init(coreDataModel: CoreDataNews) {
+        self.init()
+        let article = Article(source: nil,
+                              author: coreDataModel.author,
+                              title: coreDataModel.title,
+                              articleDescription: coreDataModel.articleDescription,
+                              url: coreDataModel.url,
+                              urlToImage: coreDataModel.urlToImage,
+                              publishedAt: coreDataModel.publishedAt,
+                              content: coreDataModel.content)
+        newArticle = article
     }
+    
+    //MARK: - CLASS FUNCS
     
     func getImage() -> (image: UIImage?, imageURL: URL?) {
         guard let urlStr = newArticle?.urlToImage else { return (nil, nil) }

@@ -14,17 +14,14 @@ final class NewCollectionViewCellViewModel: NSObject, NewCollectionViewCellViewM
     //MARK: - CLASS PROPERTYES
     
     private var labelTitle: String?
+    var getTitle: String? {
+        return labelTitle
+    }
     
     //MARK: - INIT
     
     convenience init(title: String) {
         self.init()
         labelTitle = title
-    }
-    
-    //MARK: - CLASS FUNCS
-    
-    func getTitle() -> String {
-        return labelTitle ?? "Error"
     }
 }
