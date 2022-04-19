@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewsTableViewCell: UITableViewCell {
+final class NewsTableViewCell: UITableViewCell, NewsAPPNibLoadable {
     
     //MARK: - OUTLETS & CLASS PROPERTIES
     
@@ -54,6 +54,3 @@ final class NewsTableViewCell: UITableViewCell {
 }
 
 
-//MARK: - EXTENSION NewsAPPNibLoadable
-
-extension NewsTableViewCell: NewsAPPNibLoadable {}

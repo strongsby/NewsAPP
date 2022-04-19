@@ -8,9 +8,9 @@
 import UIKit
 
 
-final class NewCollectionViewCell: UICollectionViewCell {
+final class NewCollectionViewCell: UICollectionViewCell, NewsAPPNibLoadable {
     
-    //MARK: - OUTLETS & CLASS PROPERIYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var titleLabel: UILabel! 
     var viewModel: NewCollectionViewCellViewModelProtocol = NewCollectionViewCellViewModel() {
@@ -19,7 +19,7 @@ final class NewCollectionViewCell: UICollectionViewCell {
 
     //MARK: - LIFE CYCLE
     
-        override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
     
@@ -47,4 +47,3 @@ final class NewCollectionViewCell: UICollectionViewCell {
 }
 
 
-extension NewCollectionViewCell: NewsAPPNibLoadable {}

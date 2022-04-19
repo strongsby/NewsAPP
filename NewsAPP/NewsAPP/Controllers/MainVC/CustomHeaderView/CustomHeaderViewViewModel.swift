@@ -12,10 +12,13 @@ final class CustomHeaderViewViewModel: NSObject, CustomHeaderViewViewModelProtoc
     
     //MARK: - CLASS PROPERTIES
     
-    var delegate: CustomHeaderViewViewModelDelegate?
-    var customHeaderDelegate: CustomHeaderDelegate?
+    var customHeaderViewDelegate: CustomHeaderViewViewModelDelegate?
+    var mainVCDelegate: CustomHeaderDelegate?
+    var topicsCount: Int {
+        return topics.count
+    }
     var topics: [String] = [] {
-        didSet { delegate?.collectionViewReloadData() }
+        didSet { customHeaderViewDelegate?.collectionViewReloadData() }
     }
     
     //MARK: - INIT
@@ -32,15 +35,11 @@ final class CustomHeaderViewViewModel: NSObject, CustomHeaderViewViewModelProtoc
         topics = ["+", "Last"] + UserDefaultService.shared.loadTopics()
     }
     
-    func topicsCount() -> Int {
-        return topics.count
-    }
-    
     func getTopic(indexPath: IndexPath) -> String {
         return topics[indexPath.item]
     }
     
     func collectionDidSelectItem(indexPath: IndexPath) {
-        customHeaderDelegate?.collectionViewDidSelectItemAt(indexPath: indexPath)
+        mainVCDelegate?.collectionViewDidSelectItemAt(indexPath: indexPath)
     }
 }

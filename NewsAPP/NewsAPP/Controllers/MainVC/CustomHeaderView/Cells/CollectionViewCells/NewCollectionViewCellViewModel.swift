@@ -11,7 +11,7 @@ import Foundation
 final class NewCollectionViewCellViewModel: NSObject, NewCollectionViewCellViewModelProtocol {
     
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
     private var labelTitle: String?
     var getTitle: String? {

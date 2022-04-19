@@ -9,5 +9,6 @@ import Foundation
 
 
 protocol NewCollectionViewCellViewModelProtocol: NSObject {
+    
     var getTitle: String? { get }
 }

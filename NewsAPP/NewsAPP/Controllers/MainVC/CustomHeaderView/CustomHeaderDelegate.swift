@@ -9,5 +9,6 @@ import Foundation
 
 
 protocol CustomHeaderDelegate {
+    
     func collectionViewDidSelectItemAt(indexPath: IndexPath)
 }

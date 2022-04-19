@@ -75,7 +75,7 @@ extension MainVC: UITableViewDelegate, SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(type: CustomHeaderView.self)
-        header.viewModel.customHeaderDelegate = self
+        header.viewModel.mainVCDelegate = self
         return header
     }
     

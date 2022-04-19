@@ -8,7 +8,7 @@
 import UIKit
 
 
-class CustomHeaderView: UITableViewHeaderFooterView {
+class CustomHeaderView: UITableViewHeaderFooterView, NewsAPPNibLoadable {
     
     //MARK: - OUTLETS & CLASS PROPERTIES
 
@@ -25,7 +25,7 @@ class CustomHeaderView: UITableViewHeaderFooterView {
     //MARK: - CLASS FUNCTIONS
     
     private func bind() {
-        viewModel.delegate = self
+        viewModel.customHeaderViewDelegate = self
     }
     
     private func setupCollectionView() {
@@ -52,7 +52,7 @@ class CustomHeaderView: UITableViewHeaderFooterView {
 extension CustomHeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.topicsCount()
+        return viewModel.topicsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -76,12 +76,9 @@ extension CustomHeaderView: UICollectionViewDelegate, UICollectionViewDataSource
 //MARK: - EXTENSION CustomHeaderViewViewModelDelegate
 
 extension CustomHeaderView: CustomHeaderViewViewModelDelegate {
+    
     func collectionViewReloadData() {
         collectionView.reloadData()
     }
 }
 
-
-//MARK: - EXTENSION NewsAPPNibLoadable
-
-extension CustomHeaderView: NewsAPPNibLoadable { }
