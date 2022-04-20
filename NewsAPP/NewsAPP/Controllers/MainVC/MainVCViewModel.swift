@@ -70,8 +70,8 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     func getNewsWithIndex(index: Int) {
         searchIndex = index
         articles.removeAll()
-        let needTopic = UserDefaultService.shared.loadTopics()[index - 2]
-        networkService.searchNews(for: needTopic) { [ weak self ] result in
+        let topics = ["+", "Last"] + UserDefaultService.shared.loadTopics()
+        networkService.searchNews(for: topics[index]) { [ weak self ] result in
             switch result {
             case .failure(let error):
                 self?.delegate?.mainVCShowAlert(title: "Sorry", message: "\(error)", completion: nil)
