@@ -47,19 +47,11 @@ final class SearchVCViewModel: NSObject, SearchVCViewModelProtocol {
         guard let newsCategory = title else { return }
         searchTitle = title
         newsArray.removeAll()
-        delegate?.addMessageViewPutAwayWithAnimation()
-        delegate?.startActivityAnimated()
         networkService.searchNews(for: newsCategory) { [ weak self ] result in
             switch result {
             case .failure(let error):
-                self?.delegate?.endRefreshing()
-                self?.delegate?.addMessageShowWithAnimation()
-                self?.delegate?.stopActivityAnimated()
-                print("\(error.localizedDescription)")
                 self?.delegate?.searchVCShowAlert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let news):
-                self?.delegate?.endRefreshing()
-                self?.delegate?.stopActivityAnimated()
                 self?.newsArray = news
             }
         }

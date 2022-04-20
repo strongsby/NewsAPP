@@ -42,6 +42,18 @@ final class SearchVC: UIViewController, AlertHandler {
         //searchController.searchResultsUpdater = self        // wee can handle result here
     }
     
+    func messageShowWithAnimation() {
+        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
+            self?.addMessageView.alpha = .maxAlpha()
+        }
+    }
+    
+    func messageViewPutAwayWithAnimation() {
+        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
+            self?.addMessageView.alpha = .minAlpha()
+        }
+    }
+    
     private func openWithShowVC(indexPath: IndexPath) {
         let article = viewModel.getArticle(indexPath: indexPath)
         let showVC = ShowVC(article: article)
@@ -128,6 +140,8 @@ extension SearchVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         viewModel.getNewsWithString(title: searchBar.text)
         cleanSearchBar(searchBar)
+        activity.startAnimating()
+        messageViewPutAwayWithAnimation()
     }
 }
 
@@ -136,50 +150,17 @@ extension SearchVC: UISearchBarDelegate {
 
 extension SearchVC: SearchVCViewModelDelegate {
     
-    func endRefreshing() {
-        tableView.refreshControl?.endRefreshing()
-    }
-    
-    func startActivityAnimated() {
-        guard let refreshControl = tableView.refreshControl,
-        !refreshControl.isRefreshing else { return }
-        activity.startAnimating()
-    }
-    
-    func stopActivityAnimated() {
-        activity.stopAnimating()
-    }
-    
-    func addMessageShowWithAnimation() {
-        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
-            self?.addMessageView.alpha = .maxAlpha()
-        }
-    }
-    
-    func addMessageViewPutAwayWithAnimation() {
-        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
-            self?.addMessageView.alpha = .minAlpha()
-        }
-    }
-    
     func tableViewReloadData() {
         tableView.reloadData()
+        activity.stopAnimating()
+        tableView.refreshControl?.endRefreshing()
         tableView.startCustomAnimation()
-    }
-    
-    //Wee can change skeletonAnimation or activityAnimation
-    
-    func startAnimatedSkeletonView() {
-        tableView.isSkeletonable = true
-        tableView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .systemGray), animation: nil, transition: .crossDissolve(0.25))
-    }
-    
-    func stopAnimatedSkeleton() {
-        tableView.stopSkeletonAnimation()
-        view.hideSkeleton()
     }
     
     func searchVCShowAlert(title: String?, message: String?, completion: (() -> Void)?) {
         showAlert(title: title, message: message, completion: completion)
+        activity.stopAnimating()
+        tableView.refreshControl?.endRefreshing()
+        messageShowWithAnimation()
     }
 }
