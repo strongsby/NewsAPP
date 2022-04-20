@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomNewsTableViewCell: UITableViewCell, NewsAPPNibLoadable {
+final class CustomNewsTableViewCell: UITableViewCell, NewsAPPNibLoadable {
     
     //MARK: - OUTLETS & CLASS PROPERTIES
 
@@ -17,6 +17,7 @@ class CustomNewsTableViewCell: UITableViewCell, NewsAPPNibLoadable {
     @IBOutlet private weak var newsImage: DownloadImageView!
     var viewModel: CustomNewsTableViewCellViewModelProtocol! {
         didSet {
+            bind()
             configLabels()
             configImage()
         }
@@ -37,20 +38,33 @@ class CustomNewsTableViewCell: UITableViewCell, NewsAPPNibLoadable {
         newsImage.cancel()
     }
     
+    private func bind() {
+        viewModel.delegate = self
+    }
+    
     private func configLabels() {
         titleLabel.text = viewModel.getTitle
         descriptionLabel.text = viewModel.getDescription
     }
     
     private func configImage() {
-        if let image = viewModel.getImage().image {
-            newsImage.image = image
-        } else if let url = viewModel.getImage().imageURL {
-            newsImage.load(url) { [ weak self ] image in
-                self?.newsImage.image = image
-                self?.viewModel.saveImage(image: image)
-            }
+        viewModel.getImage()
+    }
+}
+
+
+//MARK: - EXTENSION
+
+extension CustomNewsTableViewCell: CustomNewsTableViewCellViewModelDelegate {
+    
+    func loadImage(url: URL, completion: @escaping ((UIImage) -> Void)) {
+        newsImage.load(url) { image in
+            completion(image)
         }
+    }
+    
+    func setupImage(image: UIImage) {
+        newsImage.image = image
     }
 }
 

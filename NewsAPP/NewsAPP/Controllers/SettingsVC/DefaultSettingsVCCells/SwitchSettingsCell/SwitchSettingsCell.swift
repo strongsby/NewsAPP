@@ -8,15 +8,15 @@
 import UIKit
 
 
-final class SwitchSettingsCell: UITableViewCell {
+final class SwitchSettingsCell: UITableViewCell, NewsAPPNibLoadable {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var imageBackgroundColor: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var settingsImage: UIImageView!
     @IBOutlet private weak var darkModeSwitch: UISwitch!
-    var viewModel:  SwitchSettingsCellViewModelProtocol =  SwitchSettingsCellViewModel() {
+    var viewModel:  SwitchSettingsCellViewModelProtocol! {
         didSet {
             setupAll()
         }
@@ -24,24 +24,23 @@ final class SwitchSettingsCell: UITableViewCell {
     
     //MARK: - CLASS FUNCTIONS
     
-    private func setupdarkModeSwitch() {
-        darkModeSwitch.isOn = viewModel.getSwitchPOsition()
+    private func setupDarkModeSwitch() {
+        darkModeSwitch.isOn = viewModel.getSwitchPosition
     }
     
     private func setupImage() {
-        guard let imageSettings = viewModel.getImage() else { return }
-        settingsImage.image = imageSettings.image
-        imageBackgroundColor.backgroundColor = imageSettings.color
+        settingsImage.image = viewModel.getImage
+        imageBackgroundColor.backgroundColor = viewModel.imageBackColor
     }
     
-    private func setupLable() {
-        titleLabel.text = viewModel.getLableTitle()
+    private func setupLabels() {
+        titleLabel.text = viewModel.getLabelsTitle
     }
     
     private func setupAll() {
         setupImage()
-        setupLable()
-        setupdarkModeSwitch()
+        setupLabels()
+        setupDarkModeSwitch()
     }
     
     @IBAction func switchDidTapped() {
@@ -49,7 +48,3 @@ final class SwitchSettingsCell: UITableViewCell {
     }
 }
 
-
-//MARK: - EXTENSION NewsAPPNibLoadable
-
-extension SwitchSettingsCell: NewsAPPNibLoadable {}

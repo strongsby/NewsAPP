@@ -10,10 +10,13 @@ import Foundation
 
 final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
     var delegate: FavoriteTopicsVCViewModelDelegate? {
         didSet { checkNewsTopic() }
+    }
+    var newTopicsCount: Int {
+        return newTopics.count
     }
     private var newTopics: [String] = [] {
         didSet { checkNewsTopic() }
@@ -33,10 +36,6 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
         return newTopics[indexPath.row]
     }
     
-    func newTopicsCount() -> Int {
-        return newTopics.count
-    }
-    
     private func checkNewsTopic() {
         switch newTopics.isEmpty {
         case true: delegate?.addMessageShowWithAnimation()
@@ -44,10 +43,10 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
         }
     }
     
-    func tbaleViewDeleteRow(indexPath: IndexPath) {
+    func tableViewDeleteRow(indexPath: IndexPath) {
         newTopics.remove(at: indexPath.row)
         UserDefaultService.shared.saveTopics(topics: newTopics)
-        delegate?.tableViewDeletRowWithAnivation(indexPath: [indexPath])
+        delegate?.tableViewDeleteRowWithAnimation(indexPath: [indexPath])
         NotificationCenter.default.post(name: NSNotification.Name("AddNewTopic"), object: nil)
     }
     

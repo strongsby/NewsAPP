@@ -9,33 +9,26 @@ import Foundation
 import UIKit
 
 
-final class VisualSettingsVCViewModel:  NSObject, VisualSettingsVCViewModelProyocol {
+final class VisualSettingsVCViewModel:  NSObject, VisualSettingsVCViewModelProTocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
-    var settingsArray: [SettingsSection] {
+    var settingsArrayOptionsCount: Int {
+        return settings.options.count
+    }
+    var settingsArrayTitleForFooterInSection: String? {
+        return settings.footerTitle
+    }
+    var settingsArrayTitleForHeaderInSection: String? {
+        return settings.headerTitle
+    }
+    private var settings: SettingsSection {
         return DefaultSettings.visualSettings
     }
     
     //MARK: - CLASS FUNCTIONS
     
     func getSettingsType(indexPath: IndexPath) -> SettingsOptionsType {
-        return settingsArray[indexPath.section].options[indexPath.row]
-    }
-    
-    func settingsArrayCounr() -> Int {
-        return settingsArray.count
-    }
-    
-    func settingsArrayOptionsCount(section: Int) -> Int {
-        return settingsArray[section].options.count
-    }
-    
-    func settingsArrayTitleForFooterInSection(section: Int) -> String? {
-        return settingsArray[section].footerTitle
-    }
-    
-    func settingsArrayTitleForHeaderInSection(section: Int) -> String? {
-        return settingsArray[section].headerTitle
+        return settings.options[indexPath.row]
     }
 }

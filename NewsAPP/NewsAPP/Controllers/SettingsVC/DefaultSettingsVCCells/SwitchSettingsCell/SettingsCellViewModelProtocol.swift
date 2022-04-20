@@ -10,8 +10,9 @@ import UIKit
 
 
 protocol  SwitchSettingsCellViewModelProtocol: NSObject {
-    func getLableTitle() -> String?
-    func getImage() -> (image: UIImage, color: UIColor)?
-    func getSwitchPOsition() -> Bool
+    var getLabelsTitle: String? { get }
+    var getImage: UIImage? { get }
+    var imageBackColor: UIColor? { get }
+    var getSwitchPosition: Bool { get }
     func switchChangeValue(isOn: Bool) -> Void
 }

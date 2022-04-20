@@ -10,7 +10,7 @@ import UIKit
 
 final class VisualSettingsVC: UIViewController {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -19,7 +19,7 @@ final class VisualSettingsVC: UIViewController {
             tableViewRegisterCells()
         }
     }
-    var viewModel: VisualSettingsVCViewModelProyocol = VisualSettingsVCViewModel()
+    var viewModel: VisualSettingsVCViewModelProTocol = VisualSettingsVCViewModel()
     
     //MARK: - LIFE CYCLE
     
@@ -51,19 +51,15 @@ final class VisualSettingsVC: UIViewController {
 extension VisualSettingsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.settingsArrayTitleForHeaderInSection(section: section)
+        return viewModel.settingsArrayTitleForHeaderInSection
     }
     
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return viewModel.settingsArrayTitleForFooterInSection(section: section)
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.settingsArrayCounr()
+        return viewModel.settingsArrayTitleForFooterInSection
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.settingsArrayOptionsCount(section: section)
+        return viewModel.settingsArrayOptionsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

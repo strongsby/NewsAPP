@@ -11,8 +11,11 @@ import UIKit
 
 final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
+    var settingsArrayCount: Int {
+        return settingsArray.count
+    }
     var delegate: SettingsVCViewModelDelegate?
     private var settingsArray: [SettingsSection] {
         return DefaultSettings.mainSettings
@@ -22,10 +25,6 @@ final class SettingsVCViewModel: NSObject, SettingsVCViewModelProtocol {
     
     func getSettingsType(indexPath: IndexPath) -> SettingsOptionsType {
         return settingsArray[indexPath.section].options[indexPath.row]
-    }
-    
-    func settingsArrayCounr() -> Int {
-        return settingsArray.count
     }
     
     func settingsArrayOptionsCount(section: Int) -> Int {

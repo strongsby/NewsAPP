@@ -14,6 +14,7 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     //MARK: - CLASS PROPERTIES
     
     private var fileManagerService = FileManagerService()
+    private var loadedImage: UIImage?
     var getTitle: String? {
         return article?.title
     }
@@ -50,25 +51,23 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     
     //MARK: - CLASS FUNCTIONS
     
-    func setImage(downloadImageView: DownloadImageView) {
-        if let image = getCashedImage() {
-            downloadImageView.image = image
-        } else if let url = getImageURL() {
-            downloadImageView.load(url) {  image in
-                downloadImageView.image = image
+    func getImage() {
+        guard let urlStr = article?.urlToImage else { return }
+        if let image = ImageCacheService.shared.load(urlToImage: urlStr) {
+            delegate?.setupImage(image: image)
+            loadedImage = image
+        } else {
+            fileManagerService.loadImage(localName: urlStr) { [ weak self ] image in
+                if let image = image {
+                    self?.delegate?.setupImage(image: image)
+                } else if let url = URL(string: urlStr) {
+                    self?.delegate?.loadImage(url: url, completion: { image in
+                        ImageCacheService.shared.save(urlToImage: urlStr, image: image)
+                        self?.loadedImage = image
+                    })
+                }
             }
         }
-    }
-    
-    func getImageURL() -> URL? {
-        guard let urlStr = article?.urlToImage else { return nil }
-        return URL(string: urlStr)
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let offsetY = 250 - (scrollView.contentOffset.y )
-        let minMax = max(250, offsetY)
-        delegate?.changeImageHeightConstrain(height: minMax)
     }
     
     func shareDidTapped() {
@@ -76,21 +75,16 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
         delegate?.showVCShowActivityVC(url: url)
     }
     
-    func getCashedImage() -> UIImage? {
-        guard let urlToImage = article?.urlToImage, let image = ImageCacheService.shared.load(urlToImage: urlToImage) else { return nil }
-            return image
-    }
-    
     func showInSafariDidTapped() {
         guard let urlString = article?.url, let url = URL(string: urlString) else { return }
         delegate?.showInSafari(url: url)
     }
     
-    func saveArticle(image: UIImage?) {
+    func saveArticle() {
         self.delegate?.showVCShowAlert(title: "Sorry", message: "are you sure you want to save this news") { [ weak self ] in
             guard let article = self?.article else { return }
             CoreDataService.shared.saveCoreDataNews(article: article)
-            if let image = image, let localName = article.urlToImage {
+            if let image = self?.loadedImage, let localName = article.urlToImage {
                 self?.fileManagerService.save(image: image, localName: localName)
             }
         }

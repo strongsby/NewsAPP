@@ -9,8 +9,8 @@ import Foundation
 
 
 protocol SettingsVCViewModelProtocol: NSObject {
+    var settingsArrayCount: Int { get }
     func getSettingsType(indexPath: IndexPath) -> SettingsOptionsType
-    func settingsArrayCounr() -> Int
     func settingsArrayOptionsCount(section: Int) -> Int
     func settingsArrayTitleForFooterInSection(section: Int) -> String?
     func settingsArrayTitleForHeaderInSection(section: Int) -> String?

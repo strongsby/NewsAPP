@@ -10,20 +10,17 @@ import Foundation
 
 final class FavoriteTopicsVCCellViewModel: NSObject, FavoriteTopicsVCCellViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
     private var title: String?
+    var getLabelsText: String? {
+        return title
+    }
     
     //MARK: - INIT
     
     convenience init(titleText: String) {
         self.init()
         title = titleText
-    }
-    
-    //MARK: - CLASS FUNCTIONS
-    
-    func getLableTexte() -> String? {
-        return title
     }
 }

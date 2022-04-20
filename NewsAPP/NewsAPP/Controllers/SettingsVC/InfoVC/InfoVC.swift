@@ -10,12 +10,21 @@ import UIKit
 
 final class InfoVC: UIViewController {
     
-    private func setupTitle() {
-        title = "Information about App"
-    }
+    //MARK: - CLASS PROPERTIES
+    
+    private var viewModel: InfoVCViewModelProtocol = InfoVCViewModel()
+    
+    //MARK: - LIFE CYCLE
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTitle()
+    }
+    
+    //MARK: - CLASS FUNCTIONS
+
+    
+    private func setupTitle() {
+        title = viewModel.getText
     }
 }

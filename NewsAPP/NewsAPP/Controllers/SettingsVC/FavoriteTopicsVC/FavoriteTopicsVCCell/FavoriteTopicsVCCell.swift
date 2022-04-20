@@ -10,23 +10,23 @@ import UIKit
 
 final class FavoriteTopicsVCCell: UITableViewCell {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var titleLabel: UILabel!
-    var viewModel: FavoriteTopicsVCCellViewModelProtocol = FavoriteTopicsVCCellViewModel() {
+    var viewModel: FavoriteTopicsVCCellViewModelProtocol! {
         didSet {
             setupTitleLabel()
         }
     }
 
-    //MARK: - CLASS FUNCTIOS
+    //MARK: - CLASS FUNCS
     
     private func setupTitleLabel() {
-        titleLabel.text = viewModel.getLableTexte()
+        titleLabel.text = viewModel.getLabelsText
     }
 }
 
 
-//MARK: - EXTENSIO NewsAPPNibLoadable
+//MARK: - EXTENSION NewsAPPNibLoadable
 
 extension FavoriteTopicsVCCell: NewsAPPNibLoadable {}

@@ -10,12 +10,12 @@ import UIKit
 
 final class DefaultSettingsVCCell: UITableViewCell {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private var imageBackgroundColor: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var settingsImage: UIImageView!
-    var viewModel: DefaultSettingsVCCellViewModelProtocol = DefaultSettingsVCCellViewModel() {
+    var viewModel: DefaultSettingsVCCellViewModelProtocol! {
         didSet {
             setupAll()
         }
@@ -24,13 +24,12 @@ final class DefaultSettingsVCCell: UITableViewCell {
     //MARK: - CLASS FUNCTIONS
     
     private func setupLabel() {
-        titleLabel.text = viewModel.getLabelText()
+        titleLabel.text = viewModel.getLabelText
     }
     
     private func setupSettingsImage() {
-        guard let imageSettings = viewModel.getImage() else { return }
-        settingsImage.image = imageSettings.image
-        imageBackgroundColor.backgroundColor = imageSettings.color
+        settingsImage.image = viewModel.getImage
+        imageBackgroundColor.backgroundColor = viewModel.imageBackColor
     }
     
     private func setupAll() {

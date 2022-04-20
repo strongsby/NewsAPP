@@ -24,8 +24,8 @@ struct DefaultSettings {
         ]
     }
         
-    static var visualSettings: [SettingsSection] {
-        return [
+    static var visualSettings: SettingsSection {
+        return
             SettingsSection(headerTitle: nil, footerTitle: "In these settings, you can change the color scheme of the application as well as the style of displaying news.",
                             options: [ SettingsOptionsType.SwitchSettingsOptions(switchModel:
                                             SwitchSettingsOptions(imageBackgroundColor: UIColor.green,
@@ -67,6 +67,5 @@ struct DefaultSettings {
                                                                                 }
                                                                                 NotificationCenter.default.post(name: .ChangeCellStyle(), object: nil)
                                                                             }))])
-        ]
     }
 }

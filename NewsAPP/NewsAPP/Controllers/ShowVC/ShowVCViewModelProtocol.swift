@@ -15,9 +15,8 @@ protocol ShowVCViewModelProtocol: NSObject {
     var getTitle: String? { get }
     var getDescription: String? { get }
     var getSource: String? { get }
-    func saveArticle(image: UIImage?) -> Void
+    func saveArticle() -> Void
     func showInSafariDidTapped() -> Void
     func shareDidTapped() -> Void
-    func scrollViewDidScroll(scrollView: UIScrollView)
-    func setImage(downloadImageView: DownloadImageView) -> Void
+    func getImage()
 }

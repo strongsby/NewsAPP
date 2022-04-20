@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol FavoriteTopicsVCCellViewModelProtocol: NSObject {
-    func getLableTexte() -> String?
+    var getLabelsText: String? { get }
 }

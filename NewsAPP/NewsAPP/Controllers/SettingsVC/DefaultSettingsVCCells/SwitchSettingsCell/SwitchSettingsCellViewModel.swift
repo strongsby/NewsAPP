@@ -11,8 +11,21 @@ import UIKit
 
 final class  SwitchSettingsCellViewModel: NSObject,  SwitchSettingsCellViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
+    var getLabelsTitle: String? {
+        return settingsModel?.title
+    }
+    var getImage: UIImage? {
+        return settingsModel?.settingsImage
+    }
+    var imageBackColor: UIColor? {
+        return settingsModel?.imageBackgroundColor
+    }
+    var getSwitchPosition: Bool {
+        guard let model = settingsModel else { return false }
+        return model.switchPosition()
+    }
     private var settingsModel: SwitchSettingsOptions?
     
     //MAK: - INIT
@@ -22,22 +35,7 @@ final class  SwitchSettingsCellViewModel: NSObject,  SwitchSettingsCellViewModel
         settingsModel = model
     }
     
-    func getLableTitle() -> String? {
-        guard let title = settingsModel?.title else { return nil }
-        return title
-    }
-    
     //MARK: - CLASS FUNCTIONS
-    
-    func getImage() -> (image: UIImage, color: UIColor)? {
-        guard let image = settingsModel?.settingsImage, let backColor = settingsModel?.imageBackgroundColor else { return nil }
-        return (image, backColor)
-    }
-    
-    func getSwitchPOsition() -> Bool {
-        guard let model = settingsModel else { return false }
-        return model.switchPosition()
-    }
     
     func switchChangeValue(isOn: Bool) {
         settingsModel?.switchChangeValue(isOn)

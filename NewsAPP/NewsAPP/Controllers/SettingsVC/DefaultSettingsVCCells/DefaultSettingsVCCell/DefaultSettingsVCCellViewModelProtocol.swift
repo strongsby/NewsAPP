@@ -10,6 +10,7 @@ import UIKit
 
 
 protocol DefaultSettingsVCCellViewModelProtocol: NSObject {
-    func getImage() -> (image: UIImage, color: UIColor)?
-    func getLabelText() -> String?
+    var getLabelText: String? { get }
+    var getImage: UIImage? { get }
+    var imageBackColor: UIColor? { get }
 }

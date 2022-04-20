@@ -10,7 +10,7 @@ import UIKit
 
 final class SettingsVC: UIViewController {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
@@ -64,7 +64,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.settingsArrayCounr()
+        return viewModel.settingsArrayCount
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

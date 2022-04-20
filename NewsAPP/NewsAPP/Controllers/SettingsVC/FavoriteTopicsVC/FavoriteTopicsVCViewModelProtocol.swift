@@ -10,7 +10,7 @@ import Foundation
 
 protocol FavoriteTopicsVCViewModelProtocol: NSObject {
     var delegate: FavoriteTopicsVCViewModelDelegate? { get set }
-    func newTopicsCount() -> Int
-    func tbaleViewDeleteRow(indexPath: IndexPath)
+    var newTopicsCount: Int { get }
+    func tableViewDeleteRow(indexPath: IndexPath)
     func getTopic(indexPath: IndexPath) -> String
 }

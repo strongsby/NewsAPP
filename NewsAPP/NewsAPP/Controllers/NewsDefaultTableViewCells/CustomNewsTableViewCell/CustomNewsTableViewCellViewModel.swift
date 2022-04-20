@@ -13,6 +13,8 @@ final class CustomNewsTableViewCellViewModel: NSObject, CustomNewsTableViewCellV
     
     //MARK: - CLASS PROPERTIES
     
+    var delegate: CustomNewsTableViewCellViewModelDelegate?
+    private var fileManagerService = FileManagerService()
     var getTitle: String? {
         return newArticle?.title
     }
@@ -43,18 +45,20 @@ final class CustomNewsTableViewCellViewModel: NSObject, CustomNewsTableViewCellV
     
     //MARK: - CLASS FUNCS
     
-    func getImage() -> (image: UIImage?, imageURL: URL?) {
-        guard let urlStr = newArticle?.urlToImage else { return (nil, nil) }
+    func getImage() {
+        guard let urlStr = newArticle?.urlToImage else { return }
         if let image = ImageCacheService.shared.load(urlToImage: urlStr) {
-            return (image,nil)
-        } else if let url = URL(string: urlStr) {
-            return (nil, url)
+            delegate?.setupImage(image: image)
+        } else {
+            fileManagerService.loadImage(localName: urlStr) { [ weak self ] image in
+                if let image = image {
+                    self?.delegate?.setupImage(image: image)
+                } else if let url = URL(string: urlStr) {
+                    self?.delegate?.loadImage(url: url, completion: { image in
+                        ImageCacheService.shared.save(urlToImage: urlStr, image: image)
+                    })
+                }
+            }
         }
-        return (nil, nil)
-    }
-    
-    func saveImage(image: UIImage) {
-        guard let urlToImage = newArticle?.urlToImage else { return }
-        ImageCacheService.shared.save(urlToImage: urlToImage, image: image)
     }
 }

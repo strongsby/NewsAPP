@@ -10,7 +10,7 @@ import UIKit
 
 final class FavoriteTopicsVC: UIViewController {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var addMessageView: UIView! 
     @IBOutlet private weak var tableView: UITableView! {
@@ -68,7 +68,7 @@ final class FavoriteTopicsVC: UIViewController {
 extension FavoriteTopicsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.newTopicsCount()
+        return viewModel.newTopicsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,7 +87,7 @@ extension FavoriteTopicsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        viewModel.tbaleViewDeleteRow(indexPath: indexPath)
+        viewModel.tableViewDeleteRow(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -116,7 +116,7 @@ extension FavoriteTopicsVC: FavoriteTopicsVCViewModelDelegate {
         }
     }
     
-    func tableViewDeletRowWithAnivation(indexPath: [IndexPath]) {
+    func tableViewDeleteRowWithAnimation(indexPath: [IndexPath]) {
         tableView.deleteRows(at: indexPath, with: .left)
     }
     

@@ -10,8 +10,8 @@ import UIKit
 
 
 protocol NewsTableViewCellViewModelProtocol: NSObject {
+    var delegate: NewsTableViewCellViewModelDelegate? { get set }
     var getTitle: String? { get }
     var getDescription: String? { get }
-    func getImage() -> (image: UIImage?,imageURL: URL?)
-    func saveImage(image: UIImage) -> Void
+    func getImage()
 }

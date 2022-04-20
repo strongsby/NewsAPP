@@ -11,28 +11,24 @@ import UIKit
 
 final class DefaultSettingsVCCellViewModel: NSObject, DefaultSettingsVCCellViewModelProtocol {
     
-    //MARK: - CLASS PROPERTYES
+    //MARK: - CLASS PROPERTIES
     
     private var settingsModel: DefaultSettingsOptions?
+    var getLabelText: String? {
+        return settingsModel?.title
+    }
     
+    var getImage: UIImage? {
+        return settingsModel?.settingsImage
+    }
+    
+    var imageBackColor: UIColor? {
+        return settingsModel?.imageBackgroundColor
+    }
     //MARK: - INIT
     
     convenience init(model: DefaultSettingsOptions) {
         self.init()
         settingsModel = model
     }
-    
-    //MARK: - CLASS FUNCTIONS
-    
-    func getImage() -> (image: UIImage, color: UIColor)? {
-        guard let image = settingsModel?.settingsImage, let color = settingsModel?.imageBackgroundColor else { return nil }
-        return (image, color)
-    }
-    
-    func getLabelText() -> String? {
-        guard let title = settingsModel?.title else { return nil }
-        return title
-    }
-    
-    
 }

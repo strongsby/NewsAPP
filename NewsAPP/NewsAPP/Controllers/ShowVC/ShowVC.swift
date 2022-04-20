@@ -55,11 +55,17 @@ final class ShowVC: UIViewController, AlertHandler {
     }
     
     private func setupImage() {
-        viewModel.setImage(downloadImageView: newsImage)
+        viewModel.getImage()
     }
 
     private func setupScrollView() {
         scrollView.delegate = self
+    }
+    
+    private func addEffect(_ scrollView: UIScrollView) {
+        let offsetY = 250 - (scrollView.contentOffset.y )
+        let minMax = max(250, offsetY)
+        heightNewsImageConstraint.constant = minMax
     }
     
     private func bind() {
@@ -86,7 +92,7 @@ final class ShowVC: UIViewController, AlertHandler {
     }
     
     @IBAction func addDidTapped(_ sender: Any) {
-        viewModel.saveArticle(image: newsImage.image)
+        viewModel.saveArticle()
     }
     
     @IBAction func LearnMoreWithSafariDidTapped(_ sender: Any) {
@@ -101,7 +107,7 @@ final class ShowVC: UIViewController, AlertHandler {
 extension ShowVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        viewModel.scrollViewDidScroll(scrollView: scrollView)
+        addEffect(scrollView)
     }
 }
 
@@ -110,8 +116,14 @@ extension ShowVC: UIScrollViewDelegate {
 
 extension ShowVC: ShowVCViewModelDelegate {
     
-    func changeImageHeightConstrain(height: CGFloat) {
-        heightNewsImageConstraint.constant = height
+    func setupImage(image: UIImage) {
+        newsImage.image = image
+    }
+    
+    func loadImage(url: URL, completion: @escaping ((UIImage) -> Void)) {
+        newsImage.load(url) { image in
+            completion(image)
+        }
     }
     
     func showVCShowActivityVC(url: URL) {

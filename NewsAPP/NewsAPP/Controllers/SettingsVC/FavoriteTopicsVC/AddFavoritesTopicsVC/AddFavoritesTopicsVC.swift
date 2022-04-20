@@ -8,9 +8,9 @@
 import UIKit
 
 
-final class AddFavoritesTopicsVC: UIViewController {
+final class AddFavoritesTopicsVC: UIViewController, AlertHandler {
     
-    //MARK: - OUTLETS & CLASS PROPERTYES
+    //MARK: - OUTLETS & CLASS PROPERTIES
     
     @IBOutlet private weak var topicTextField: UITextField! {
         didSet {
@@ -20,15 +20,17 @@ final class AddFavoritesTopicsVC: UIViewController {
     }
     private var viewMode: AddFavoritesTopicsVCProtocol = AddFavoritesTopicsVCViewModel()
 
+    //MARK: - LIFE CYCLE
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bind()
+    }
+    
     //MARK: - CLASS FUNCTIONS
     
     private func bind() {
         viewMode.delegate = self
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        bind()
     }
     
     //MARK: - ACTIONS
@@ -49,20 +51,15 @@ extension AddFavoritesTopicsVC: UITextFieldDelegate {
 }
 
 
-//MARK: - EXTENSION AlertHandler
-
-extension AddFavoritesTopicsVC: AlertHandler {}
-
-
 //MARK: - EXTENSION AddFavoritesTopicsVCDelegate
 
 extension AddFavoritesTopicsVC: AddFavoritesTopicsVCDelegate {
     
-    func dismis() {
+    func dismiss() {
         dismiss(animated: true, completion: nil)
     }
     
-    func AddFavoritesTopicsVCShowAllert(title: String?, message: String?, complition: (() -> Void)?) {
+    func AddFavoritesTopicsVCShowAlert(title: String?, message: String?, complition: (() -> Void)?) {
         showAlert(title: title, message: message, completion: complition)
     }
 }
