@@ -57,16 +57,10 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     func getLastNews() {
         articles.removeAll()
         searchIndex = nil
-        delegate?.addMessageViewPutAwayWithAnimation()
-        delegate?.startActivityAnimated()
         networkService.getLatsNews { [ weak self ] result in
-            self?.delegate?.endRefreshing()
-            self?.delegate?.stopActivityAnimated()
             switch result {
             case .failure(let error):
-                self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.mainVCShowAlert(title: "Sorry", message: "\(error)", completion: nil)
-                print(error)
             case .success(let news):
                 self?.articles = news
             }
@@ -76,15 +70,10 @@ final class MainVCViewModel: NSObject, MainVCViewModelProtocol {
     func getNewsWithIndex(index: Int) {
         searchIndex = index
         articles.removeAll()
-        delegate?.addMessageViewPutAwayWithAnimation()
-        delegate?.startActivityAnimated()
         let needTopic = UserDefaultService.shared.loadTopics()[index - 2]
         networkService.searchNews(for: needTopic) { [ weak self ] result in
-            self?.delegate?.endRefreshing()
-            self?.delegate?.stopActivityAnimated()
             switch result {
             case .failure(let error):
-                self?.delegate?.addMessageShowWithAnimation()
                 self?.delegate?.mainVCShowAlert(title: "Sorry", message: "\(error)", completion: nil)
             case .success(let articles):
                 self?.articles = articles
