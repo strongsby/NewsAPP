@@ -16,22 +16,23 @@ final class AddFavoritesTopicsVCViewModel: NSObject, AddFavoritesTopicsVCProtoco
     
     //MARK: - CLASS FUNCS
     
+    private func addNewTopic(_ topics: inout [String], _ newElement: String) {
+        topics.append(newElement)
+        UserDefaultService.shared.saveTopics(topics: topics)
+        NotificationCenter.default.post(name: .AddNewTopic(), object: nil)
+        delegate?.dismiss()
+    }
+    
     func addDidTapped(topic: String?) -> Bool {
         guard let newElement = topic?.capitalized else { return false }
         var topics = UserDefaultService.shared.loadTopics()
         guard !topics.contains(newElement) else {
             delegate?.AddFavoritesTopicsVCShowAlert(title: "Warning", message: "You have \(newElement) in your list! Do you really want to add it again?") {
-                topics.append(newElement)
-                UserDefaultService.shared.saveTopics(topics: topics)
-                NotificationCenter.default.post(name: .AddNewTopic(), object: nil)
-                self.delegate?.dismiss()
+                self.addNewTopic(&topics, newElement)
             }
             return false
         }
-        topics.append(newElement)
-        UserDefaultService.shared.saveTopics(topics: topics)
-        delegate?.dismiss()
-        NotificationCenter.default.post(name: .AddNewTopic(), object: nil)
+        addNewTopic(&topics, newElement)
         return true
     }
 }

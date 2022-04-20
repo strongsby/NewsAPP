@@ -11,6 +11,4 @@ import Foundation
 protocol FavoriteTopicsVCViewModelDelegate {
     func tableViewReloadData()
     func tableViewDeleteRowWithAnimation(indexPath: [IndexPath])
-    func addMessageShowWithAnimation()
-    func addMessageViewPutAwayWithAnimation()
 }

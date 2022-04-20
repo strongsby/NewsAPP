@@ -18,7 +18,7 @@ final class AddFavoritesTopicsVC: UIViewController, AlertHandler {
             topicTextField.delegate = self
         }
     }
-    private var viewMode: AddFavoritesTopicsVCProtocol = AddFavoritesTopicsVCViewModel()
+    private var viewModel: AddFavoritesTopicsVCProtocol = AddFavoritesTopicsVCViewModel()
 
     //MARK: - LIFE CYCLE
     
@@ -30,7 +30,7 @@ final class AddFavoritesTopicsVC: UIViewController, AlertHandler {
     //MARK: - CLASS FUNCTIONS
     
     private func bind() {
-        viewMode.delegate = self
+        viewModel.delegate = self
     }
     
     //MARK: - ACTIONS
@@ -46,7 +46,7 @@ final class AddFavoritesTopicsVC: UIViewController, AlertHandler {
 extension AddFavoritesTopicsVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return viewMode.addDidTapped(topic: textField.text)
+        return viewModel.addDidTapped(topic: textField.text)
     }
 }
 
@@ -59,7 +59,7 @@ extension AddFavoritesTopicsVC: AddFavoritesTopicsVCDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func AddFavoritesTopicsVCShowAlert(title: String?, message: String?, complition: (() -> Void)?) {
-        showAlert(title: title, message: message, completion: complition)
+    func AddFavoritesTopicsVCShowAlert(title: String?, message: String?, completion: (() -> Void)?) {
+        showAlert(title: title, message: message, completion: completion)
     }
 }

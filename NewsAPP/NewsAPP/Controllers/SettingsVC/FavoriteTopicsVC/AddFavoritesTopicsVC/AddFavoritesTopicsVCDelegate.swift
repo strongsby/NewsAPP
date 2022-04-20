@@ -10,5 +10,5 @@ import Foundation
 
 protocol AddFavoritesTopicsVCDelegate {
     func dismiss()
-    func AddFavoritesTopicsVCShowAlert(title: String?, message: String?, complition: (() -> Void)?)
+    func AddFavoritesTopicsVCShowAlert(title: String?, message: String?, completion: (() -> Void)?)
 }

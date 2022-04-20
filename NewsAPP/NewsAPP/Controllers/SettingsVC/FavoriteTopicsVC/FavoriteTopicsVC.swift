@@ -32,13 +32,26 @@ final class FavoriteTopicsVC: UIViewController {
     //MARK: - CLASS FUNCTIONS
     
     private func setupAll() {
+        bind()
         setupTitle()
         setupNavigationItem()
-        bind()
+        addMessageAnimation()
     }
     
     private func registerTableViewSells() {
         tableView.register(FavoriteTopicsVCCell.defaultNib, forCellReuseIdentifier: FavoriteTopicsVCCell.reuseIdentifier)
+    }
+    
+    private func addMessageAnimation() {
+        if viewModel.newTopicsCount != 0 {
+            UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
+                self?.addMessageView.alpha = .minAlpha()
+            }
+        } else {
+            UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
+                self?.addMessageView.alpha = .maxAlpha()
+            }
+        }
     }
     
     private func setupTitle() {
@@ -104,24 +117,13 @@ extension FavoriteTopicsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension FavoriteTopicsVC: FavoriteTopicsVCViewModelDelegate {
     
-    func addMessageShowWithAnimation() {
-        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
-            self?.addMessageView.alpha = .maxAlpha()
-        }
-    }
-    
-    func addMessageViewPutAwayWithAnimation() {
-        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
-            self?.addMessageView.alpha = .minAlpha()
-        }
-    }
-    
     func tableViewDeleteRowWithAnimation(indexPath: [IndexPath]) {
         tableView.deleteRows(at: indexPath, with: .left)
+        addMessageAnimation()
     }
-    
     
     func tableViewReloadData() {
         tableView.reloadData()
+        addMessageAnimation()
     }
 }

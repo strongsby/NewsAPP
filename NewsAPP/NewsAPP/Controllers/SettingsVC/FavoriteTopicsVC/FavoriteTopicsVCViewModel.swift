@@ -12,15 +12,11 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     
     //MARK: - CLASS PROPERTIES
     
-    var delegate: FavoriteTopicsVCViewModelDelegate? {
-        didSet { checkNewsTopic() }
-    }
+    var delegate: FavoriteTopicsVCViewModelDelegate? 
     var newTopicsCount: Int {
         return newTopics.count
     }
-    private var newTopics: [String] = [] {
-        didSet { checkNewsTopic() }
-    }
+    private var newTopics: [String] = []
     
     //MAERK: - INIT
     
@@ -34,13 +30,6 @@ final class FavoriteTopicsVCViewModel: NSObject, FavoriteTopicsVCViewModelProtoc
     
     func getTopic(indexPath: IndexPath) -> String {
         return newTopics[indexPath.row]
-    }
-    
-    private func checkNewsTopic() {
-        switch newTopics.isEmpty {
-        case true: delegate?.addMessageShowWithAnimation()
-        case false: delegate?.addMessageViewPutAwayWithAnimation()
-        }
     }
     
     func tableViewDeleteRow(indexPath: IndexPath) {
