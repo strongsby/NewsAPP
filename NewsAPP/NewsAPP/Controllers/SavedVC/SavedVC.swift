@@ -37,6 +37,18 @@ final class SavedVC: UIViewController, AlertHandler {
     
     //MARK: - CLASS FUNCTION
     
+    private func addMessageAnimation() {
+        if viewModel.arrayOfCoreDataNewsCount != 0 {
+            UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
+                self?.addMessageView.alpha = .minAlpha()
+            }
+        } else {
+            UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
+                self?.addMessageView.alpha = .maxAlpha()
+            }
+        }
+    }
+    
     private func tableViewRegisterCells() {
         tableView.register(CustomNewsTableViewCell.defaultNib, forCellReuseIdentifier: CustomNewsTableViewCell.reuseIdentifier)
         tableView.register(NewsTableViewCell.defaultNib, forCellReuseIdentifier: NewsTableViewCell.reuseIdentifier)
@@ -124,24 +136,14 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
 
 extension SavedVC: SavedVCViewModelDelegate {
     
-    func addMessageShowWithAnimation() {
-        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
-            self?.addMessageView.alpha = .maxAlpha()
-        }
-    }
-    
-    func addMessageViewPutAwayWithAnimation() {
-        UIView.animate(withDuration: .addMessageDuration()) { [ weak self ] in
-            self?.addMessageView.alpha = .minAlpha()
-        }
-    }
-    
     func tableViewDeleteRowWithAnimation(indexPath: [IndexPath]) {
         tableView.deleteRows(at: indexPath, with: .left)
+        addMessageAnimation()
     }
     
     func tableViewReloadData() {
         tableView.reloadData()
+        addMessageAnimation()
     }
     
     func savedVCShowAlert(title: String?, message: String?, completion: (() -> Void)?) {

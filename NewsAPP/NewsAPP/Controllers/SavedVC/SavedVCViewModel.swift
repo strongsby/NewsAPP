@@ -20,12 +20,8 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     var cellStyle: CellStyle = .defaultCell {
         didSet { delegate?.tableViewReloadData() }
     }
-    private var arrayOfCoreDataNews: [CoreDataNews] = [] {
-        didSet { checkArrayOfCoreDataNews() }
-    }
-    var delegate: SavedVCViewModelDelegate? {
-        didSet { checkArrayOfCoreDataNews() }
-    }
+    private var arrayOfCoreDataNews: [CoreDataNews] = [] 
+    var delegate: SavedVCViewModelDelegate?
     private var fetchedResultsController: NSFetchedResultsController<CoreDataNews>!
     private var fileManager = FileManagerService()
     
@@ -47,13 +43,6 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     
     func getCoreDataNews(indexPath: IndexPath) -> CoreDataNews {
         return arrayOfCoreDataNews[indexPath.row]
-    }
-    
-    private func checkArrayOfCoreDataNews() {
-        switch arrayOfCoreDataNews.isEmpty {
-        case true: delegate?.addMessageShowWithAnimation()
-        case false: delegate?.addMessageViewPutAwayWithAnimation()
-        }
     }
     
     private func setupFetchController() {
@@ -81,7 +70,6 @@ final class SavedVCViewModel: NSObject, SavedVCViewModelProtocol {
     private func loadCoreDataNews() {
         try? fetchedResultsController.performFetch()
         if let result = fetchedResultsController.fetchedObjects {
-            delegate?.addMessageViewPutAwayWithAnimation()
             arrayOfCoreDataNews = result
             delegate?.tableViewReloadData()
         }
