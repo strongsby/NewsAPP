@@ -12,5 +12,4 @@ import UIKit
 protocol CustomNewsTableViewCellViewModelDelegate {
     
     func setupImage(image: UIImage)
-    func loadImage(url: URL, completion: @escaping ((UIImage) -> Void)) 
 }

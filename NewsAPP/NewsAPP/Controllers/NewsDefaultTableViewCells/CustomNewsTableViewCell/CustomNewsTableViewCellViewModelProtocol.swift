@@ -14,5 +14,6 @@ protocol CustomNewsTableViewCellViewModelProtocol: NSObject {
     var delegate: CustomNewsTableViewCellViewModelDelegate? { get set }
     var getTitle: String? { get }
     var getDescription: String? { get }
+    func cancel()
     func getImage()
 }

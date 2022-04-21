@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCV-kK-HuZ">
                         <rect key="frame" x="0.0" y="6" width="442" height="161"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="43U-hp-uoV" customClass="DownloadImageView" customModule="NewsAPP" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="43U-hp-uoV">
                                 <rect key="frame" x="6" y="6" width="158" height="149"/>
                                 <color key="tintColor" systemColor="systemGray4Color"/>
                                 <constraints>

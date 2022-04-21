@@ -17,7 +17,7 @@ final class ShowVC: UIViewController, AlertHandler {
     @IBOutlet private weak var titleLabel:  UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var sourceLabel: UILabel!
-    @IBOutlet private weak var newsImage: DownloadImageView!
+    @IBOutlet private weak var newsImage: UIImageView!
     @IBOutlet private weak var heightNewsImageConstraint: NSLayoutConstraint!
     @IBOutlet private weak var scrollView: UIScrollView!
     var viewModel: ShowVCViewModelProtocol = ShowVCViewModel()
@@ -118,12 +118,6 @@ extension ShowVC: ShowVCViewModelDelegate {
     
     func setupImage(image: UIImage) {
         newsImage.image = image
-    }
-    
-    func loadImage(url: URL, completion: @escaping ((UIImage) -> Void)) {
-        newsImage.load(url) { image in
-            completion(image)
-        }
     }
     
     func showVCShowActivityVC(url: URL) {

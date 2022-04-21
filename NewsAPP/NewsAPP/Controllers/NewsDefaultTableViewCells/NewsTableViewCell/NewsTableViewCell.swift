@@ -13,7 +13,7 @@ final class NewsTableViewCell: UITableViewCell, NewsAPPNibLoadable {
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var newsImage: DownloadImageView! 
+    @IBOutlet private weak var newsImage: UIImageView! 
     var viewModel: NewsTableViewCellViewModelProtocol! {  
         didSet {
             bind()
@@ -36,9 +36,10 @@ final class NewsTableViewCell: UITableViewCell, NewsAPPNibLoadable {
     }
     
     private func cancel() {
+        viewModel.cancel()
         titleLabel.text = nil
         descriptionLabel.text = nil
-        newsImage.cancel()
+        newsImage.image = UIImage(named: "defaultImage")
     }
     
     private func configLabels() {
@@ -57,12 +58,6 @@ extension NewsTableViewCell: NewsTableViewCellViewModelDelegate {
     
     func setupImage(image: UIImage) {
         newsImage.image = image
-    }
-    
-    func loadImage(url: URL, completion: @escaping ((UIImage) -> Void)) {
-        newsImage.load(url) { image in
-            completion(image)
-        }
     }
 }
 

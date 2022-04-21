@@ -11,7 +11,6 @@ import UIKit
 
 protocol ShowVCViewModelDelegate {
     func setupImage(image: UIImage)
-    func loadImage(url: URL, completion: @escaping ((UIImage) -> Void))
     func showVCShowActivityVC(url: URL) -> Void
     func showVCShowAlert(title: String?, message: String?, completion: (() -> Void)?)
     func showInSafari(url: URL)

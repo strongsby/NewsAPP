@@ -1,28 +1,25 @@
 //
-//  DownloadImageView.swift
+//  DownloadImageService.swift
 //  NewsAPP
 //
-//  Created by Сергей Рудинский on 14.03.22.
+//  Created by Сергей Рудинский on 21.04.22.
 //
 
+import Foundation
 import UIKit
 
-final class DownloadImageView: UIImageView {
-    
-    var imageURL: URL?
-    
+
+final class DownloadImageService {
+        
     private var downloadTask: DispatchWorkItem?
     
     func load(_ url: URL?, completion: @escaping (UIImage) -> Void) {
         guard let url = url else { return }
-        imageURL = url
-                
+        
         let downloadTask = DispatchWorkItem(qos: .userInitiated, block: {
             if let data = try? Data(contentsOf: url),
-               let image = UIImage(data: data),
-               self.imageURL == url {
-                DispatchQueue.main.async { [weak self] in
-                        self?.image = image
+               let image = UIImage(data: data) {
+                DispatchQueue.main.async {
                         completion(image)
                     }
                 }
@@ -34,6 +31,5 @@ final class DownloadImageView: UIImageView {
     func cancel() {
         downloadTask?.cancel()
         downloadTask = nil
-        image = UIImage(named: "defaultImage")
     }
 }

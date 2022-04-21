@@ -13,6 +13,7 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     
     //MARK: - CLASS PROPERTIES
     
+    private var downloadImageService = DownloadImageService()
     private var fileManagerService = FileManagerService()
     private var loadedImage: UIImage?
     var getTitle: String? {
@@ -50,21 +51,22 @@ final class ShowVCViewModel: NSObject, ShowVCViewModelProtocol {
     }
     
     //MARK: - CLASS FUNCTIONS
-    
+   
     func getImage() {
         guard let urlStr = article?.urlToImage else { return }
         if let image = ImageCacheService.shared.load(urlToImage: urlStr) {
             delegate?.setupImage(image: image)
-            loadedImage = image
         } else {
             fileManagerService.loadImage(localName: urlStr) { [ weak self ] image in
                 if let image = image {
                     self?.delegate?.setupImage(image: image)
                 } else if let url = URL(string: urlStr) {
-                    self?.delegate?.loadImage(url: url, completion: { image in
-                        ImageCacheService.shared.save(urlToImage: urlStr, image: image)
-                        self?.loadedImage = image
-                    })
+                    self?.downloadImageService.load(url) { loadedImage in
+                        if self?.article?.urlToImage == urlStr {
+                            self?.delegate?.setupImage(image: loadedImage)
+                        }
+                        ImageCacheService.shared.save(urlToImage: urlStr, image: loadedImage)
+                    }
                 }
             }
         }
